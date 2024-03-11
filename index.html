@@ -6,28 +6,31 @@
   </title>
   <style>
 
-   @keyframes boingX {
-    from: {color: #F00;}
-    to:   {color: #00F;}
-   }
-
    body {
     margin: 0px;
     padding: 0px;
+    overflow: hidden;
+    background-color: #000;
+    color: #FFF;
+    text-align: center;
+    font-size: 48px; 
+    white-space: nowrap;
    }
 
-   .boing {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    background-color: #555;
-    animation: boingX 1s linear infinite alternate;
+   div.force {
+    height: 0px;
    }
+
+   a:hover {
+    position: absolute;
+    transform: rotate(180deg);
+   }
+
   </style>
  </head>
  <body>
-  <div class="boing">
-   hi
-  </div>
+  <div class="force">welcome</div><br/>
+  <a class="yo" href="https://www.youtube.com/@notquitehadouken">youtube</a><br/>
+  <a class="gi" href="https://github.com/notquitehadouken">github</a><br/>
  </body>
 </html>
