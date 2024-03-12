@@ -12,6 +12,11 @@
     to   {top: 100%; transform: translateY(0%);}
    }
 
+   @keyframes shronk {
+    from {font-size: 1em;}
+    to {font-size: 1.5em;}
+   }
+
    body {
     margin: 0px;
     padding: 0px;
@@ -46,6 +51,7 @@
    }
 
    a:hover {
+    animation: shronk 1s;
     position: absolute;
     transform: rotate(180deg);
    }
