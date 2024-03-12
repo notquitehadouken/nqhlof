@@ -6,6 +6,11 @@
   </title>
   <style>
 
+   @keyframes marquee {
+    from {left: 0%; transform: translateX(-100%);}
+    to   {left: 100%; transform: translateX(0%);}
+   }
+
    body {
     margin: 0px;
     padding: 0px;
@@ -17,8 +22,10 @@
     white-space: nowrap;
    }
 
-   div.force {
-    height: 0px;
+   .welcome {
+    animation: marquee 20s linear 10s infinite;
+    bottom: 0%;
+    position: absolute;
    }
 
    a:hover {
@@ -29,7 +36,7 @@
   </style>
  </head>
  <body>
-  <div class="force">welcome</div><br/>
+  <span class="welcome">welcome</span><br/>
   <a href="https://www.youtube.com/@notquitehadouken">youtube</a><br/>
   <a href="https://github.com/notquitehadouken">github</a><br/>
   <a href="/weather.html">weather</a><br/>
