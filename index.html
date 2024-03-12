@@ -23,28 +23,26 @@
     white-space: nowrap;
    }
 
-   .welcome0 {
-    animation: marquee 20s linear infinite;
+   .welcome {
     bottom: 0%;
     position: absolute;
+    animation: marquee 20s linear infinite;
+   }
+
+   .welcome0 {
+    animation-delay: 0s;
    }
    
    .welcome1 {
-    animation: marquee 20s linear -5s infinite;
-    bottom: 0%;
-    position: absolute;
+    animation-delay: -5s;
    }
    
    .welcome2 {
-    animation: marquee 20s linear -10s infinite;
-    bottom: 0%;
-    position: absolute;
+    animation-delay: -10s;
    }
    
    .welcome3 {
-    animation: marquee 20s linear -15s infinite;
-    bottom: 0%;
-    position: absolute;
+    animation-delay: -15s;
    }
 
    a:hover {
@@ -55,10 +53,10 @@
   </style>
  </head>
  <body>
-  <span class="welcome0">welcome</span>
-  <span class="welcome1">welcome</span>
-  <span class="welcome2">welcome</span>
-  <span class="welcome3">welcome</span>
+  <span class="welcome welcome0">welcome</span>
+  <span class="welcome welcome1">welcome</span>
+  <span class="welcome welcome2">welcome</span>
+  <span class="welcome welcome3">welcome</span>
   <a href="https://www.youtube.com/@notquitehadouken">youtube</a><br/>
   <a href="https://github.com/notquitehadouken">github</a><br/>
   <a href="/weather.html">weather</a><br/>
