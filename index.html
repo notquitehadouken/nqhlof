@@ -8,8 +8,8 @@
   <style>
 
    @keyframes marquee {
-    from {top: 0%; transform: translateY(-100%);}
-    to   {top: 100%; transform: translateY(0%);}
+    from {top: 0%; transform: translate(-50%, -100%);}
+    to   {top: 100%; transform: translate(-50%, 0%);}
    }
 
    @keyframes shronk {
@@ -29,7 +29,7 @@
    }
 
    .welcome {
-    left: 0%;
+    left: 50%;
     position: absolute;
     animation: marquee 20s linear infinite forwards;
    }
@@ -54,6 +54,21 @@
     animation: shronk 1s ease-out;
    }
 
+   div.local, div.external {
+    position: absolute;
+    width: 25%;
+   }
+
+   div.local {
+    bottom: 0%;
+    left: 0%;
+   }
+
+   div.external {
+    top: 0%;
+    right: 0%;
+   }
+
   </style>
  </head>
  <body>
@@ -61,10 +76,18 @@
   <span class="welcome welcome1">welcome</span>
   <span class="welcome welcome2">welcome</span>
   <span class="welcome welcome3">welcome</span>
+  <div class="external">
+  external <br/>
   <a href="https://www.youtube.com/@notquitehadouken">youtube</a><br/>
   <a href="https://github.com/notquitehadouken">github</a><br/>
-  <a href="/weather.html">weather</a><br/>
   <a href="https://www.wikidot.com/user:info/notquitehadouken">wikidot</a><br/>
+  </div>
+  
+  <div class="local">
+  <a href="/weather.html">weather.html</a><br/>
   <a href="/draw.html">draw.html</a><br/>
+  <a href="/magic.html">magic.html</a><br/>
+  local <br/>
+  </div>
  </body>
 </html>
