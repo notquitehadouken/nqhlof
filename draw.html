@@ -1,405 +1,389 @@
 <html>
-<head>
+ <head>
+  <title>
+   NQH's magical pixel art
+  </title>
+  <style>
+   canvas {border: 1px solid grey;}
+   body, input, button {background-color: #444; color: white; font-family: Verdana;}
+   .selected {border-color: #C00;}
+   .hidden {background-color: #0000FF30;}
+  </style>
+ </head>
+ <body>
+  <button id="save" onclick="save()">Save</button><br/>
+  <button id="secrets" style="display: none" onclick="tellmeyoursecrets()">Tell me your secrets.<br/></button>
+  Width, height <input id="width" size="5" value="32"><input id="height" size="5" value="32"><br/>
+  Color <input class="colorbox" id="color" value="#000000" size="7"><br/>
+  Alt color <input class="colorbox" id="altcolor" value="#FFFFFF" size="7"><br/>
+  <button onclick="zoomout()">-</button>Zoom: <label id="zoom">100</label>%<button onclick="zoomin()">+</button><br/>
+  <button onclick="gridtoggle()">Toggle grid</button><input id="gridzoom" value="1" size="1"></input><br/>
+  <button id="drawing" onclick="swapDraw()">Loading</button><br/>
+  <hr>
+  <canvas id="imageMain" width="32" height="32"></canvas>
+  <hr>
+  <button onclick="addLayer()">New layer</button>
+  <div id="layerbar"></div>
+  <script>
+   function getEl(id){
+    return document.getElementById(id);
+   }
+   
+   const mainCanvas = getEl("imageMain");
+   
+   if (!mainCanvas.getContext)
+    alert("Somehow, everything broke.");
+   
+   const mainCtx = mainCanvas.getContext("2d");
+   const Iwidth = getEl("width");
+   const Iheight = getEl("height");
+   const Izoom = getEl("zoom");
+   const Isavelink = getEl("save");
+   const Icolor = getEl("color");
+   const Iacolor = getEl("altcolor");
+   const Ilayerbar = getEl("layerbar");
+   const Idrawing = getEl("drawing");
+   const Igridzoom = getEl("gridzoom");
+   
+   var global = 0;
+   var mousedown = false;
 
-<title>
-NQH's magical pixel art
-</title>
+   var width = 32;
+   var height = 32;
+   var zoom = 1;
+   var acts = [[]];
+   var showing = [true];
+   var redostack = [[]];
+   var undostack = [[]];
+   var layer = 0;
+   var layercount = 1;
+   
+   var mPos = [-1, -1];
+   var gridOn = false;
+   var draw = true;
+   
+   function tellmeyoursecrets(){
+    alert(acts);
+    alert(showing);
+    alert(redostack);
+    alert(undostack);
+    alert(layer);
+    alert(layercount);
+   }
 
-<style>
-canvas {border: 1px solid grey;}
-body, input, button {background-color: #444; color: white; font-family: Verdana;}
-.selected {border-color: #C00;}
-.hidden {background-color: #0000FF30;}
-</style>
+   function save(){
+    drawZoom(1);
+    window.location.href = mainCanvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+   }
+   
+   function swapDraw(){
+    draw = !draw;
+   }
 
-</head>
+   function gridtoggle(){
+    gridOn = !gridOn;
+   }
 
-<body>
-<button id="save" onclick="save()">Save</button><br/>
+   function zoomout(){
+    if (zoom > 1)
+     zoom *= 0.5;
+   }
+   
+   function zoomin(){
+    if (zoom < 32)
+     zoom *= 2;
+    else
+     alert("If you increase the zoom any higher your tab WILL crash.");
+   }
+   
+   function doAct(act, z){
+    mainCtx.fillStyle = act[2];
+    mainCtx.fillRect(act[0] * z, act[1] * z, z, z);
+   }
+   
+   function doActLayer(act, ctx){
+    ctx.fillStyle = act[2];
+    ctx.fillRect(act[0], act[1], 1, 1);
+   }
 
-<button id="secrets" style="display: none" onclick="tellmeyoursecrets()">Tell me your secrets.<br/></button>
+   function setPx(l, x, y, c){
+    if(!acts[l][x]){
+     acts[l][x] = [];
+    }
+    acts[l][x][y] = [x, y, c];
+   }
+   
+   function getPx(l, x, y){
+    if (!acts[l][x])
+     return "#00000000";
+    if (!acts[l][x][y])
+     return "#00000000";
+    return acts[l][x][y][2];
+   }
+   
+   function addAct(t, x, y, c){
+    if(!t)
+     c = "#00000000";
+    undostack[layer].push([x, y, getPx(layer, x, y), c]);
+    setPx(layer, x, y, c);
+   }
+   
+   function getLayerButtons(i){
+    return [getEl("layerLB"+i), getEl("layerRB"+i), getEl("layerRM"+i), getEl("layerSH"+i), getEl("layerSW"+i)];
+   }
+   
+   function setFunctions(buttons, i){
+    buttons[0].onmouseup = () => moveLayerLeft(i);
+    buttons[1].onmouseup = () => moveLayerRight(i);
+    buttons[2].onmouseup = () => removeLayer(i);
+    buttons[3].onmouseup = () => showing[i] = !showing[i];
+    buttons[4].onmouseup = () => layer = i;
+   }
+   
+   function updateLayerBar(){ // fuck
+    for (let i = 0; i < layercount; i++){
+     let ourLayer = getEl("layer"+i);
+     if(!ourLayer){
+      ourLayer = document.createElement("span");
+      ourLayer.width = width;
+      ourLayer.id = "layer"+i;
+      ourLayer.appendChild(document.createElement("canvas")).id = "layerC"+i;
+      ourLayer.appendChild(document.createElement("br"));
+      let leftButton = ourLayer.appendChild(document.createElement("button"));
+      let rightButton = ourLayer.appendChild(document.createElement("button"));
+      ourLayer.appendChild(document.createElement("br"));
+      let remButton = ourLayer.appendChild(document.createElement("button"));
+      ourLayer.appendChild(document.createElement("br"));
+      let showButton = ourLayer.appendChild(document.createElement("button"));
+      ourLayer.appendChild(document.createElement("br"));
+      let switchButton = ourLayer.appendChild(document.createElement("button"));
+      ourLayer.appendChild(document.createElement("br"));
+      leftButton.id = "layerLB"+i;
+      rightButton.id = "layerRB"+i;
+      remButton.id = "layerRM"+i;
+      showButton.id = "layerSH"+i;
+      switchButton.id = "layerSW"+i;
+      leftButton.appendChild(document.createTextNode("<"));
+      rightButton.appendChild(document.createTextNode(">"));
+      remButton.appendChild(document.createTextNode("Remove"));
+      showButton.appendChild(document.createTextNode("Hide"));
+      switchButton.appendChild(document.createTextNode("Switch"));
+      setFunctions([leftButton, rightButton, remButton, showButton, switchButton], i);
+     }
+     Ilayerbar.appendChild(ourLayer);
+     let ourCanvas = getEl("layerC"+i);
+     ourCanvas.width = width;
+     ourCanvas.height = height;
+     if (i == layer)
+      ourCanvas.className = "selected";
+     else
+      ourCanvas.className = "";
+     
+     if (!showing[i])
+      ourCanvas.classList.add("hidden");
+     let ourContext = ourCanvas.getContext("2d");
+     ourContext.clearRect(0, 0, ourCanvas.width, ourCanvas.height);
+     acts[i].forEach((x) => x.forEach((y) => doActLayer(y, ourContext)));
+    }
+   }
+   
+   function addLayer(){
+    acts.push([]);
+    showing.push(true);
+    redostack.push([]);
+    undostack.push([]);
+    layercount += 1;
+   }
+   
+   function removeLayer(id){
+    if(id==layer)
+     return;
+    acts.splice(id, 1);
+    showing.splice(id, 1);
+    redostack.splice(id, 1);
+    undostack.splice(id, 1);
+    getEl("layer"+id).remove();
+    for (let i = id + 1; i < layercount; i++){
+     let layerer = getEl("layer"+i);
+     let layererC = getEl("layerC"+i);
+     let nid = i - 1;
+     layerer.id = layerer.id.slice(0, 5) + nid;
+     layererC.id = layererC.id.slice(0, 6) + nid;
+     let buttons = getLayerButtons(i);
+     buttons.forEach((button) => button.id = button.id.slice(0, 7) + nid);
+     setFunctions(buttons, nid);
+    }
+    if(layer>id)
+     layer--;
+    layercount--;
+   }
+   
+   function swapLayers(id1, id2){
+    if (id1 == layer)
+     layer = id2;
+    else if (id2 == layer)
+     layer = id1;
+    
+    var a1 = acts[id1];
+    var s1 = showing[id1];
+    var r1 = redostack[id1];
+    var u1 = undostack[id1];
+    
+    acts[id1] = acts[id2];
+    showing[id1] = showing[id2];
+    redostack[id1] = redostack[id2];
+    undostack[id1] = undostack[id2];
+    
+    acts[id2] = a1;
+    showing[id2] = s1;
+    redostack[id2] = r1;
+    undostack[id2] = u1;
 
-Width, height <input id="width" size="5" value="32"><input id="height" size="5" value="32"><br/>
+    setFunctions(getLayerButtons(id1), id1);
+    setFunctions(getLayerButtons(id2), id2);
+   }
+   
+   function moveLayerLeft(id){
+    if (id <= 0)
+     return;
+    swapLayers(id, id-1);
+   }
+   
+   function moveLayerRight(id){
+    if (id >= layercount - 1)
+     return;
+    swapLayers(id, id+1);
+   }
+   
+   function drawZoom(z){
+    mainCanvas.width = width * z;
+    mainCanvas.height = height * z;
+    mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
+    if (gridOn)
+     drawGrid(zoom);
+    for (let i = 0; i < layercount; i++){
+     if (showing[i])
+      acts[i].forEach((x) => x.forEach((y) => doAct(y, z)));
+    }
+   }
+   
+   function drawGrid(z){
+    for (let x = 0; x < width; x++)
+     for (let y = 0; y < height; y++)
+      if ((Math.floor(x / Number(gridzoom.value)) + Math.floor(y / Number(gridzoom.value))) % 2 == 0)
+       doAct([x, y, "#FFFFFF20"], z);
+      else
+       doAct([x, y, "#00000020"], z);
+   }
+   
+   function update(){
+    global += 1;
+    Izoom.innerHTML = zoom*100;
+    if (draw)
+     Idrawing.innerHTML = "Drawing";
+    else
+     Idrawing.innerHTML = "Erasing";
+    Icolor.style = "border-color: " + Icolor.value;
+    Iacolor.style = "border-color: " + Iacolor.value;
+    width = Iwidth.value;
+    height = Iheight.value;
+    drawZoom(zoom);
+    drawHolo(zoom);
+    updateLayerBar();
+   }
+   
+   function getCanvPos(e){
+    var rect = mainCanvas.getBoundingClientRect();
+    var x = e.clientX - rect.left;
+    var y = e.clientY - rect.top;
+    x = Math.floor(x / zoom);
+    y = Math.floor(y / zoom);
+    return [x, y];
+   }
+   
+   function drawHolo(z){
+    if (draw)
+     mainCtx.fillStyle = Icolor.value;
+    else
+    {
+     if (global % 16 < 8)
+      mainCtx.fillStyle = "#00000000";
+     else
+      mainCtx.fillStyle = "#FFF";
+    }
+    mainCtx.fillRect(mPos[0] * z, mPos[1] * z, z, z);
+   }
+   
+   function mouseMoved(e){
+    let oPos = mPos;
 
-Color <input class="colorbox" id="color" value="#000000" size="7"><br/>
-
-Alt color <input class="colorbox" id="altcolor" value="#FFFFFF" size="7"><br/>
-
-<button onclick="zoomout()">-</button>Zoom: <label id="zoom">100</label>%<button onclick="zoomin()">+</button><br/>
-
-<button onclick="gridtoggle()">Toggle grid</button><input id="gridzoom" value="1" size="1"></input><br/>
-
-<button id="drawing" onclick="swapDraw()">Loading</button><br/>
-
-<hr>
-
-<canvas id="imageMain" width="32" height="32"></canvas>
-
-<hr>
-
-<button onclick="addLayer()">New layer</button>
-
-<div id="layerbar"></div>
-
-<script>
-function getEl(id)
- {return document.getElementById(id);}
-
-const mainCanvas = getEl("imageMain");
-
-if (!mainCanvas.getContext)
- alert("Somehow, everything broke.");
-
-const mainCtx = mainCanvas.getContext("2d");
-const Iwidth = getEl("width");
-const Iheight = getEl("height");
-const Izoom = getEl("zoom");
-const Isavelink = getEl("save");
-const Icolor = getEl("color");
-const Iacolor = getEl("altcolor");
-const Ilayerbar = getEl("layerbar");
-const Idrawing = getEl("drawing");
-const Igridzoom = getEl("gridzoom");
-
-var global = 0;
-var mousedown = false;
-
-var width = 32;
-var height = 32;
-var zoom = 1;
-var acts = [[]];
-var showing = [true];
-var redostack = [[]];
-var undostack = [[]];
-var layer = 0;
-var layercount = 1;
-
-var mPos = [-1, -1];
-var gridOn = false;
-var draw = true;
-
-function tellmeyoursecrets(){
- alert(acts);
- alert(showing);
- alert(redostack);
- alert(undostack);
- alert(layer);
- alert(layercount);
-}
-
-function save(){
- drawZoom(1);
- window.location.href = mainCanvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-}
-
-function swapDraw(){
- draw = !draw;
-}
-
-function gridtoggle(){
- gridOn = !gridOn;
-}
-
-function zoomout(){
- if (zoom > 1)
-  zoom *= 0.5;
-}
-
-function zoomin(){
- if (zoom < 32)
-  zoom *= 2;
- else
-  alert("If you increase the zoom any higher your tab WILL crash.");
-}
-
-function doAct(act, z){
- mainCtx.fillStyle = act[2];
- mainCtx.fillRect(act[0] * z, act[1] * z, z, z);
-}
-
-function doActLayer(act, ctx){
- ctx.fillStyle = act[2];
- ctx.fillRect(act[0], act[1], 1, 1);
-}
-
-function setPx(l, x, y, c){
- if(!acts[l][x]){
-  acts[l][x] = [];
- }
- acts[l][x][y] = [x, y, c];
-}
-
-function getPx(l, x, y){
- if (!acts[l][x])
-  return "#00000000";
- if (!acts[l][x][y])
-  return "#00000000";
- return acts[l][x][y][2];
-}
-
-function addAct(t, x, y, c){
- if(!t)
-  c = "#00000000";
- undostack[layer].push([x, y, getPx(layer, x, y), c]);
- setPx(layer, x, y, c);
-}
-
-function getLayerButtons(i){
- return [getEl("layerLB"+i), getEl("layerRB"+i), getEl("layerRM"+i), getEl("layerSH"+i), getEl("layerSW"+i)];
-}
-
-function setFunctions(buttons, i){
- buttons[0].onmouseup = () => moveLayerLeft(i);
- buttons[1].onmouseup = () => moveLayerRight(i);
- buttons[2].onmouseup = () => removeLayer(i);
- buttons[3].onmouseup = () => showing[i] = !showing[i];
- buttons[4].onmouseup = () => layer = i;
-}
-
-function updateLayerBar(){ // fuck
- for (let i = 0; i < layercount; i++){
-  let ourLayer = getEl("layer"+i);
-  if(!ourLayer){
-   ourLayer = document.createElement("span");
-   ourLayer.width = width;
-   ourLayer.id = "layer"+i;
-   ourLayer.appendChild(document.createElement("canvas")).id = "layerC"+i;
-   ourLayer.appendChild(document.createElement("br"));
-   let leftButton = ourLayer.appendChild(document.createElement("button"));
-   let rightButton = ourLayer.appendChild(document.createElement("button"));
-   ourLayer.appendChild(document.createElement("br"));
-   let remButton = ourLayer.appendChild(document.createElement("button"));
-   ourLayer.appendChild(document.createElement("br"));
-   let showButton = ourLayer.appendChild(document.createElement("button"));
-   ourLayer.appendChild(document.createElement("br"));
-   let switchButton = ourLayer.appendChild(document.createElement("button"));
-   ourLayer.appendChild(document.createElement("br"));
-   leftButton.id = "layerLB"+i;
-   rightButton.id = "layerRB"+i;
-   remButton.id = "layerRM"+i;
-   showButton.id = "layerSH"+i;
-   switchButton.id = "layerSW"+i;
-   leftButton.appendChild(document.createTextNode("<"));
-   rightButton.appendChild(document.createTextNode(">"));
-   remButton.appendChild(document.createTextNode("Remove"));
-   showButton.appendChild(document.createTextNode("Hide"));
-   switchButton.appendChild(document.createTextNode("Switch"));
-   setFunctions([leftButton, rightButton, remButton, showButton, switchButton], i);
-  }
-  Ilayerbar.appendChild(ourLayer);
-  let ourCanvas = getEl("layerC"+i);
-  ourCanvas.width = width;
-  ourCanvas.height = height;
-  if (i == layer)
-   ourCanvas.className = "selected";
-  else
-   ourCanvas.className = "";
-
-  if (!showing[i])
-   ourCanvas.classList.add("hidden");
-  let ourContext = ourCanvas.getContext("2d");
-  ourContext.clearRect(0, 0, ourCanvas.width, ourCanvas.height);
-  acts[i].forEach((x) => x.forEach((y) => doActLayer(y, ourContext)));
- }
-}
-
-function addLayer(){
- acts.push([]);
- showing.push(true);
- redostack.push([]);
- undostack.push([]);
- layercount += 1;
-}
-
-function removeLayer(id){
- if(id==layer)
-  return;
- acts.splice(id, 1);
- showing.splice(id, 1);
- redostack.splice(id, 1);
- undostack.splice(id, 1);
- getEl("layer"+id).remove();
- for (let i = id + 1; i < layercount; i++){
-  let layerer = getEl("layer"+i);
-  let layererC = getEl("layerC"+i);
-  let nid = i - 1;
-  layerer.id = layerer.id.slice(0, 5) + nid;
-  layererC.id = layererC.id.slice(0, 6) + nid;
-  let buttons = getLayerButtons(i);
-  buttons.forEach((button) => button.id = button.id.slice(0, 7) + nid);
-  setFunctions(buttons, nid);
- }
- if(layer>id)
-  layer--;
- layercount--;
-}
-
-function swapLayers(id1, id2){
- if (id1 == layer)
-  layer = id2;
- else if (id2 == layer)
-  layer = id1;
-
- var a1 = acts[id1];
- var s1 = showing[id1];
- var r1 = redostack[id1];
- var u1 = undostack[id1];
-
- acts[id1] = acts[id2];
- showing[id1] = showing[id2];
- redostack[id1] = redostack[id2];
- undostack[id1] = undostack[id2];
-
- acts[id2] = a1;
- showing[id2] = s1;
- redostack[id2] = r1;
- undostack[id2] = u1;
-
- setFunctions(getLayerButtons(id1), id1);
- setFunctions(getLayerButtons(id2), id2);
-}
-
-function moveLayerLeft(id){
- if (id <= 0)
-  return;
- swapLayers(id, id-1);
-}
-
-function moveLayerRight(id){
- if (id >= layercount - 1)
-  return;
- swapLayers(id, id+1);
-}
-
-function drawZoom(z){
- mainCanvas.width = width * z;
- mainCanvas.height = height * z;
- mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
- if (gridOn)
-  drawGrid(zoom);
- for (let i = 0; i < layercount; i++){
-  if (showing[i])
-   acts[i].forEach((x) => x.forEach((y) => doAct(y, z)));
- }
-}
-
-function drawGrid(z){
- for (let x = 0; x < width; x++)
-  for (let y = 0; y < height; y++)
-   if ((Math.floor(x / Number(gridzoom.value)) + Math.floor(y / Number(gridzoom.value))) % 2 == 0)
-    doAct([x, y, "#FFFFFF20"], z);
-   else
-    doAct([x, y, "#00000020"], z);
-}
-
-function update(){
- global += 1;
- Izoom.innerHTML = zoom*100;
- if (draw)
-  Idrawing.innerHTML = "Drawing";
- else
-  Idrawing.innerHTML = "Erasing";
- Icolor.style = "border-color: " + Icolor.value;
- Iacolor.style = "border-color: " + Iacolor.value;
- width = Iwidth.value;
- height = Iheight.value;
- drawZoom(zoom);
- drawHolo(zoom);
- updateLayerBar();
-}
-
-function getCanvPos(e){
- var rect = mainCanvas.getBoundingClientRect();
- var x = e.clientX - rect.left;
- var y = e.clientY - rect.top;
- x = Math.floor(x / zoom);
- y = Math.floor(y / zoom);
- return [x, y];
-}
-
-function drawHolo(z){
- if (draw)
-  mainCtx.fillStyle = Icolor.value;
- else
- {
-  if (global % 16 < 8)
-   mainCtx.fillStyle = "#00000000";
-  else
-   mainCtx.fillStyle = "#FFF";
-  }
- mainCtx.fillRect(mPos[0] * z, mPos[1] * z, z, z);
-}
-
-function mouseMoved(e){
- let oPos = mPos;
- mPos = getCanvPos(e);
- if (mousedown && (mPos[0] != oPos[0] || mPos[1] != oPos[1]))
-  drawPx();
-}
-
-function canvasDown(e){
- mousedown = true;
- drawPx();
-}
-
-function canvasUp(e){
- mousedown = false;
-}
-
-function drawPx(){
- var x = mPos[0];
- var y = mPos[1];
- var color = Icolor.value;
- addAct(draw, x, y, color);
-}
-
-function keyPressed(e){
- e = e || window.event; // fucking IE
- switch (e.key){
-  case "x":
-   var temp = Iacolor.value;
-   Iacolor.value = Icolor.value;
-   Icolor.value = temp;
-   break;
-  case "c":
-   swapDraw();
-   break;
-  case "z":
-   var deAct = undostack[layer].pop();
-   redostack[layer].push(deAct);
-   setPx(layer, deAct[0], deAct[1], deAct[2]);
-   break;
-  case "r":
-   if (redostack[layer].length == 0)
-    break;
-   var deAct = redostack[layer].pop();
-   undostack[layer].push(deAct);
-   setPx(layer, deAct[0], deAct[1], deAct[3]);
-   break;
-  case "g":
-   gridtoggle();
-   break;
-  case "-":
-  case "_":
-   zoomout();
-   break;
-  case "=":
-  case "+":
-   zoomin();
-   break;
- }
-}
-
-mainCanvas.onmousedown = canvasDown;
-
-mainCanvas.onmouseup = canvasUp;
-
-document.onmousemove = mouseMoved;
-
-document.onkeypress = keyPressed;
-
-setInterval(update, 1/60);
-
+    mPos = getCanvPos(e);
+    if (mousedown && (mPos[0] != oPos[0] || mPos[1] != oPos[1]))
+     drawPx();
+   }
+   
+   function canvasDown(e){
+    mousedown = true;
+    drawPx();
+   }
+   
+   function canvasUp(e){
+    mousedown = false;
+   }
+   
+   function drawPx(){
+    var x = mPos[0];
+    var y = mPos[1];
+    var color = Icolor.value;
+    addAct(draw, x, y, color);
+   }
+   
+   function keyPressed(e){
+    e = e || window.event; // fucking IE
+    switch (e.key){
+     case "x":
+      var temp = Iacolor.value;
+      Iacolor.value = Icolor.value;
+      Icolor.value = temp;
+      break;
+     case "c":
+      swapDraw();
+      break;
+     case "z":
+      var deAct = undostack[layer].pop();
+      redostack[layer].push(deAct);
+      setPx(layer, deAct[0], deAct[1], deAct[2]);
+      break;
+     case "r":
+      if (redostack[layer].length == 0)
+       break;
+      var deAct = redostack[layer].pop();
+      undostack[layer].push(deAct);
+      setPx(layer, deAct[0], deAct[1], deAct[3]);
+      break;
+     case "g":
+      gridtoggle();
+      break;
+     case "-":
+     case "_":
+      zoomout();
+      break;
+     case "=":
+     case "+":
+      zoomin();
+      break;
+    }
+   }
+   
+   mainCanvas.onmousedown = canvasDown;
+   
+   mainCanvas.onmouseup = canvasUp;
+   
+   document.onmousemove = mouseMoved;
+   
+   document.onkeypress = keyPressed;
+   
+   setInterval(update, 1/60);
 </script>
 </body>
 </html>
