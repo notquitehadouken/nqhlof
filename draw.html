@@ -10,18 +10,32 @@
    body, input, button, a {background-color: #444; color: white; font-family: Verdana;}
    .selected {border-color: #C00;}
    .hidden {background-color: #0000FF30;}
+   .hide {display: none;}
   </style>
  </head>
  <body>
-  <a href="/">Take me back</a>
-  <button id="save" onclick="save()">Save</button><br/>
-  <button id="secrets" style="display: none" onclick="tellmeyoursecrets()">Tell me your secrets.<br/></button>
+  <a href="/">Take me back</a><br/>
+  <button id="save" onclick="save()">Save</button>
+  <button id="secrets" class="hide" onclick="tellmeyoursecrets()">Tell me your secrets.</button><br/>
   Width, height <input id="width" size="5" value="32"><input id="height" size="5" value="32"><br/>
   Color <input class="colorbox" id="color" value="#000000" size="7"><br/>
   Alt color <input class="colorbox" id="altcolor" value="#FFFFFF" size="7"><br/>
   <button onclick="zoomout()">-</button>Zoom: <label id="zoom">Loading</label>%<button onclick="zoomin()">+</button><br/>
   <button onclick="gridtoggle()">Toggle grid</button><input id="gridzoom" value="1" size="1"></input><br/>
-  <button id="drawing" onclick="swapDraw()">Loading</button><br/>
+  <button id="drawing" onclick="swapDraw()">Loading</button><button id="save" style="border-radius: 50%" onclick="help()">?</button><br/>
+  
+  <div id="helptext" class="hide">
+   <table>
+    <tr><th>Key</th><th>Function</th></tr>
+    <tr><td>X</td><td>Swaps the current color and alternate color</td></tr>
+    <tr><td>+</td><td>Zooms in</td></tr>
+    <tr><td>-</td><td>Zooms out</td></tr>
+    <tr><td>G</td><td>Toggles the grid</td></tr>
+    <tr><td>C</td><td>Swaps between drawing and erasing</td></tr>
+    <tr><td>Z</td><td>Undo</td></tr>
+    <tr><td>R</td><td>Redo</td></tr>
+   </table>
+  </div>
   
   <hr>
   
@@ -43,6 +57,7 @@
     alert("Somehow, everything broke.");
    
    const mainCtx = mainCanvas.getContext("2d");
+   const Ihelp = getEl("helptext");
    const Iwidth = getEl("width");
    const Iheight = getEl("height");
    const Izoom = getEl("zoom");
@@ -71,6 +86,15 @@
    var mPos = [-1, -1];
    var gridOn = false;
    var draw = true;
+
+   function help(){
+    if (Ihelp.className.length > 0){
+     Ihelp.className = "";
+    }
+    else{
+     Ihelp.className = "hide";
+    }
+   }
    
    function tellmeyoursecrets(){
     alert(acts);
@@ -355,9 +379,10 @@
     addAct(draw, x, y, color);
    }
    
-   function keyPressed(e){
+   function keyDown(e){
     e = e || window.event; // fucking IE
-    switch (e.key){
+    key = e.key.toLowerCase();
+    switch (key){
      case "x":
       var temp = Iacolor.value;
       Iacolor.value = Icolor.value;
@@ -398,7 +423,7 @@
    
    document.onmousemove = mouseMoved;
    
-   document.onkeypress = keyPressed;
+   document.onkeydown = keyDown;
    
    setInterval(update, 1/60);
 </script>
