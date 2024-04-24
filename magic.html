@@ -7,15 +7,25 @@
 			body    {background-color: black; color: white; font-family: Calibri;}
 			button  {background-color: black; color: white; font-family: Calibri;}
 			input   {background-color: black; color: white; font-family: Calibri;}
+			label   {background-color: black; color: white; font-family: Calibri;}
 		</style>
 		<link rel="shortcut icon" type="image/jpg" href="images/favimagic.ico"/>
 	</head>
 	<body>
 		<a href="/">Take me back</a><br/>
 		Magical file HTML thing. Hence the name.<br/>
-		<button onclick="window.testit()">Test</button> <button onclick="window.downloadit()">Download</button> <input id="filename" style="width:200"></input>
+		<input id="fileimport" style="display: none;" type="file"/>
+		<label for="fileimport">Choose a file</label>
+		<button onclick="window.importfile()">Import</button><br/>
+		<button onclick="window.testit()">Test</button> <button onclick="window.downloadit()">Download</button> <input id="filename" style="width:200"/>
 		<textarea id="source" spellcheck="false" style="background-color:black;color:white;width:100%;height:90%;font-family:Courier;" onkeydown="handleKeyDown.call(this, event)"></textarea>
 		<script>
+			function importfile() {
+				var file = document.getElementById("fileimport");
+				if (!confirm("Are you sure you want to import?")) return;
+				var source = document.getElementById("source");
+				file.files[0].text().then((value) => source.value = value);
+			}
 			function testit() {
 				testwindow = window.open("");
 				with (testwindow.document) {
