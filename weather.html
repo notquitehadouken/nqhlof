@@ -9,7 +9,7 @@
             body {background-color: #000;}
             body, * {margin: 0px; padding: 0px; font-family: Courier;}
             :not(img) {background-color: #000; color: #FFF;}
-            img {display: block; margin-left: auto; margin-right: auto;}
+            img {display: block; margin-left: auto; margin-right: auto; background-color: #FFF;}
             .hide {display: none;}
             div#imageSelector {text-align: center;}
         </style>
@@ -32,8 +32,17 @@
 
             <!-- Mesoscale layer 1 -->
 
-            <label id="mesoscale_L">Sector: </label>
+            <label id="mesoscale_L">Data: </label>
             <select id="mesoscale_">
+                <option value="" selected unavailable hidden>None selected</option>
+                <option value="pmsl">Pressure and surface wind</option>
+				<option value="stpc">Significant tornado parameter</option>
+            </select>
+
+            <!-- Mesoscale layer 2 -->
+
+            <label id="pmsl_mesoscale_L">Sector: </label>
+            <select id="pmsl_mesoscale_">
                 <option value="" selected unavailable hidden>None selected</option>
                 <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s11/pmsl/pmsl.gif">11</option>
                 <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s12/pmsl/pmsl.gif">12</option>
@@ -47,6 +56,23 @@
                 <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s20/pmsl/pmsl.gif">20</option>
                 <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s21/pmsl/pmsl.gif">21</option>
                 <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s22/pmsl/pmsl.gif">22</option>
+            </select>
+
+            <label id="stpc_mesoscale_L">Sector: </label>
+            <select id="stpc_mesoscale_">
+                <option value="" selected unavailable hidden>None selected</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s11/stpc/stpc.gif">11</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s12/stpc/stpc.gif">12</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s13/stpc/stpc.gif">13</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s14/stpc/stpc.gif">14</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s15/stpc/stpc.gif">15</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s16/stpc/stpc.gif">16</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s17/stpc/stpc.gif">17</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s18/stpc/stpc.gif">18</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s19/stpc/stpc.gif">19</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s20/stpc/stpc.gif">20</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s21/stpc/stpc.gif">21</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s22/stpc/stpc.gif">22</option>
             </select>
 
             <!-- End of mesoscale --> 
