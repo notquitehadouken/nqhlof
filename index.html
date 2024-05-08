@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
  <head>
@@ -28,10 +29,23 @@
     white-space: nowrap;
    }
 
+   body.offline, body.offline * {
+    background-color: #F00;
+    color: #000;
+   }
+
    .welcome {
     left: 50%;
     position: absolute;
     animation: marquee 20s linear infinite forwards;
+   }
+
+   .welcome::after {
+    content: "welcome";
+   }
+
+   body.offline .welcome::after {
+    content: "offline";
    }
 
    .welcome0 {
@@ -72,11 +86,11 @@
   </style>
   <script src="/swload.js"></script> <!-- I don't know how a service worker works. -->
  </head>
- <body>
-  <span class="welcome welcome0">welcome</span>
-  <span class="welcome welcome1">welcome</span>
-  <span class="welcome welcome2">welcome</span>
-  <span class="welcome welcome3">welcome</span>
+ <body class>
+  <span class="welcome welcome0"></span>
+  <span class="welcome welcome1"></span>
+  <span class="welcome welcome2"></span>
+  <span class="welcome welcome3"></span>
   <div class="external">
   external <br/>
   <a href="https://www.youtube.com/@notquitehadouken">youtube</a><br/>
@@ -92,5 +106,15 @@
   <a href="/service.html">service.html</a><br/>
   local <br/>
   </div>
+  <script>
+   window.addEventListener('online',  updateOnlineStatus);
+   window.addEventListener('offline', updateOnlineStatus);
+
+   function updateOnlineStatus() {
+    document.body.className = navigator.onLine ? "" : "offline";
+   }
+
+   updateOnlineStatus();
+  </script>
  </body>
 </html>
