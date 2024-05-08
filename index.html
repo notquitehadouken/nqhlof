@@ -83,27 +83,45 @@
     right: 0%;
    }
 
+   body.offline .online { display: none; }
+   body:not(.offline) .offline { display: none; }
+
   </style>
   <script src="/swload.js"></script> <!-- I don't know how a service worker works. -->
  </head>
- <body class>
+ <body>
   <span class="welcome welcome0"></span>
   <span class="welcome welcome1"></span>
   <span class="welcome welcome2"></span>
   <span class="welcome welcome3"></span>
-  <div class="external">
+  <div class="external online">
   external <br/>
   <a href="https://www.youtube.com/@notquitehadouken">youtube</a><br/>
   <a href="https://github.com/notquitehadouken">github</a><br/>
   <a href="https://www.wikidot.com/user:info/notquitehadouken">wikidot</a><br/>
   </div>
   
-  <div class="local">
+  <div class="local online">
   <a href="/weather.html">weather.html</a><br/>
   <a href="/draw.html">draw.html</a><br/>
   <a href="/magic.html">magic.html</a><br/>
   <a href="/adguide.html">adguide.html</a><br/>
   <a href="/service.html">service.html</a><br/>
+  local <br/>
+  </div>
+
+  <div class="external offline">
+  <s>external</s><br/>
+  <s>youtube</s><br/>
+  <s>github</s><br/>
+  <s>wikidot</s><br/>
+  </div>
+  
+  <div class="local offline">
+  <s>weather.html</s><br/>
+  <a href="/draw.html">draw.html</a><br/>
+  <a href="/magic.html">magic.html</a><br/>
+  <a href="/adguide.html">adguide.html</a><br/>
   local <br/>
   </div>
   <script>
