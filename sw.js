@@ -1,12 +1,19 @@
 // No rights reserved.
 
 const cacheName = "SW-CACHE";
+const cacheFiles = [
+    "/index.html",
+    "/draw.html",
+    "/magic.html",
+    "/weather.html",
+    "/adguide.html"
+];
 
 self.addEventListener('install', (e) => {
     e.waitUntil(
         caches
         .open(cacheName)
-        .then(cache => cache.addAll("/"))
+        .then(cache => cache.addAll(cacheFiles))
         .then(() => self.skipWaiting()));
 });
 
