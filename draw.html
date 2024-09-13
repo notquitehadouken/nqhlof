@@ -87,6 +87,8 @@
    var gridOn = false;
    var draw = true;
 
+   var refreshLayers = true;
+
    function help(){
     if (Ihelp.className.length > 0){
      Ihelp.className = "";
@@ -158,6 +160,7 @@
    function addAct(t, x, y, c){
     if(!t)
      c = "#00000000";
+    refreshLayers = true;
     undostack[layer].push([x, y, getPx(layer, x, y), c]);
     setPx(layer, x, y, c);
    }
@@ -170,11 +173,14 @@
     buttons[0].onmouseup = () => moveLayerLeft(i);
     buttons[1].onmouseup = () => moveLayerRight(i);
     buttons[2].onmouseup = () => removeLayer(i);
-    buttons[3].onmouseup = () => showing[i] = !showing[i];
-    buttons[4].onmouseup = () => layer = i;
+    buttons[3].onmouseup = () => {showing[i] = !showing[i]; refreshLayers = true;};
+    buttons[4].onmouseup = () => {setLayer(i); refreshLayers = true;};
    }
    
    function updateLayerBar(){ // fuck
+    if (!refreshLayers)
+     return;
+    refreshLayers = false;
     for (let i = 0; i < layercount; i++){
      let ourLayer = getEl("layer"+i);
      if(!ourLayer){
@@ -182,14 +188,14 @@
       ourLayer.width = width;
       ourLayer.id = "layer"+i;
       ourLayer.appendChild(document.createElement("canvas")).id = "layerC"+i;
-      ourLayer.appendChild(document.createElement("br"));
+      // ourLayer.appendChild(document.createElement("br"));
       let leftButton = ourLayer.appendChild(document.createElement("button"));
       let rightButton = ourLayer.appendChild(document.createElement("button"));
-      ourLayer.appendChild(document.createElement("br"));
+      // ourLayer.appendChild(document.createElement("br"));
       let remButton = ourLayer.appendChild(document.createElement("button"));
-      ourLayer.appendChild(document.createElement("br"));
+      // ourLayer.appendChild(document.createElement("br"));
       let showButton = ourLayer.appendChild(document.createElement("button"));
-      ourLayer.appendChild(document.createElement("br"));
+      // ourLayer.appendChild(document.createElement("br"));
       let switchButton = ourLayer.appendChild(document.createElement("button"));
       ourLayer.appendChild(document.createElement("br"));
       leftButton.id = "layerLB"+i;
@@ -222,6 +228,7 @@
    }
    
    function addLayer(){
+    refreshLayers = true;
     acts.push([]);
     showing.push(true);
     redostack.push([]);
@@ -232,6 +239,7 @@
    function removeLayer(id){
     if(id==layer)
      return;
+    refreshLayers = true;
     acts.splice(id, 1);
     showing.splice(id, 1);
     redostack.splice(id, 1);
@@ -280,12 +288,14 @@
    function moveLayerLeft(id){
     if (id <= 0)
      return;
+    refreshLayers = true;
     swapLayers(id, id-1);
    }
    
    function moveLayerRight(id){
     if (id >= layercount - 1)
      return;
+    refreshLayers = true;
     swapLayers(id, id+1);
    }
    
@@ -309,6 +319,12 @@
       else
        doAct([x, y, "#00000020"], z);
    }
+
+   function setLayer(i)
+   {
+    Ilayer.value = i + 1;
+    layer = i;
+   }
    
    function update(){
     global += 1;
@@ -324,7 +340,11 @@
     if (!isNaN(Iheight.value))
      height = Iheight.value;
     if (!isNaN(Ilayer.value) && Ilayer.value >= 1 && Ilayer.value <= layercount)
-     layer = Ilayer.value - 1;
+     if (layer != Ilayer.value - 1)
+     {
+      layer = Ilayer.value - 1;
+      refreshLayers = true;
+     }
     else
      Ilayer.value = layer + 1;
     Ilayermax.innerHTML = layercount;
