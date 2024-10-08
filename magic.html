@@ -1,15 +1,13 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>
 			nqh magic
 		</title>
 		<style>
-			body    {background-color: black; color: white; font-family: Calibri;}
-			button  {background-color: black; color: white; font-family: Calibri;}
-			input   {background-color: black; color: white; font-family: Calibri;}
-			label   {background-color: black; color: white; font-family: Calibri;}
-			textarea{background-color: black; color: white; font-family: Calibri; tab-size: 4;}
+			textarea { font-family: Courier; tab-size: 4; }
 		</style>
+		<link rel="stylesheet" href="primary.css"/>
 		<link rel="shortcut icon" type="image/jpg" href="images/favimagic.ico"/>
 	</head>
 	<body>
@@ -19,7 +17,7 @@
 		<label for="fileimport">Choose a file</label>
 		<button onclick="window.importfile()">Import</button><br/>
 		<button onclick="window.testit()">Test</button> <button onclick="window.downloadit()">Download</button> <input id="filename" style="width:200"/>
-		<textarea id="source" spellcheck="false" style="background-color:black;color:white;width:100%;height:90%;font-family:Courier;" onkeydown="handleKeyDown.call(this, event)"></textarea>
+		<textarea id="source" spellcheck="false" style="width:100%;height:90%;" onkeydown="handleKeyDown.call(this, event)"></textarea>
 		<script>
 			function importfile() {
 				var file = document.getElementById("fileimport");
