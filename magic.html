@@ -1,65 +1,65 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>
-			nqh magic
-		</title>
-		<style>
-			textarea { font-family: Courier; tab-size: 4; }
-		</style>
-		<link rel="stylesheet" href="primary.css"/>
-		<link rel="shortcut icon" type="image/jpg" href="images/favimagic.ico"/>
-	</head>
-	<body>
-		<a href="/">Take me back</a><br/>
-		Magical file HTML thing. Hence the name.<br/>
-		<input id="fileimport" style="display: none;" type="file"/>
-		<label for="fileimport">Choose a file</label>
-		<button onclick="window.importfile()">Import</button><br/>
-		<button onclick="window.testit()">Test</button> <button onclick="window.downloadit()">Download</button> <input id="filename" style="width:200"/>
-		<textarea id="source" spellcheck="false" style="width:100%;height:90%;" onkeydown="handleKeyDown.call(this, event)"></textarea>
-		<script>
-			function importfile() {
-				var file = document.getElementById("fileimport");
-				if (!confirm("Are you sure you want to import?")) return;
-				var source = document.getElementById("source");
-				file.files[0].text().then((value) => source.value = value);
-			}
-			function testit() {
-				testwindow = window.open("");
-				with (testwindow.document) {
-					writeln(document.getElementById("source").value);
-				}
-			}
-			function downloadit() {
-				var name = document.getElementById("filename").value;
-				var extension = name.substring(name.search(/\..{0,}/),name.length);
-				var file = new Blob([document.getElementById("source").value], {type: extension});
-				if (window.navigator.msSaveOrOpenBlob)
-					window.navigator.msSaveOrOpenBlob(file, name)
-				else {
-					var a = document.createElement("a"),
-						url = URL.createObjectURL(file);
-					a.href = url;
-					a.download = name;
-					document.body.appendChild(a);
-					a.click();
-					setTimeout(function() {
-						document.body.removeChild(a);
-						window.URL.revokeObjectURL(url);  
-					}, 0); 
-				}
-			}
-			function handleKeyDown(e) {
-				if (e.key == "Tab") {
-					e.preventDefault();
-					const start = this.selectionStart;
-					const end = this.selectionEnd;
-					this.value =
-						this.value.substring(0, start) + "\t" + this.value.substring(end);
-					this.selectionStart = this.selectionEnd = start + 1;
-				}
-			}
-		</script>
-	</body
+    <head>
+        <title>
+            nqh magic
+        </title>
+        <style>
+            textarea { font-family: Courier; tab-size: 4; }
+        </style>
+        <link rel="stylesheet" href="primary.css"/>
+        <link rel="shortcut icon" type="image/jpg" href="images/favimagic.ico"/>
+    </head>
+    <body>
+        <a href="/">Take me back</a><br/>
+        Magical file HTML thing. Hence the name.<br/>
+        <input id="fileimport" style="display: none;" type="file"/>
+        <label for="fileimport">Choose a file</label>
+        <button onclick="window.importfile()">Import</button><br/>
+        <button onclick="window.testit()">Test</button> <button onclick="window.downloadit()">Download</button> <input id="filename" style="width:200"/>
+        <textarea id="source" spellcheck="false" style="width:100%;height:30em;resize:none;" onkeydown="handleKeyDown.call(this, event)"></textarea>
+        <script>
+            function importfile() {
+                var file = document.getElementById("fileimport");
+                if (!confirm("Are you sure you want to import?")) return;
+                var source = document.getElementById("source");
+                file.files[0].text().then((value) => source.value = value);
+            }
+            function testit() {
+                testwindow = window.open("");
+                with (testwindow.document) {
+                    writeln(document.getElementById("source").value);
+                }
+            }
+            function downloadit() {
+                var name = document.getElementById("filename").value;
+                var extension = name.substring(name.search(/\..{0,}/),name.length);
+                var file = new Blob([document.getElementById("source").value], {type: extension});
+                if (window.navigator.msSaveOrOpenBlob)
+                    window.navigator.msSaveOrOpenBlob(file, name)
+                else {
+                    var a = document.createElement("a"),
+                        url = URL.createObjectURL(file);
+                    a.href = url;
+                    a.download = name;
+                    document.body.appendChild(a);
+                    a.click();
+                    setTimeout(function() {
+                        document.body.removeChild(a);
+                        window.URL.revokeObjectURL(url);  
+                    }, 0); 
+                }
+            }
+            function handleKeyDown(e) {
+                if (e.key == "Tab") {
+                    e.preventDefault();
+                    const start = this.selectionStart;
+                    const end = this.selectionEnd;
+                    this.value =
+                        this.value.substring(0, start) + "\t" + this.value.substring(end);
+                    this.selectionStart = this.selectionEnd = start + 1;
+                }
+            }
+        </script>
+    </body
 </html>
