@@ -1,0 +1,17 @@
+@keyframes oscillate {
+    0% {translate: 0 0}
+    10% {translate: 0 5px}
+    25% {translate: 0 10px}
+    40% {translate: 0 5px}
+    50% {translate: 0 0}
+    60% {translate: 0 -5px}
+    75% {translate: 0 -10px}
+    90% {translate: 0 -5px}
+    100% {translate: 0 0}
+}
+
+.textoscillator {
+    /*position: relative;*/
+    display: inline-block;
+    animation: 3s linear infinite oscillate;
+}

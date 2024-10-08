@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <title>
             nqh weather
         </title>
         <link rel="shortcut icon" type="images/jpg" href="/images/faviweather.ico" />
+        <link rel="stylesheet" href="css/primary.css"/>
         <style>
-            body {background-color: #000;}
-            body, * {margin: 0px; padding: 0px; font-family: Courier;}
             :not(img) {background-color: #000; color: #FFF;}
             img {display: block; margin-left: auto; margin-right: auto; background-color: #FFF;}
             .hide {display: none;}
@@ -18,10 +17,12 @@
         <!--
             This is not for you.
                                 -->
+        <span class="hide">Boo</span>
+        
         <div id="imageSelector">
-            <label id="L" class=""><a href="/">Take me back</a><br/>Image set: </label>
+            <label id="L" for="start" class=""><a href="/">Take me back</a><br/>Image set: </label>
             <select id="start" class="">
-                <option value="" selected unavailable hidden>None selected</option>
+                <option value="" selected hidden>None selected</option>
                 <option value="mesoscale">Mesoscale</option>
                 <option value="outlook">Outlook</option>
                 <option value="tornado">Tornado outlook</option>
@@ -32,9 +33,9 @@
 
             <!-- Mesoscale layer 1 -->
 
-            <label id="mesoscale_L">Data: </label>
+            <label id="mesoscale_L" for="mesoscale_">Data: </label>
             <select id="mesoscale_">
-                <option value="" selected unavailable hidden>None selected</option>
+                <option value="" selected hidden>None selected</option>
                 <option value="pmsl">Pressure and surface wind</option>
                 <option value="stpc">Significant tornado parameter</option>
                 <option value="pstpe">Prob supercell EF2+</option>
@@ -45,9 +46,9 @@
 
             <!-- Mesoscale layer 2 -->
 
-            <label id="pmsl_mesoscale_L">Sector: </label>
+            <label id="pmsl_mesoscale_L" for="pmsl_mesoscale_">Sector: </label>
             <select id="pmsl_mesoscale_">
-                <option value="" selected unavailable hidden>None selected</option>
+                <option value="" selected hidden>None selected</option>
                 <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s11/pmsl/pmsl.gif">11</option>
                 <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s12/pmsl/pmsl.gif">12</option>
                 <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s13/pmsl/pmsl.gif">13</option>
@@ -62,9 +63,9 @@
                 <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s22/pmsl/pmsl.gif">22</option>
             </select>
 
-            <label id="stpc_mesoscale_L">Sector: </label>
+            <label id="stpc_mesoscale_L" for="stpc_mesoscale_">Sector: </label>
             <select id="stpc_mesoscale_">
-                <option value="" selected unavailable hidden>None selected</option>
+                <option value="" selected hidden>None selected</option>
                 <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s11/stpc/stpc.gif">11</option>
                 <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s12/stpc/stpc.gif">12</option>
                 <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s13/stpc/stpc.gif">13</option>
@@ -79,26 +80,9 @@
                 <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s22/stpc/stpc.gif">22</option>
             </select>
 
-            <label id="pstpe_mesoscale_L">Sector: </label>
+            <label id="pstpe_mesoscale_L" for="pstpe_mesoscale_">Sector: </label>
             <select id="pstpe_mesoscale_">
-                <option value="" selected unavailable hidden>None selected</option>
-                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s11/pstpe/pstpe.gif">11</option>
-                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s12/pstpe/pstpe.gif">12</option>
-                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s13/pstpe/pstpe.gif">13</option>
-                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s14/pstpe/pstpe.gif">14</option>
-                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s15/pstpe/pstpe.gif">15</option>
-                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s16/pstpe/pstpe.gif">16</option>
-                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s17/pstpe/pstpe.gif">17</option>
-                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s18/pstpe/pstpe.gif">18</option>
-                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s19/pstpe/pstpe.gif">19</option>
-                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s20/pstpe/pstpe.gif">20</option>
-                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s21/pstpe/pstpe.gif">21</option>
-                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s22/pstpe/pstpe.gif">22</option>
-            </select>
-
-            <label id="pstpe_mesoscale_L">Sector: </label>
-            <select id="pstpe_mesoscale_">
-                <option value="" selected unavailable hidden>None selected</option>
+                <option value="" selected hidden>None selected</option>
                 <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s11/pstpe/pstpe.gif">11</option>
                 <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s12/pstpe/pstpe.gif">12</option>
                 <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s13/pstpe/pstpe.gif">13</option>
@@ -113,9 +97,9 @@
                 <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s22/pstpe/pstpe.gif">22</option>
             </select>
             
-            <label id="sigh_mesoscale_L">Sector: </label>
+            <label id="sigh_mesoscale_L" for="sigh_mesoscale_">Sector: </label>
             <select id="sigh_mesoscale_">
-                <option value="" selected unavailable hidden>None selected</option>
+                <option value="" selected hidden>None selected</option>
                 <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s11/sigh/sigh.gif">11</option>
                 <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s12/sigh/sigh.gif">12</option>
                 <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s13/sigh/sigh.gif">13</option>
@@ -130,9 +114,9 @@
                 <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s22/sigh/sigh.gif">22</option>
             </select>
             
-            <label id="sars1_mesoscale_L">Sector: </label>
+            <label id="sars1_mesoscale_L" for="sars1_mesoscale_">Sector: </label>
             <select id="sars1_mesoscale_">
-                <option value="" selected unavailable hidden>None selected</option>
+                <option value="" selected hidden>None selected</option>
                 <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s11/sars1/sars1.gif">11</option>
                 <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s12/sars1/sars1.gif">12</option>
                 <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s13/sars1/sars1.gif">13</option>
@@ -147,9 +131,9 @@
                 <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s22/sars1/sars1.gif">22</option>
             </select>
             
-            <label id="1kmv_mesoscale_L">Sector: </label>
+            <label id="1kmv_mesoscale_L" for="1kmv_mesoscale_">Sector: </label>
             <select id="1kmv_mesoscale_">
-                <option value="" selected unavailable hidden>None selected</option>
+                <option value="" selected hidden>None selected</option>
                 <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s11/1kmv/1kmv.gif">11</option>
                 <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s12/1kmv/1kmv.gif">12</option>
                 <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s13/1kmv/1kmv.gif">13</option>
@@ -168,9 +152,9 @@
 
             <!-- Outlook layer 1 -->
 
-            <label id="outlook_L">Day: </label>
+            <label id="outlook_L" for="outlook_">Day: </label>
             <select id="outlook_">
-                <option value="" selected unavailable hidden>None selected</option>
+                <option value="" selected hidden>None selected</option>
                 <option value="day1">1</option>
                 <option value="day2">2</option>
                 <option value="day3">3</option>
@@ -179,9 +163,9 @@
 
             <!-- Outlook layer 2 -->
 
-            <label id="day1_outlook_L">Issue: </label>
+            <label id="day1_outlook_L" for="day1_outlook_">Issue: </label>
             <select id="day1_outlook_">
-                <option value="" selected unavailable hidden>None selected</option>
+                <option value="" selected hidden>None selected</option>
                 <option value="0100">0100Z (1900 CST)</option>
                 <option value="0600">0600Z (0000 CST)</option>
                 <option value="1300">1300Z (0700 CST)</option>
@@ -189,23 +173,23 @@
                 <option value="2000">2000Z (1400 CST)</option>
             </select>
 
-            <label id="day2_outlook_L">Issue: </label>
+            <label id="day2_outlook_L" for="day2_outlook_">Issue: </label>
             <select id="day2_outlook_">
-                <option value="" selected unavailable hidden>None selected</option>
+                <option value="" selected hidden>None selected</option>
                 <option value="0600">0600Z (0000 CST)</option>
                 <option value="1730">1730Z (1130 CST)</option>
             </select>
 
-            <label id="day3_outlook_L">Image: </label>
+            <label id="day3_outlook_L" for="day3_outlook_">Image: </label>
             <select id="day3_outlook_">
-                <option value="" selected unavailable hidden>None selected</option>
+                <option value="" selected hidden>None selected</option>
                 <option value="https://www.spc.noaa.gov/products/outlook/day3otlk_0730.gif">Categorical</option>
                 <option value="https://www.spc.noaa.gov/products/outlook/day3prob_07830.gif">Probabilistic</option>
             </select>
 
-            <label id="day48_outlook_L">Image: </label>
+            <label id="day48_outlook_L" for="day48_outlook_">Image: </label>
             <select id="day48_outlook_">
-                <option value="" selected unavailable hidden>None selected</option>
+                <option value="" selected hidden>None selected</option>
                 <option value="https://www.spc.noaa.gov/products/exper/day4-8/day4prob.gif">Day 4</option>
                 <option value="https://www.spc.noaa.gov/products/exper/day4-8/day5prob.gif">Day 5</option>
                 <option value="https://www.spc.noaa.gov/products/exper/day4-8/day6prob.gif">Day 6</option>
@@ -216,63 +200,63 @@
 
             <!-- Outlook layer 3 -->
             
-            <label id="0100_day1_outlook_L">Image: </label>
+            <label id="0100_day1_outlook_L" for="0100_day1_outlook_">Image: </label>
             <select id="0100_day1_outlook_">
-                <option value="" selected unavailable hidden>None selected</option>
+                <option value="" selected hidden>None selected</option>
                 <option value="https://www.spc.noaa.gov/products/outlook/day1otlk_0100.gif">Categorical</option>
                 <option value="https://www.spc.noaa.gov/products/outlook/day1probotlk_0100_torn.gif">Tornado</option>
                 <option value="https://www.spc.noaa.gov/products/outlook/day1probotlk_0100_wind.gif">Wind</option>
                 <option value="https://www.spc.noaa.gov/products/outlook/day1probotlk_0100_hail.gif">Hail</option>
             </select>
             
-            <label id="0600_day1_outlook_L">Image: </label>
+            <label id="0600_day1_outlook_L" for="0600_day1_outlook_">Image: </label>
             <select id="0600_day1_outlook_">
-                <option value="" selected unavailable hidden>None selected</option>
+                <option value="" selected hidden>None selected</option>
                 <option value="https://www.spc.noaa.gov/products/outlook/day1otlk_1200.gif">Categorical</option>
                 <option value="https://www.spc.noaa.gov/products/outlook/day1probotlk_1200_torn.gif">Tornado</option>
                 <option value="https://www.spc.noaa.gov/products/outlook/day1probotlk_1200_wind.gif">Wind</option>
                 <option value="https://www.spc.noaa.gov/products/outlook/day1probotlk_1200_hail.gif">Hail</option>
             </select>
             
-            <label id="1300_day1_outlook_L">Image: </label>
+            <label id="1300_day1_outlook_L" for="1300_day1_outlook_">Image: </label>
             <select id="1300_day1_outlook_">
-                <option value="" selected unavailable hidden>None selected</option>
+                <option value="" selected hidden>None selected</option>
                 <option value="https://www.spc.noaa.gov/products/outlook/day1otlk_1300.gif">Categorical</option>
                 <option value="https://www.spc.noaa.gov/products/outlook/day1probotlk_1300_torn.gif">Tornado</option>
                 <option value="https://www.spc.noaa.gov/products/outlook/day1probotlk_1300_wind.gif">Wind</option>
                 <option value="https://www.spc.noaa.gov/products/outlook/day1probotlk_1300_hail.gif">Hail</option>
             </select>
             
-            <label id="1630_day1_outlook_L">Image: </label>
+            <label id="1630_day1_outlook_L" for="1630_day1_outlook_">Image: </label>
             <select id="1630_day1_outlook_">
-                <option value="" selected unavailable hidden>None selected</option>
+                <option value="" selected hidden>None selected</option>
                 <option value="https://www.spc.noaa.gov/products/outlook/day1otlk_1630.gif">Categorical</option>
                 <option value="https://www.spc.noaa.gov/products/outlook/day1probotlk_1630_torn.gif">Tornado</option>
                 <option value="https://www.spc.noaa.gov/products/outlook/day1probotlk_1630_wind.gif">Wind</option>
                 <option value="https://www.spc.noaa.gov/products/outlook/day1probotlk_1630_hail.gif">Hail</option>
             </select>
             
-            <label id="2000_day1_outlook_L">Image: </label>
+            <label id="2000_day1_outlook_L" for="2000_day1_outlook_">Image: </label>
             <select id="2000_day1_outlook_">
-                <option value="" selected unavailable hidden>None selected</option>
+                <option value="" selected hidden>None selected</option>
                 <option value="https://www.spc.noaa.gov/products/outlook/day1otlk_2000.gif">Categorical</option>
                 <option value="https://www.spc.noaa.gov/products/outlook/day1probotlk_2000_torn.gif">Tornado</option>
                 <option value="https://www.spc.noaa.gov/products/outlook/day1probotlk_2000_wind.gif">Wind</option>
                 <option value="https://www.spc.noaa.gov/products/outlook/day1probotlk_2000_hail.gif">Hail</option>
             </select>
             
-            <label id="0600_day2_outlook_L">Image: </label>
+            <label id="0600_day2_outlook_L" for="0600_day2_outlook_">Image: </label>
             <select id="0600_day2_outlook_">
-                <option value="" selected unavailable hidden>None selected</option>
+                <option value="" selected hidden>None selected</option>
                 <option value="https://www.spc.noaa.gov/products/outlook/day2otlk_0600.gif">Categorical</option>
                 <option value="https://www.spc.noaa.gov/products/outlook/day2probotlk_0600_torn.gif">Tornado</option>
                 <option value="https://www.spc.noaa.gov/products/outlook/day2probotlk_0600_wind.gif">Wind</option>
                 <option value="https://www.spc.noaa.gov/products/outlook/day2probotlk_0600_hail.gif">Hail</option>
             </select>
             
-            <label id="1730_day2_outlook_L">Image: </label>
+            <label id="1730_day2_outlook_L" for="1730_day2_outlook_">Image: </label>
             <select id="1730_day2_outlook_">
-                <option value="" selected unavailable hidden>None selected</option>
+                <option value="" selected hidden>None selected</option>
                 <option value="https://www.spc.noaa.gov/products/outlook/day2otlk_1730.gif">Categorical</option>
                 <option value="https://www.spc.noaa.gov/products/outlook/day2probotlk_1730_torn.gif">Tornado</option>
                 <option value="https://www.spc.noaa.gov/products/outlook/day2probotlk_1730_wind.gif">Wind</option>
@@ -283,9 +267,9 @@
 
             <!-- Tornado outlook layer 1 -->
 
-            <label id="tornado_L">Time: </label>
+            <label id="tornado_L" for="tornado_">Time: </label>
             <select id="tornado_">
-                <option value="" selected unavailable hidden>None selected</option>
+                <option value="" selected hidden>None selected</option>
                 <option value="https://www.spc.noaa.gov/products/exper/enhtstm/imgs/enh_0000.gif">0000Z to 0400Z</option>
                 <option value="https://www.spc.noaa.gov/products/exper/enhtstm/imgs/enh_0400.gif">0400Z to 1200Z</option>
                 <option value="https://www.spc.noaa.gov/products/exper/enhtstm/imgs/enh_1200.gif">1200Z to 1600Z</option>
@@ -297,9 +281,9 @@
 
             <!-- SREF layer 1 -->
 
-            <label id="sref_L">Time: </label>
+            <label id="sref_L" for="sref_">Time: </label>
             <select id="sref_">
-                <option value="" selected unavailable hidden>None selected</option>
+                <option value="" selected hidden>None selected</option>
                 <option value="https://www.spc.noaa.gov/exper/sref/gifs/latest/SREF_H5__f000.gif">F000</option>
                 <option value="https://www.spc.noaa.gov/exper/sref/gifs/latest/SREF_H5__f003.gif">F003</option>
                 <option value="https://www.spc.noaa.gov/exper/sref/gifs/latest/SREF_H5__f006.gif">F006</option>
@@ -336,9 +320,9 @@
 
             <!-- Snow & ice layer 1 -->
 
-            <label id="snowice_L">Day: </label>
+            <label id="snowice_L" for="snowice_">Day: </label>
             <select id="snowice_">
-                <option value="" selected unavailable hidden>None selected</option>
+                <option value="" selected hidden>None selected</option>
                 <option value="day1">1</option>
                 <option value="day2">2</option>
                 <option value="day3">3</option>
@@ -347,9 +331,9 @@
             <!-- Snow & ice layer 2 -->
             
             
-            <label id="day1_snowice_L">Coverage: </label>
+            <label id="day1_snowice_L" for="day1_snowice_">Coverage: </label>
             <select id="day1_snowice_">
-                <option value="" selected unavailable hidden>None selected</option>
+                <option value="" selected hidden>None selected</option>
                 <option value="https://www.wpc.ncep.noaa.gov/wwd/day1_psnow_gt_04_conus.gif">4" snow</option>
                 <option value="https://www.wpc.ncep.noaa.gov/wwd/day1_psnow_gt_08_conus.gif">8" snow</option>
                 <option value="https://www.wpc.ncep.noaa.gov/wwd/day1_psnow_gt_12_conus.gif">12" snow</option>
@@ -357,9 +341,9 @@
                 <option value="https://www.wpc.ncep.noaa.gov/wwd/day1_composite.gif">Composite</option>
             </select>
 
-            <label id="day2_snowice_L">Coverage: </label>
+            <label id="day2_snowice_L" for="day2_snowice_">Coverage: </label>
             <select id="day2_snowice_">
-                <option value="" selected unavailable hidden>None selected</option>
+                <option value="" selected hidden>None selected</option>
                 <option value="https://www.wpc.ncep.noaa.gov/wwd/day2_psnow_gt_04_conus.gif">4" snow</option>
                 <option value="https://www.wpc.ncep.noaa.gov/wwd/day2_psnow_gt_08_conus.gif">8" snow</option>
                 <option value="https://www.wpc.ncep.noaa.gov/wwd/day2_psnow_gt_12_conus.gif">12" snow</option>
@@ -367,9 +351,9 @@
                 <option value="https://www.wpc.ncep.noaa.gov/wwd/day2_composite.gif">Composite</option>
             </select>
 
-            <label id="day3_snowice_L">Coverage: </label>
+            <label id="day3_snowice_L" for="day3_snowice_">Coverage: </label>
             <select id="day3_snowice_">
-                <option value="" selected unavailable hidden>None selected</option>
+                <option value="" selected hidden>None selected</option>
                 <option value="https://www.wpc.ncep.noaa.gov/wwd/day3_psnow_gt_04_conus.gif">4" snow</option>
                 <option value="https://www.wpc.ncep.noaa.gov/wwd/day3_psnow_gt_08_conus.gif">8" snow</option>
                 <option value="https://www.wpc.ncep.noaa.gov/wwd/day3_psnow_gt_12_conus.gif">12" snow</option>
@@ -381,9 +365,9 @@
 
             <!-- Nation forecast layer 1 -->
 
-            <label id="natfore_L">Day: </label>
+            <label id="natfore_L" for="natfore_">Day: </label>
             <select id="natfore_">
-                <option value="" selected unavailable hidden>None selected</option>
+                <option value="" selected hidden>None selected</option>
                 <option value="https://www.wpc.ncep.noaa.gov/NationalForecastChart/staticmaps/noaad1.png">1</option>
                 <option value="https://www.wpc.ncep.noaa.gov/NationalForecastChart/staticmaps/noaad2.png">2</option>
                 <option value="https://www.wpc.ncep.noaa.gov/NationalForecastChart/staticmaps/noaad3.png">3</option>
@@ -392,23 +376,23 @@
         </div>
         <br/>
 
-        <img id="theImage"/>
+        <img id="theImage" src="" alt="The current image"/>
 
         <script>
-            var img = document.getElementById("theImage");
-            var oldSource = "";
+            let img = document.getElementById("theImage");
             setInterval(function(){
                 Array.from(document.getElementById("imageSelector").children).forEach((x) => x.className = "hide");
-                var oldEl = currEl = document.getElementById("start");
-                var currName = "";
+                let oldEl = document.getElementById("start");
+                let currEl = oldEl
+                let currName = "";
                 do {
                     oldEl = currEl;
                     document.getElementById(currName+"L").className = currEl.className = "";
-                    if (currEl.value.length == 0)
+                    if (currEl.value.length === 0)
                         return (img.src = "");
                     currName = currEl.value + "_" + currName;
                 } while ((currEl = document.getElementById(currName)));
-                if (img.src != oldEl.value)
+                if (img.src !== oldEl.value)
                     img.src = oldEl.value;
             },30);
         </script>

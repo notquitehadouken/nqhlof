@@ -1,130 +1,23 @@
 
 <!DOCTYPE html>
-<html>
- <head>
-  <title>
-   nqh land
-  </title>
-  <link rel="shortcut icon" type="image/jpg" href="images/favicon.ico"/>
-  <style>
-
-   @keyframes marquee {
-    from {top: 0%; transform: translate(-50%, -100%);}
-    to   {top: 100%; transform: translate(-50%, 0%);}
-   }
-
-   @keyframes shronk {
-    from {font-size: 1.5em;}
-    to {font-size: 1em;}
-   }
-
-   body {
-    margin: 0px;
-    padding: 0px;
-    overflow: hidden;
-    background-color: #000;
-    color: #FFF;
-    text-align: center;
-    font-size: 48px; 
-    white-space: nowrap;
-   }
-
-   body.offline, body.offline * {
-    background-color: #F00;
-    color: #000;
-   }
-
-   .welcome {
-    left: 50%;
-    position: absolute;
-    animation: marquee 20s linear infinite forwards;
-   }
-
-   .welcome::after {
-    content: "welcome";
-   }
-
-   body.offline .welcome::after {
-    content: "offline";
-   }
-
-   .welcome0 {
-    animation-delay: 0s;
-   }
-   
-   .welcome1 {
-    animation-delay: -5s;
-   }
-   
-   .welcome2 {
-    animation-delay: -10s;
-   }
-   
-   .welcome3 {
-    animation-delay: -15s;
-   }
-
-   a:hover {
-    animation: shronk 1s ease-out;
-   }
-
-   div.local, div.external {
-    position: absolute;
-    width: 25%;
-   }
-
-   div.local {
-    bottom: 0%;
-    left: 0%;
-   }
-
-   div.external {
-    top: 0%;
-    right: 0%;
-   }
-
-   body.offline .online { display: none; }
-   body:not(.offline) .offline { display: none; }
-
-  </style>
-  <script src="/swload.js"></script> <!-- I don't know how a service worker works. -->
- </head>
- <body>
-  <span class="welcome welcome0"></span>
-  <span class="welcome welcome1"></span>
-  <span class="welcome welcome2"></span>
-  <span class="welcome welcome3"></span>
-  <div class="external online">
-  external <br/>
-  <a href="https://www.youtube.com/@notquitehadouken">youtube</a><br/>
-  <a href="https://github.com/notquitehadouken">github</a><br/>
-  <a href="https://www.wikidot.com/user:info/notquitehadouken">wikidot</a><br/>
-  </div>
-  
-  <div class="local">
-  <a href="/files.html">files.html</a><br/>
-  <a href="/thesky.html">thesky.html</a><br/>
-  <a href="/draw.html">draw.html</a><br/>
-  <a href="/magic.html">magic.html</a><br/>
-  <a href="/adguide.html">adguide.html</a><br/>
-  local <br/>
-  </div>
-
-  <div class="external offline">
-  <s>external</s><br/>
-  <s>youtube</s><br/>
-  <s>github</s><br/>
-  <s>wikidot</s><br/>
-  </div>
-  <script>
-   window.addEventListener('online',  updateOnlineStatus);
-   window.addEventListener('offline', updateOnlineStatus);
-
-   function updateOnlineStatus() {
-    document.body.className = navigator.onLine ? "" : "offline";
-   }
-
-   updateOnlineStatus();
-  </script>
- </body>
+<html lang="en">
+<head>
+ <title>
+  NQHLOF Homepage
+ </title>
+ <link rel="stylesheet" href="css/primary.css"/>
+ <link rel="stylesheet" href="css/oscillator.css"/>
+ <link rel="stylesheet" href="css/index.css"/>
+ <link rel="shortcut icon" type="image/jpg" href="images/favicon.ico"/>
+</head>
+<body>
+<div class="nqh">
+ <div textoscillator class="divName">notquitehadouken</div>
+ This site is under construction. Please come back later.
+</div>
+<div class="lof">
+ <div textoscillator class="divName">LordOfFridges</div>
+</div>
+<script src="js/oscillator.js"></script>
+</body>
 </html>

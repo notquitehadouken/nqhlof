@@ -1,10 +1,10 @@
 @font-face {
-  font-family: "Fira Sans";
+  font-family: "Fira", sans-serif;
   src: url("fonts/FiraSans-Regular.ttf");
 }
 
 * {
-  font-family: "Fira Sans";
+  font-family: "Fira", sans-serif;
   color: #F8F8F8;
   background-color: #020202;
 }

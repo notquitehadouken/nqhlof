@@ -1,0 +1,11 @@
+div.nqh, div.lof {position: absolute; top: 0; width: 50%; height: 100%;}
+div.nqh {left: 0}
+div.lof {right: 0}
+
+div.divName {
+    position: absolute;
+    font-size: 2em;
+    left: 50%;
+    top: 5em;
+    transform: translateX(-50%);
+}
