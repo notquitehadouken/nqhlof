@@ -1,12 +1,24 @@
 @keyframes oscillate {
     0% {translate: 0 0}
-    10% {translate: 0 5px}
+    5% {translate: 0 3.09px}
+    10% {translate: 0 5.87px}
+    15% {translate: 0 8.09px}
+    20% {translate: 0 9.51px}
     25% {translate: 0 10px}
-    40% {translate: 0 5px}
+    30% {translate: 0 9.51px}
+    35% {translate: 0 8.09px}
+    40% {translate: 0 5.87px}
+    45% {translate: 0 3.09px}
     50% {translate: 0 0}
-    60% {translate: 0 -5px}
+    55% {translate: 0 -3.09px}
+    60% {translate: 0 -5.87px}
+    65% {translate: 0 -8.09px}
+    70% {translate: 0 -9.51px}
     75% {translate: 0 -10px}
-    90% {translate: 0 -5px}
+    80% {translate: 0 -9.51px}
+    85% {translate: 0 -8.09px}
+    90% {translate: 0 -5.87px}
+    95% {translate: 0 -3.09px}
     100% {translate: 0 0}
 }
 
