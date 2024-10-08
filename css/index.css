@@ -1,4 +1,9 @@
-div.nqh, div.lof {position: absolute; top: 0; width: 50%; height: 100%;}
+div.nqh, div.lof {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+}
 div.nqh {left: 0}
 div.lof {right: 0}
 
