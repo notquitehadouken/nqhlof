@@ -7,6 +7,17 @@
  <link rel="stylesheet" href="css/primary.css"/>
  <link rel="stylesheet" href="css/oscillator.css"/>
  <link rel="stylesheet" href="css/index.css"/>
+ <style>
+  @keyframes fadeIn {
+   from {opacity: 0%}
+   to   {opacity: 100%}
+  }
+
+  div[textoscillator].divName * {
+   opacity: 0%;
+   animation: 3s linear infinite oscillate, 1s linear fadeIn forwards;
+  }
+ </style>
  <link rel="shortcut icon" type="image/jpg" href="images/favicon.ico"/>
 </head>
 <body>
