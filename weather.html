@@ -6,12 +6,7 @@
         </title>
         <link rel="shortcut icon" type="images/jpg" href="/images/faviweather.ico" />
         <link rel="stylesheet" href="css/primary.css"/>
-        <style>
-            :not(img) {background-color: #000; color: #FFF;}
-            img {display: block; margin-left: auto; margin-right: auto; background-color: #FFF;}
-            .hide {display: none;}
-            div#imageSelector {text-align: center;}
-        </style>
+        <link rel="stylesheet" href="css/weather.css">
     </head>
     <body>
         <!--
@@ -378,23 +373,7 @@
 
         <img id="theImage" src="" alt="The current image"/>
 
-        <script>
-            let img = document.getElementById("theImage");
-            setInterval(function(){
-                Array.from(document.getElementById("imageSelector").children).forEach((x) => x.className = "hide");
-                let oldEl = document.getElementById("start");
-                let currEl = oldEl
-                let currName = "";
-                do {
-                    oldEl = currEl;
-                    document.getElementById(currName+"L").className = currEl.className = "";
-                    if (currEl.value.length === 0)
-                        return (img.src = "");
-                    currName = currEl.value + "_" + currName;
-                } while ((currEl = document.getElementById(currName)));
-                if (img.src !== oldEl.value)
-                    img.src = oldEl.value;
-            },30);
-        </script>
+        <script src="js/weather.js"></script>
+
     </body>
 </html>

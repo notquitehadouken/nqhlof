@@ -9,7 +9,6 @@ div.lof {right: 0}
 
 div.divName {
   position: absolute;
-  display: inline-box;
   font-size: 2em;
   left: 50%;
   top: 50%;
@@ -20,4 +19,14 @@ div.header {
   position: relative;
   width: 100%;
   height: 20%;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0}
+  to   {opacity: 100%}
+}
+
+div[textoscillator].divName * {
+  opacity: 0;
+  animation: 3s linear infinite oscillate, 1s linear fadeIn forwards;
 }
