@@ -1,0 +1,14 @@
+.four {
+ font-size: 6em;
+ position: absolute;
+ left: 50%;
+ top: 50%;
+ transform: translate(-50%, -50%);
+}
+.link {
+ font-size: 1.5em;
+ position: absolute;
+ left: 50%;
+ bottom: 25%;
+ transform: translateX(-50%);
+}
