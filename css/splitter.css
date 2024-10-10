@@ -1,3 +1,12 @@
+@keyframes fadein {
+    from {
+        opacity: 0
+    }
+    to {
+        opacity: 100%
+    }
+}
+
 @keyframes oscillate {
     0% {translate: 0 0}
     5% {translate: 0 3.09px}
@@ -22,8 +31,22 @@
     100% {translate: 0 0}
 }
 
-.textoscillator {
-    /*position: relative;*/
+.textsplitter {
+    position: relative;
+    display: inline-block;
+}
+
+.fadein .textsplitter {
+    opacity: 0;
+    animation: 1s linear forwards fadein;
+}
+
+.oscillator .textsplitter {
+    position: relative;
     display: inline-block;
     animation: 3s linear infinite oscillate;
+}
+
+.fadein.oscillator .textsplitter {
+    animation: 1s linear forwards fadein, 3s linear infinite oscillate;
 }
