@@ -27,6 +27,7 @@ div.title {
   font-size: 1.5em;
   left: 0;
   text-align: center;
+  pointer-events: none;
 }
 
 div.nqh:hover, div.lof:hover {
