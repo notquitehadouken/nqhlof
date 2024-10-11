@@ -1,9 +1,3 @@
-@keyframes brighten {
-  to {
-    background-color: #121212;
-  }
-}
-
 @keyframes rotate {
   0% {
     transform: rotate(-10deg)
@@ -30,17 +24,6 @@ div.title {
   pointer-events: none;
 }
 
-div.nqh:hover, div.lof:hover {
-  animation: 1s linear brighten forwards;
-}
-
-div.nqh, div.lof {
-  position: absolute;
-  top: 0;
-  width: 50%;
-  height: 100%;
-}
-
 div.left, div.right {
   position: absolute;
   width: 50%;
@@ -48,9 +31,7 @@ div.left, div.right {
   float: none;
 }
 
-div.nqh {left: 0}
 div.left {left: 0}
-div.lof {left: 50%}
 div.right {left: 50%}
 
 div.header {

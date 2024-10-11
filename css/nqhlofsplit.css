@@ -1,0 +1,19 @@
+@keyframes brighten {
+    to {
+        background-color: #121212;
+    }
+}
+
+div.nqh:hover, div.lof:hover {
+    animation: 1s linear brighten forwards;
+}
+
+div.nqh, div.lof {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+}
+
+div.nqh {left: 0}
+div.lof {left: 50%}
