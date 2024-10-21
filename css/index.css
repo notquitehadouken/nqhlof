@@ -24,6 +24,21 @@ div.title {
   pointer-events: none;
 }
 
+div.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  height: 20%;
+}
+
+table.footer {
+  width: 100%;
+  height: 100%;
+  table-layout: fixed;
+}
+
 div.left, div.right {
   position: absolute;
   width: 50%;
@@ -50,13 +65,13 @@ div.divName {
 div.body {
   position: relative;
   width: 100%;
-  height: 80%;
+  height: 60%;
 }
 
 div.li {
   position: relative;
   text-align: center;
-  height: 10%;
+  height: 20%;
 }
 
 a.sway {
