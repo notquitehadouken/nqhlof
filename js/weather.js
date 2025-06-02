@@ -20,4 +20,4 @@ setInterval(function(){
     if (img.src !== oldEl.value)
         img.src = oldEl.value;
     clean(showEl);
-},30);
+},500);
