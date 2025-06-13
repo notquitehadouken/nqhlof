@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from datetime import datetime
 import sounderpy as spy
+import threading
 
 def fetch_and_plot():
     global data_source, model, dataset
@@ -11,7 +12,7 @@ def fetch_and_plot():
     try:
         source = data_source.get()
         selected_model = model.get()
-        selected_dataset = dataset.get() if dataset.get() else None
+        selected_dataset = dataset.get() if source == "Reanalysis" else None
         station = station_entry.get().strip()
         fcst_hour = None
         lat = float(lat_entry.get()) if lat_entry.get() else None
@@ -33,9 +34,9 @@ def fetch_and_plot():
                 model=selected_model,
                 latlon=[lat, lon],
                 year=year,
-                month=month,
-                day=day,
-                hour=hour,
+                month=f"{month:02d}",
+                day=f"{day:02d}",
+                hour=f"{hour:02d}",
                 dataset=selected_dataset,
                 box_avg_size=0.1,
                 hush=True,
@@ -52,22 +53,23 @@ def fetch_and_plot():
                 model=selected_model,
                 station=station,
                 fcst_hour=fcst_hour,
-                run_year=year,
-                run_month=month,
-                run_day=day,
-                run_hour=hour,
+                run_year=str(year),
+                run_month=f"{month:02d}",
+                run_day=f"{day:02d}",
+                run_hour=f"{hour:02d}",
                 hush=True,
                 clean_it=True
             )
+
         elif source == "Observed":
             if not station:
                 raise ValueError("Station ID required for Observed data.")
             data = spy.get_obs_data(
                 station=station,
                 year=year,
-                month=month,
-                day=day,
-                hour=hour,
+                month=f"{month:02d}",
+                day=f"{day:02d}",
+                hour=f"{hour:02d}",
                 hush=True,
                 clean_it=True
             )
@@ -130,6 +132,7 @@ def create_gui():
             lon_entry.config(state='normal')
             station_entry.config(state='disabled')
             fcst_hour_entry.config(state='disabled')
+            dataset_menu.config(state='normal')
         elif source == "BUFKIT":
             model_menu.config(values=["hrrr", "rap", "nam", "namnest", "gfs", "sref", "hiresw"])
             model_menu.current(0)
@@ -137,6 +140,7 @@ def create_gui():
             lon_entry.config(state='disabled')
             station_entry.config(state='normal')
             fcst_hour_entry.config(state='normal')
+            dataset_menu.config(state='disabled')
         elif source == "Observed":
             model_menu.config(values=[])
             model_menu.set('')
@@ -144,6 +148,7 @@ def create_gui():
             lon_entry.config(state='disabled')
             station_entry.config(state='normal')
             fcst_hour_entry.config(state='disabled')
+            dataset_menu.config(state='disabled')
 
     # GUI Widgets
     data_source = tk.StringVar(value="Reanalysis")
@@ -177,7 +182,7 @@ def create_gui():
     day_entry = add_labeled_entry("Day:", 9)
     hour_entry = add_labeled_entry("Hour (UTC):", 10)
 
-    fetch_button = ttk.Button(root, text="Fetch Sonde", command=fetch_and_plot)
+    fetch_button = ttk.Button(root, text="Fetch Sonde", command=lambda: threading.Thread(target=fetch_and_plot).start())
     fetch_button.grid(row=11, columnspan=2, pady=20)
 
     result_label = ttk.Label(root, text="", background="#2e2e2e", foreground="white", font=('Segoe UI', 9))
