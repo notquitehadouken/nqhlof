@@ -49,17 +49,21 @@ def fetch_and_plot():
             fcst_hour = int(fcst_hour_str)
             if not station:
                 raise ValueError("Station ID required for BUFKIT data.")
+            print("Calling get_bufkit_data with parameters:")
+            print(f"Model: {selected_model}, Station: {station}, Forecast Hour: {fcst_hour}")
+            print(f"Run time: {year}-{month}-{day} {hour}Z")
+            print(f"Model type: {type(selected_model)}, Station type: {type(station)}, fcst_hour type: {type(fcst_hour)}")
             data = spy.get_bufkit_data(
-                model=selected_model,
-                station=station,
-                fcst_hour=fcst_hour,
-                run_year=str(year),
-                run_month=f"{month:02d}",
-                run_day=f"{day:02d}",
-                run_hour=f"{hour:02d}",
-                hush=True,
-                clean_it=True
-            )
+            model=selected_model,
+            station=station,
+            fcst_hour=fcst_hour,
+            run_year=str(year),
+            run_month=f"{month:02d}",
+            run_day=f"{day:02d}",
+            run_hour=f"{hour:02d}",
+            hush=True,
+            clean_it=True
+        )
 
         elif source == "Observed":
             if not station:
@@ -83,7 +87,6 @@ def fetch_and_plot():
             dark_mode=True,
             storm_motion=storm_motion,
             show_radar=False,
-            map_zoom=0,
             save=True,
             filename=filename
         )
@@ -188,7 +191,7 @@ def create_gui():
     result_label = ttk.Label(root, text="", background="#2e2e2e", foreground="white", font=('Segoe UI', 9))
     result_label.grid(row=12, columnspan=2, padx=10, pady=10)
 
-    on_data_source_change()  # initialize field states
+    on_data_source_change()
     root.mainloop()
 
 if __name__ == "__main__":
