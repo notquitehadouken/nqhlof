@@ -27,64 +27,36 @@
                 <option value="wrf">Local WRF Runs</option>
             </select>
 
-            <label id="wrf_L" for="wrf_">Data: </label>
-            <select id="wrf_">
-                <option value="" selected hidden>None Selected</option>
-                <option value="hurr">Hurricane Runs</option>
-                <option value="local">Local Arkansas Runs</option>
-            </select>
-            <div id="wrf_note" style="margin-top:0.5em; font-size:0.9em; color:#a00; font-weight:bold;"></div>
+        <label id="wrf_L" for="wrf_">Data: </label>
+        <select id="wrf_">
+            <option value="" selected hidden>None Selected</option>
+            <option value="hurr">Hurricane Runs</option>
+            <option value="local">Arkansas Runs</option>
+            <option value="rean">Reanalysis Runs</option>
+        </select>
 
-            <label id="hurr_wrf_L" for="hurr_wrf_">Data: </label>
-            <select id="hurr_wrf_">
-                <option value="" selected hidden>None selected</option>
-                <option value="latestREF">Latest Run Composite Ref.</option>
-                <option value="latestSAF">Latest Run Saffir-Simpson</option>
-                <option value="previous">Previous Run</option>
-            </select>
-            <div id="hurr_note" style="margin-top:0.5em; font-size:0.9em; color:#a00; font-weight:bold;"></div>
+        <label id="hurr_wrf_L" for="hurr_wrf_">Data: </label>
+        <select id="hurr_wrf_">
+            <option value="" selected hidden>None selected</option>
+            <option value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/hurr/latestREF.gif">Latest Run Composite Ref.</option>
+            <option value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/hurr/latestSAF.gif">Latest Run Saffir-Simpson</option>
+            <option value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/hurr/previous.gif">Previous Run</option>
+        </select>
 
-            <label id="local_wrf_L" for="local_wrf_">Data: </label>
-            <select id="local_wrf_">
-                <option value="" selected hidden>None selected</option>
-                <option value="latestREF">Latest Run Max Ref. at Lowest Level</option>
-                <option value="latestCAPE">Latest Run SBCAPE</option>
-                <option value="previous">Previous Run</option>
-            </select>
-            <div id="local_note" style="margin-top:0.5em; font-size:0.9em; color:#a00; font-weight:bold;"></div>
 
-            <script>
-                const specs = {
-                    wrf_: {
-                        hurr: "Not for decision-making.<br/>Specs: Resolution – 9 km, Gridpoints – 200x200, Microphysics – WSM6, Solar – RRTMG-K SW and LW, Cumulus – Grell-Freitas, PBL – MYNN, Surface layer – MYNN, Timestep – 45s",
-                        local: "Not for decision-making.<br/>Specs: Resolution – 4 km, Gridpoints – 200x200, Microphysics – NSSL 2-moment, Solar – RRTMG-K SW and LW, Cumulus – None, PBL – MYNN, Surface layer – Revised MO, Timestep – 15s"
-                    },
-                    hurr_wrf_: {
-                        latestREF: "Not for decision-making.<br/>Specs: Composite Reflectivity",
-                        latestSAF: "Not for decision-making.<br/>Specs: Saffir–Simpson Scale",
-                        previous: "Not for decision-making.<br/>Specs: Previous Model Run"
-                    },
-                    local_wrf_: {
-                        latestREF: "Not for decision-making.<br/>Specs: Max Ref. at Lowest Model Level",
-                        latestCAPE: "Not for decision-making.<br/>Specs: SBCAPE",
-                        previous: "Not for decision-making.<br/>Specs: Previous Model Run"
-                    }
-                };
+        <label id="local_wrf_L" for="local_wrf_">Data: </label>
+        <select id="local_wrf_">
+            <option value="" selected hidden>None selected</option>
+            <option value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/latestREF.gif">Latest Run Max Ref. at Lowest Level</option>
+            <option value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/latestCAPE.gif">Latest Run SBCAPE</option>
+            <option value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/previous.gif">Previous Run</option>
+        </select>
 
-                function attachSpecs(selectId, noteId) {
-                    const sel = document.getElementById(selectId);
-                    const note = document.getElementById(noteId);
-                    sel.addEventListener("change", function() {
-                        const v = this.value;
-                        note.innerHTML = specs[selectId][v] || "";
-                    });
-                }
-
-                attachSpecs("wrf_", "wrf_note");
-                attachSpecs("hurr_wrf_", "hurr_note");
-                attachSpecs("local_wrf_", "local_note");
-            </script>
-
+        <label id="rean_wrf_L" for="rean_wrf_">Data: </label>
+        <select id="rean_wrf_">
+            <option value="" selected hidden>None selected</option>
+            <option value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/rean/052624fultoncounty.gif">05/26/2024 Fulton County</option>
+        </select>
             
 
             <!-- Mesoscale layer 1 -->
