@@ -27,6 +27,28 @@
                 <option value="wrf">Local WRF Runs</option>
             </select>
 
+            <div id="wrfNote" style="margin-top:1em; font-size:0.9em; color:#a00; font-weight:bold;">
+                Not for decision-making.
+            </div>
+
+            <script>
+                const wrfSpecs = {
+                    hurr: "Specs: Resolution – 9 km; Gridpoints – 200x200; Microphysics – WSM6; Solar scheme – RRTMG-K SW and LW; Cumulus – Grell-Freitas; PBL – MYNN; Surface layer – MYNN; Timestep – 45s",
+                    local: "Specs: Resolution – 4 km; Gridpoints – 200x200; Microphysics – NSSL 2-moment 4-ice; Solar scheme – RRMTG-K SW and LW; Cumulus – None; PBL – MYNN, Surface layer – Revised MO; Timestep – 10s"
+                };
+
+                document.getElementById("wrf_").addEventListener("change", function() {
+                    const sel = this.value;
+                    const note = document.getElementById("wrfNote");
+                    if (wrfSpecs[sel]) {
+                        note.innerHTML = "Not for decision-making.<br/>" + wrfSpecs[sel];
+                    } else {
+                        note.innerHTML = "Not for decision-making.";
+                    }
+                });
+            </script>
+
+
             <label id="wrf_L" for="wrf_">Data: </label>
             <select id="wrf_">
                 <option value="" selected hidden>None Selected</option>
@@ -45,7 +67,8 @@
             <label id="local_wrf_L" for="local_wrf_">Data: </label>
             <select id="local_wrf_">
                 <option value="" selected hidden>None selected</option>
-                <option value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/latest.gif">Latest Run</option>
+                <option value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/latestREF.gif">Latest Run Max Ref. at Lowest Level</option>\
+                <option value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/latestREF.gif">Latest Run SBCAPE</option>
                 <option value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/previous.gif">Previous Run</option>
             </select>
             
