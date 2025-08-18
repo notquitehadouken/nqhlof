@@ -24,12 +24,27 @@
                 <option value="sref">SREF</option>
                 <option value="snowice">Snow & ice</option>
                 <option value="natfore">National forecast</option>
-                <option value="wrfruns">Local WRF Runs</option>
+                <option value="wrf">Local WRF Runs</option>
             </select>
 
-            <label id="wrfruns_L" for="wrfruns_">Data: </label>
-            <select id="wrfruns_">
+            <label id="wrf_L" for="wrf_">Data: </label>
+            <select id="wrf_">
                 <option value="" selected hidden>None Selected</option>
+                <option value="hurr">Hurricane Runs</option>
+                <option value="local">Local Arkansas Runs</option>
+            </select>
+
+            <label id="hurr_wrf_L" for="hurr_wrf_">Data: </label>
+            <select id="hurr_wrf_">
+                <option value="" selected hidden>None selected</option>
+                <option value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/hurr/latestREF.gif">Latest Run</option>
+                <option value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/hurr/latestSAF.gif">Latest Run</option>
+                <option value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/hurr/previous.gif">Previous Run</option>
+            </select>
+
+            <label id="local_wrf_L" for="local_wrf_">Data: </label>
+            <select id="local_wrf_">
+                <option value="" selected hidden>None selected</option>
                 <option value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/latest.gif">Latest Run</option>
                 <option value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/previous.gif">Previous Run</option>
             </select>
