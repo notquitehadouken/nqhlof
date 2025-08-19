@@ -38,7 +38,7 @@
             </style>
 
             <div id="wrf-warning">
-                Not for decision-making
+                Experimental, not for decision-making.
             </div>
 
             <script>
@@ -66,10 +66,31 @@
         <label id="hurr_wrf_L" for="hurr_wrf_">Data: </label>
         <select id="hurr_wrf_">
             <option value="" selected hidden>None selected</option>
-            <option value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/hurr/latestREF.gif">Composite Ref.</option>
-            <option value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/hurr/latestSAF.gif">Saffir-Simpson Wind Scale</option>
-            <option value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/hurr/trajectories2D.gif">Lagrangian Particles</option>
-            <option value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/hurr/previousHURR.gif">Previous Run Ref.</option>
+            <option
+                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/hurr/latestREF.gif"
+                title="Hurricane Run Specs: 9km grid; 200 x * 200 y * 40 z gridpoints; Morrison 2-moment 3-ice microphysics; GFS init">
+                Composite Ref.
+            </option>
+            <option
+                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/hurr/latestSAF.gif"
+                title="Hurricane Run Specs: 9km grid; 200 x * 200 y * 40 z gridpoints; Morrison 2-moment 3-ice microphysics; GFS init">
+                Saffir-Simpson Wind Scale
+            </option>
+            <option
+                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/hurr/latest2mTMP.gif"
+                title="Hurricane Run Specs: 9km grid; 200 x * 200 y * 40 z gridpoints; Morrison 2-moment 3-ice microphysics; GFS init">
+                2-Meter Air Temp.
+            </option>
+            <option
+                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/hurr/trajectories2D.gif"
+                title="Hurricane Run Specs: 9km grid; 200 x * 200 y * 40 z gridpoints; Morrison 2-moment 3-ice microphysics; GFS init">
+                Lagrangian Particle Run
+            </option>
+            <option
+                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/hurr/previousHURR.gif"
+                title="Hurricane Run Specs: 9km grid; 200 x * 200 y * 40 z gridpoints; Morrison 2-moment 3-ice microphysics; GFS init">
+                Previous Run Composite Ref.
+            </option>
         </select>
 
         <label id="local_wrf_L" for="local_wrf_">Data: </label>
@@ -83,7 +104,6 @@
         <label id="rean_wrf_L" for="rean_wrf_">Data: </label>
         <select id="rean_wrf_">
             <option value="" selected hidden>None selected</option>
-            <option value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/rean/052624fultoncounty.gif">05/26/2024 Fulton County</option>
         </select>
             
             <!-- Mesoscale layer 1 -->
