@@ -72,6 +72,11 @@
                 Composite Ref.
             </option>
             <option
+                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/hurr/latestPRECIP.gif"
+                title="Hurricane Run Specs: 9km grid; 200 x * 200 y * 40 z gridpoints; Morrison 2-moment 3-ice microphysics; GFS init">
+                Total Run Precip.
+            </option>
+            <option
                 value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/hurr/latestSAF.gif"
                 title="Hurricane Run Specs: 9km grid; 200 x * 200 y * 40 z gridpoints; Morrison 2-moment 3-ice microphysics; GFS init">
                 Saffir-Simpson Wind Scale
@@ -96,9 +101,21 @@
         <label id="local_wrf_L" for="local_wrf_">Data: </label>
         <select id="local_wrf_">
             <option value="" selected hidden>None selected</option>
-            <option value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/latestREF.gif">Max Ref. at Lowest Level</option>
-            <option value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/latestCAPE.gif">SBCAPE</option>
-            <option value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/previous.gif">Previous Run Ref.</option>
+            <option
+                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/latestREF.gif"
+                title="Arkansas Run Specs: 4km grid; 200 x * 200 y * 50 z gridpoints; NSSL 2-moment 4-ice microphysics; HRRR init">
+                Max Ref. at Lowest Level
+            </option>
+            <option
+                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/latestCAPE.gif"
+                title="Arkansas Run Specs: 4km grid; 200 x * 200 y * 50 z gridpoints; NSSL 2-moment 4-ice microphysics; HRRR init">
+                Surface-based CAPE
+            </option>
+            <option
+                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/previous.gif"
+                title="Arkansas Run Specs: 4km grid; 200 x * 200 y * 50 z gridpoints; NSSL 2-moment 4-ice microphysics; HRRR init">
+                Previous Run Ref.
+            </option>
         </select>
 
         <label id="rean_wrf_L" for="rean_wrf_">Data: </label>
