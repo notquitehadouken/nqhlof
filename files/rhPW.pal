@@ -1,0 +1,13 @@
+; Generated Color Table with Tools by Garrett Helms for WxTools.org
+Product: Relative Humidity
+Units: %
+Scale: 1
+Offset: 0
+Step: 0.1
+RF: 64 64 64
+
+Color4: 0 165 115 77 255 56 47 40 255
+Color4: 10 60 53 42 255 221 209 195 255
+Color4: 40 200 215 192 255 5 66 44 255
+Color4: 90 0 65 35 255 40 88 140 255
+Color4: 100 40 88 140 255 40 88 140 255

@@ -1,0 +1,15 @@
+; Generated Color Table with Tools by Garrett Helms for WxTools.org
+Product: dewpointPW
+Units: F
+Scale: 1
+Offset: 0
+Step: 1
+RF: 64 64 64
+
+Color4: -40 152 109 77 255 73 65 54 255
+Color4: 0 77 67 52 255 244 242 215 255
+Color4: 40 230 245 230 255 8 78 8 255
+Color4: 60 97 163 175 255 19 44 43 255
+Color4: 70 102 102 154 255 45 30 100 255
+Color4: 80 114 64 113 255 164 113 129 255
+Color4: 100 164 113 129 255 164 113 129 255

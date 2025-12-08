@@ -1,0 +1,16 @@
+; Generated Color Table with Tools by Garrett Helms for WxTools.org
+Product: Rainfall
+Units: in
+Scale: 1
+Offset: 0
+Step: .01
+RF: 64 64 64
+
+Color4: 0 255 255 255 0 130 130 130 255
+Color4: 0.1 183 240 190 255 20 100 115 255
+Color4: 0.5 20 80 180 255 215 237 242 255
+Color4: 1 206 188 224 255 160 55 175 255
+Color4: 2 165 58 52 255 222 154 148 255
+Color4: 4 248 238 162 255 200 116 52 255
+Color4: 8 200 116 52 255 85 49 21 255
+Color4: 15 85 49 21 255 85 49 21 255

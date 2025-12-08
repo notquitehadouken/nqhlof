@@ -1,0 +1,21 @@
+; Generated Color Table with Tools by Garrett Helms for WxTools.org
+Product: Temperature
+Units: Fahrenheit
+Scale: 1
+Offset: 0
+Step: 0.5
+RF: 64 64 64
+
+Color4: -20 143 0 219 255 238 0 255 255
+Color4: 0 238 0 255 255 238 0 255 255
+Color4: 0.01 8 21 119 255 77 187 255 255
+Color4: 32 77 187 255 255 77 187 255 255
+Color4: 32.01 0 122 41 255 101 184 46 255
+Color4: 40 101 184 46 255 200 225 76 255
+Color4: 60 230 253 53 255 255 214 66 255
+Color4: 70 218 176 22 255 255 89 0 255
+Color4: 80 255 38 0 255 153 0 0 255
+Color4: 90 138 0 0 255 48 28 28 255
+Color4: 99.99 48 28 28 255 48 28 28 255
+Color4: 100 79 79 79 255 255 255 255 255
+Color4: 120 255 255 255 255
