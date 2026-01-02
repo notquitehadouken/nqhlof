@@ -22,4 +22,5 @@ let updateVisuals = function(){
         img.src = oldEl.value;
     clean(showEl);
 }
+updateVisuals();
 document.getElementById("imageSelector").children.forEach((x) => {x.setAttribute("onchange", updateVisuals)});
