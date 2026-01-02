@@ -1,6 +1,7 @@
 let img = document.getElementById("theImage");
 let clean = (showEl)=>{Array.from(document.getElementById("imageSelector").children).forEach((x) => {if(!showEl.includes(x))x.className = "hide"});}
-setInterval(function(){
+
+let updateVisuals = function(){
     let showEl = [];
     let oldEl = document.getElementById("start");
     let currEl = oldEl
@@ -20,4 +21,5 @@ setInterval(function(){
     if (img.src !== oldEl.value)
         img.src = oldEl.value;
     clean(showEl);
-},500);
+}
+document.getElementById("imageSelector").children.forEach((x) => {x.setAttribute("onchange", updateVisuals)});
