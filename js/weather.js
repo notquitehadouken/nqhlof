@@ -23,4 +23,5 @@ let updateVisuals = function(){
     clean(showEl);
 }
 updateVisuals();
-document.getElementById("imageSelector").children.forEach((x) => {x.setAttribute("onchange", updateVisuals)});
+
+Array.from(document.getElementById("imageSelector").children).forEach((x) => {x.setAttribute("onchange", updateVisuals)});
