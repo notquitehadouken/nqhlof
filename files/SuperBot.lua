@@ -16,7 +16,7 @@ pl = r.place
 Is = r.select
 Ic = r.count
 Id = r.drop
-Ib = {32,1,1,1}
+Ib = {32,1,1,1,1,1,1}
 
 tt = {0,1,0,-1}
 
@@ -158,4 +158,5 @@ while 1 do
   if Ic() > 1 then
     pl(0)
   end
+
 end
