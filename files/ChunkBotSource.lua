@@ -14,11 +14,7 @@ function check()
 end
 
 function swingmove(dir)
-  if not r.swing(dir) then
-    while true do
-      c.beep(150, 0.05)
-    end
-  end
+  r.swing(dir)
   check()
   r.move(dir)
 end
@@ -41,4 +37,5 @@ while true do
   r.turn(false)
   r.turn(false)
   swingmove(0)
+
 end
