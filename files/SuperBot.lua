@@ -1,7 +1,6 @@
--- Draft 1
 k = component
 c = computer
-r = k.proxy(k.list("robot"))
+r = k.proxy(k.list("robot")())
 
 tv = 0
 mv = 0
@@ -16,7 +15,7 @@ pl = r.place
 Is = r.select
 Ic = r.count
 Id = r.drop
-Ib = {32,1,1,1,1,1,1}
+Ib = {32,1,1,1,1,1,1,1}
 
 tt = {0,1,0,-1}
 
@@ -35,7 +34,7 @@ end
 function turn(clockwise)
   delta = clockwise and 1 or -1
   tv = (tv + delta) % 4
-  tr(clockwise)
+  tr(clockwise and true or false)
 end
 
 function i80()
@@ -45,12 +44,14 @@ end
 
 function turnstartdir()
   for i = 1, tv do
-    tr()
+    turn()
   end
-  tv = 0
 end
 
 function tmv(dir)
+  if not dir then
+    dir = 3
+  end
   if not mo(dir) then
     sw(dir)
     return mo(dir)
@@ -82,9 +83,9 @@ function righttomainline()
     if hv ~= 0 then
       BP(true)
       if hv < 0 then
-        turn(1)
+        turn(true)
       else
-        turn()
+        turn(false)
       end
       for i = 1, math.abs(hv) do
         move(3)
@@ -143,12 +144,13 @@ function returnhome()
 end
 
 while 1 do
-  batterycurrent = c.energy() / bmaxcap
+  batterycurrent = c.energy() / c.maxEnergy()
   
   recover = batterycurrent < 0.5 or du() <= (250 + math.abs(hv) + math.abs(yv))
   
   if recover then
     returnhome()
+    break
   end
   
   mine5way()
@@ -158,5 +160,4 @@ while 1 do
   if Ic() > 1 then
     pl(0)
   end
-
 end
