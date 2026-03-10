@@ -25,341 +25,41 @@
                 <option value="snowice">Snow & ice</option>
                 <option value="natfore">National forecast</option>
                 <hr/>
-                <option value="wrf">WRF Reanalysis Runs</option>
-                <option value="mpas">MPAS-A Runs</option>
+                <option value="wrf">WRF-ARW Runs</option>
             </select>
-
-        <label id="mpas_L" for="mpas_">Data: </label>
-        <select id="mpas_">
-            <option value="" selected hidden>None Selected</option>
-            <option value="mpas120km">120km Global MPAS-A Runs</option>
-            <option value="mpas30km">30km CONUS MPAS-A Runs</option>
-        </select>
-
-        <label id="mpas30km_mpas_L" for="mpas30km_mpas_">Data: </label>
-        <select id="mpas30km_mpas_">
-            <option value="" selected>None selected</option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/30km/refl10cm_1km.gif"
-                title="30km CONUS MPAS-A Run">
-                Reflectivity at 1km AGL
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/30km/refl10cm_1km_precip_type.gif"
-                title="30km CONUS MPAS-A Run">
-                Reflectivity at 1km AGL with Precipitation Type
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/30km/sim_ir.gif"
-                title="30km CONUS MPAS-A Run">
-                Simulated IR
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/30km/rainnc_in.gif"
-                title="30km CONUS MPAS-A Run">
-                Maximum Accumulated Rainfall
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/30km/acsnow_in.gif"
-                title="30km CONUS MPAS-A Run">
-                10:1 Maximum Accumulated Snowfall
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/30km/snowh_in.gif"
-                title="30km CONUS MPAS-A Run">
-                Snow Depth
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/30km/sdc_in.gif"
-                title="30km CONUS MPAS-A Run">
-                Snow Depth Change
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/30km/mslp_hpa.gif"
-                title="30km CONUS MPAS-A Run">
-                Mean Sea-Level Pressure
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/30km/t2m_f.gif"
-                title="30km CONUS MPAS-A Run">
-                2m AGL Temperature
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/30km/dp2_f.gif"
-                title="30km CONUS MPAS-A Run">
-                2m AGL Dewpoint
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/30km/wind_speed_level1_max_mph.gif"
-                title="30km CONUS MPAS-A Run">
-                Windspeed at Lowest Level
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/30km/temperature_700hPa_f.gif"
-                title="30km CONUS MPAS-A Run">
-                Temperature at 700 hPa Height
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/30km/dewpoint_700hPa_f.gif"
-                title="30km CONUS MPAS-A Run">
-                Dewpoint at 700 hPa Height
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/30km/2m_700hPa_temp_f.gif"
-                title="30km CONUS MPAS-A Run">
-                Mean 2m AGL to 700 hPa Height Temperature
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/30km/2m_700hPa_dewpoint_f.gif"
-                title="30km CONUS MPAS-A Run">
-                Mean 2m AGL to 700 hPa Height Dewpoint
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/30km/height_250hPa.gif"
-                title="30km CONUS MPAS-A Run">
-                250 hPa Height
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/30km/250hPa_jet_mph.gif"
-                title="30km CONUS MPAS-A Run">
-                Winds at 250 hPa Height
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/30km/lifted_index.gif"
-                title="30km CONUS MPAS-A Run">
-                Assumed Lifted Index
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/30km/lapse_rate.gif"
-                title="30km CONUS MPAS-A Run">
-                Lapse Rate from Surface to 500 hPa Height
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/30km/cape.gif"
-                title="30km CONUS MPAS-A Run">
-                Convective Available Potential Energy
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/30km/cin.gif"
-                title="30km CONUS MPAS-A Run">
-                Convective Inhibition
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/30km/shear_0_1km_kt.gif"
-                title="30km CONUS MPAS-A Run">
-                0-1km AGL Wind Shear
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/30km/shear_0_6km_kt.gif"
-                title="30km CONUS MPAS-A Run">
-                0-6km AGL Wind Shear
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/30km/srh_0_1km.gif"
-                title="30km CONUS MPAS-A Run">
-                0-1km AGL Storm Relative Helicity
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/30km/srh_0_3km.gif"
-                title="30km CONUS MPAS-A Run">
-                0-3km AGL Storm Relative Helicity
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/30km/ehi_0_1km.gif"
-                title="30km CONUS MPAS-A Run">
-                0-1km SRH Energy Helicity Index
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/30km/ehi_0_3km.gif"
-                title="30km CONUS MPAS-A Run">
-                0-3km SRH Energy Helicity Index
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/30km/stpfixed.gif"
-                title="30km CONUS MPAS-A Run">
-                0-1km SRH Significant Tornado Parameter
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/30km/brn.gif"
-                title="30km CONUS MPAS-A Run">
-                Bulk Richardson Number
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/30km/dlmti.gif"
-                title="30km CONUS MPAS-A Run">
-                Deep Layer Moisture Transport Index
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/30km/sii.gif"
-                title="30km CONUS MPAS-A Run">
-                Stratification Instability Index
-            </option>
-        </select>
-
-        <label id="mpas120km_mpas_L" for="mpas120km_mpas_">Data: </label>
-        <select id="mpas120km_mpas_">
-            <option value="" selected>None selected</option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/refl10cm_1km.gif"
-                title="120km Global MPAS-A Run">
-                Reflectivity at 1km AGL
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/refl10cm_1km_precip_type.gif"
-                title="120km Global MPAS-A Run">
-                Reflectivity at 1km AGL with Precipitation Type
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/sim_ir.gif"
-                title="120km CONUS MPAS-A Run">
-                Simulated IR
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/rainnc_in.gif"
-                title="120km CONUS MPAS-A Run">
-                Maximum Accumulated Rainfall
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/acsnow_in.gif"
-                title="120km CONUS MPAS-A Run">
-                10:1 Maximum Accumulated Snowfall
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/snowh_in.gif"
-                title="120km CONUS MPAS-A Run">
-                Snow Depth
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/sdc_in.gif"
-                title="120km CONUS MPAS-A Run">
-                Snow Depth Change
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/mslp_hpa.gif"
-                title="120km CONUS MPAS-A Run">
-                Mean Sea-Level Pressure
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/t2m_f.gif"
-                title="120km Global MPAS-A Run">
-                2m AGL Temperature
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/dp2_f.gif"
-                title="120km Global MPAS-A Run">
-                2m AGL Dewpoint
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/wind_speed_level1_max_mph.gif"
-                title="120km Global MPAS-A Run">
-                Windspeed at Lowest Level
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/temperature_700hPa_f.gif"
-                title="120km Global MPAS-A Run">
-                Temperature at 700 hPa Height
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/dewpoint_700hPa_f.gif"
-                title="120km Global MPAS-A Run">
-                Dewpoint at 700 hPa Height
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/2m_700hPa_temp_f.gif"
-                title="120km CONUS MPAS-A Run">
-                Mean 2m AGL to 700 hPa Height Temperature
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/2m_700hPa_dewpoint_f.gif"
-                title="120km CONUS MPAS-A Run">
-                Mean 2m AGL to 700 hPa Height Dewpoint
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/height_250hPa.gif"
-                title="120km Global MPAS-A Run">
-                250 hPa Height
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/250hPa_jet_mph.gif"
-                title="120km Global MPAS-A Run">
-                Winds at 250 hPa Height
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/lifted_index.gif"
-                title="120km CONUS MPAS-A Run">
-                Assumed Lifted Index
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/lapse_rate.gif"
-                title="120km CONUS MPAS-A Run">
-                Lapse Rate from Surface to 500 hPa Height
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/cape.gif"
-                title="120km Global MPAS-A Run">
-                Convective Available Potential Energy
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/cin.gif"
-                title="120km Global MPAS-A Run">
-                Convective Inhibition
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/shear_0_1km_kt.gif"
-                title="120km Global MPAS-A Run">
-                0-1km AGL Wind Shear
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/shear_0_6km_kt.gif"
-                title="120km Global MPAS-A Run">
-                0-6km AGL Wind Shear
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/srh_0_1km.gif"
-                title="120km Global MPAS-A Run">
-                0-1km AGL Storm Relative Helicity
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/srh_0_3km.gif"
-                title="120km Global MPAS-A Run">
-                0-3km AGL Storm Relative Helicity
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/ehi_0_1km.gif"
-                title="120km Global MPAS-A Run">
-                0-1km SRH Energy Helicity Index
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/ehi_0_3km.gif"
-                title="120km Global MPAS-A Run">
-                0-3km SRH Energy Helicity Index
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/stpfixed.gif"
-                title="120km Global MPAS-A Run">
-                0-1km SRH Significant Tornado Parameter
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/brn.gif"
-                title="120km Global MPAS-A Run">
-                Bulk Richardson Number
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/dlmti.gif"
-                title="120km Global MPAS-A Run">
-                Deep Layer Moisture Transport Index
-            </option>
-            <option
-                value="https://raw.githubusercontent.com/notquitehadouken/nqhlof/main/wrf-forecast/mpas/sii.gif"
-                title="120km Global MPAS-A Run">
-                Stratification Instability Index
-            </option>
-        </select>
 
         <label id="wrf_L" for="wrf_">Data: </label>
         <select id="wrf_">
             <option value="" selected hidden>None Selected</option>
+            <option value="fore">Forecast Runs</option>
             <option value="rean">Reanalysis Runs</option>
+        </select>
+
+        <label id="fore_wrf_L" for="fore_wrf_">Data: </label>
+        <select id="fore_wrf_">
+            <option value="" selected hidden>None Selected</option>
+            <option value="d01">Domain 1</option>
+            <option value="d02">Domain 2</option>
+        </select>
+
+        <label id="d01_fore_wrf_L" for="d01_fore_wrf_">Data: </label>
+        <select id="d01_fore_wrf_">
+            <option value="" selected>None selected</option>
+            <option
+                value="https://media.githubusercontent.com/media/notquitehadouken/nqhlof/main/wrf-forecast/arw/domain1/d01_REFD.gif"
+                title="Forecast Run">
+                1km AGL Ref.
+            </option>
+        </select>
+
+        <label id="d02_fore_wrf_L" for="d02_fore_wrf_">Data: </label>
+        <select id="d02_fore_wrf_">
+            <option value="" selected>None selected</option>
+            <option
+                value="https://media.githubusercontent.com/media/notquitehadouken/nqhlof/main/wrf-forecast/arw/domain2/d02_REFD.gif"
+                title="Forecast Run">
+                1km AGL Ref.
+            </option>
         </select>
 
         <label id="rean_wrf_L" for="rean_wrf_">Data: </label>
