@@ -1,0 +1,15 @@
+; Generated Color Table with Tools by Garrett Helms for WxTools.org
+Product: Wind
+Units: mph
+Scale: 1
+Offset: 0
+Step: 1
+RF: 64 64 64
+
+Color4: 0 255 255 255 0 79 79 79 255
+Color4: 10 63 65 100 255 70 139 109 255
+Color4: 20 23 135 25 255 222 188 18 255
+Color4: 26.53 255 195 31 255 176 81 17 255
+Color4: 50 255 38 0 255 128 0 0 255
+Color4: 70 225 0 255 255 115 0 255 255
+Color4: 100 115 0 255 255 115 0 255 255

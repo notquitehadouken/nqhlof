@@ -1,0 +1,6 @@
+.left, .right {
+    position: absolute;
+    width: 50%;
+}
+.left {left: 0}
+.right {right: 0}

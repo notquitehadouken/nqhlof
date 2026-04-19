@@ -1,0 +1,11 @@
+; Generated Color Table with Tools by Garrett Helms for WxTools.org
+Product: cloudfrac
+Units: %
+Scale: 1
+Offset: 0
+Step: 0.5
+RF: 0 0 0
+
+Color4: 0 33 77 15 255 33 77 15 255
+Color4: 1 0 0 0 255 254 255 255 255
+Color4: 100 255 255 255 255 255 255 255 255

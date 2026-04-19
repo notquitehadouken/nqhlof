@@ -1,0 +1,6 @@
+canvas {border: 1px solid grey}
+.light canvas {background-color: #AAA}
+.dark canvas {background-color: #222}
+.selected {border-color: #C00;}
+.hidden {background-color: #0000FF30;}
+.hide {display: none;}

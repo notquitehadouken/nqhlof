@@ -1,0 +1,16 @@
+; Generated Color Table with Tools by Garrett Helms for WxTools.org
+Product: IR
+Units: C
+Scale: 1
+Offset: 0
+Step: 1
+RF: 64 64 64
+
+Color4: -90 219 253 250 255 50 50 50 255
+Color4: -69 50 50 50 255 252 213 1 255
+Color4: -64 252 213 1 255 247 13 20 255
+Color4: -54 247 13 20 255 115 25 87 255
+Color4: -49 115 25 87 255 44 64 150 255
+Color4: -40 44 64 150 255 192 208 233 255
+Color4: -30 240 252 252 255 34 41 48 255
+Color4: 30 34 41 48 255 34 41 48 255

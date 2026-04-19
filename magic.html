@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>
+            nqh magic
+        </title>
+        <style>
+            textarea { font-family: "Courier New", sans-serif; tab-size: 4; }
+        </style>
+        <link rel="stylesheet" href="css/primary.css"/>
+        <link rel="shortcut icon" type="image/jpg" href="images/favimagic.ico"/>
+    </head>
+    <body class="propogate">
+        <a href="/">Take me back</a><br/>
+        Magical file HTML thing. Hence the name.<br/>
+        <input id="fileimport" style="display: none;" type="file"/>
+        <label for="fileimport">Choose a file</label>
+        <button onclick="window.importfile()">Import</button><br/>
+        <button onclick="window.testit()">Test</button> <button onclick="window.downloadit()">Download</button> <input id="filename" style="width: 200px"/>
+        <textarea id="source" spellcheck="false" style="width:100%;height:30em;resize:none;" onkeydown="handleKeyDown.call(this, event)"></textarea>
+        <script src="js/magic.js"></script>
+    </body>
+</html>

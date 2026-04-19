@@ -1,0 +1,17 @@
+@font-face {
+  font-family: "Fira", sans-serif;
+  src: url("fonts/FiraSans-Regular.ttf");
+}
+
+* {
+  font-family: "Fira", sans-serif;
+  color: #F8F8F8;
+}
+
+body {
+  background-color: #020202;
+}
+
+body.propogate * {
+  background-color: #020202;
+}

@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>
+            weather
+        </title>
+        <link rel="shortcut icon" type="images/jpg" href="/images/faviweather.ico" />
+        <link rel="stylesheet" href="css/primary.css"/>
+        <link rel="stylesheet" href="css/weather.css">
+    </head>
+    <body class="propogate">
+        <!--
+            This is not for you.
+                                -->
+        <span class="hide">Boo</span>
+        
+        <div id="imageSelector">
+            <label id="L" for="start" class=""><a href="/">Take me back</a><br/>Image set: </label>
+            <select id="start" class="">
+                <option value="" selected hidden>None selected</option>
+                <option value="mesoscale">Mesoscale</option>
+                <option value="outlook">Outlook</option>
+                <option value="tornado">Thunderstorm Outlook</option>
+                <option value="sref">SREF</option>
+                <option value="snowice">Snow & ice</option>
+                <option value="natfore">National forecast</option>
+                <hr/>
+                <option value="wrf">WRF-ARW Runs</option>
+            </select>
+
+        <label id="wrf_L" for="wrf_">Run Type: </label>
+        <select id="wrf_">
+            <option value="" selected hidden>None Selected</option>
+            <option value="fore">Forecast Runs</option>
+            <option value="rean">Reanalysis Runs</option>
+        </select>
+
+        <label id="fore_wrf_L" for="fore_wrf_">Region: </label>
+        <select id="fore_wrf_">
+            <option value="" selected hidden>None Selected</option>
+            <option value="NA">North America</option>
+            <option value="intra">Intracontinental</option>
+        </select>
+
+        <label id="intra_fore_wrf_L" for="intra_fore_wrf_">Domain: </label>
+        <select id="intra_fore_wrf_">
+            <option value="" selected hidden>None Selected</option>
+            <option value="d1">Domain One</option>
+            <option value="d2">Domain Two</option>
+        </select>
+
+        <label id="d1_intra_fore_wrf_L" for="d1_intra_fore_wrf_">Data: </label>
+        <select id="d1_intra_fore_wrf_">
+            <option value="" selected hidden>None Selected</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d1_REFL_10CM_Domain.gif">Reflectivity 1km AGL</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d1_REFD_COM_Domain.gif">Composite Reflectivity</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d1_cldfrac_Domain.gif">High, Mid, Low Cloud Fraction</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d1_CTT_Domain.gif">Cloud Top Temperature</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d1_Temp2m_Domain.gif">Temperature 2m AGL</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d1_Dew2m_Domain.gif">Dewpoint 2m AGL</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d1_heatidx_wchill_Domain.gif">Heat Index/Wind Chill</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d1_Winds10m_Domain.gif">Winds 10m AGL</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d1_TempDewSLP_Domain.gif">Surface Analysis</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d1_MUCAPE_Domain.gif">Most Unstable CAPE</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d1_MUCIN_Domain.gif">Most Unstable CIN</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d1_SRH1km_Domain.gif">0-1km Storm Relative Helicity</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d1_SRH3km_Domain.gif">0-3km Storm Relative Helicity</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d1_EHI01km_Domain.gif">0-1km Energy Helicity Index</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d1_EHI03km_Domain.gif">0-3km Energy Helicity Index</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d1_stp_fixed_Domain.gif">Significant Tornado Parameter</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d1_eswi_RIR_dailymax_Domain.gif">Daily Max. Experimental Severe Weather Index</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d1_ef0plus_probability_Domain.gif" title="If there's a tornado in the shaded area, the probability it is an EF0 or greater.">Conditional Probability of an EF0+</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d1_ef2plus_probability_Domain.gif" title="If there's a tornado in the shaded area, the probability it is an EF2 or greater.">Conditional Probability of an EF2+</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d1_ef4plus_probability_Domain.gif" title="If there's a tornado in the shaded area, the probability it is an EF4 or greater.">Conditional Probability of an EF4+</option>
+        </select>
+
+        <label id="d2_intra_fore_wrf_L" for="d2_intra_fore_wrf_">Data: </label>
+        <select id="d2_intra_fore_wrf_">
+            <option value="" selected hidden>None Selected</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d2_REFL_10CM_Domain.gif">Reflectivity 1km AGL</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d2_REFD_COM_Domain.gif">Composite Reflectivity</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d2_REFL_UH_Domain.gif">Reflectivity 1km AGL, Run Max 2-5km Updraft Helicity</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d2_cldfrac_Domain.gif">High, Mid, Low Cloud Fraction</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d2_CTT_Domain.gif">Cloud Top Temperature</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d2_Temp2m_Domain.gif">Temperature 2m AGL</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d2_Dew2m_Domain.gif">Dewpoint 2m AGL</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d2_heatidx_wchill_Domain.gif">Heat Index/Wind Chill</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d2_Winds10m_Domain.gif">Winds 10m AGL</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d2_TempDewSLP_Domain.gif">Surface Analysis</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d2_MUCAPE_Domain.gif">Most Unstable CAPE</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d2_MUCIN_Domain.gif">Most Unstable CIN</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d2_SRH1km_Domain.gif">0-1km Storm Relative Helicity</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d2_SRH3km_Domain.gif">0-3km Storm Relative Helicity</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d2_EHI01km_Domain.gif">0-1km Energy Helicity Index</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d2_EHI03km_Domain.gif">0-3km Energy Helicity Index</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d2_stp_fixed_Domain.gif">Significant Tornado Parameter</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d2_eswi_RIR_dailymax_Domain.gif">Daily Max. Experimental Severe Weather Index</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d2_ef0plus_probability_Domain.gif" title="If there's a tornado in the shaded area, the probability it is an EF0 or greater.">Conditional Probability of an EF0+</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d2_ef2plus_probability_Domain.gif" title="If there's a tornado in the shaded area, the probability it is an EF2 or greater.">Conditional Probability of an EF2+</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/intra/d2_ef4plus_probability_Domain.gif" title="If there's a tornado in the shaded area, the probability it is an EF4 or greater.">Conditional Probability of an EF4+</option>
+        </select>
+
+        <label id="NA_fore_wrf_L" for="NA_fore_wrf_">Data: </label>
+        <select id="NA_fore_wrf_">
+            <option value="" selected hidden>None Selected</option>
+            <option value="REFL_10CM">Reflectivity 1km AGL</option>
+            <option value="REFD_COM">Composite Reflectivity</option>
+            <option value="cldfrac">High, Mid, Low Cloud Fraction</option>
+            <option value="CTT">Cloud Top Temperature</option>
+            <option value="Temp2m">Temperature 2m AGL</option>
+            <option value="Dew2m">Dewpoint 2m AGL</option>
+            <option value="heatidx_wchill">Heat Index/Wind Chill</option>
+            <option value="Winds10m">Winds 10m AGL</option>
+            <option value="TempDewSLP">Surface Analysis</option>
+            <option value="MUCAPE">Most Unstable CAPE</option>
+            <option value="MUCIN">Most Unstable CIN</option>
+            <option value="SRH1km">0-1km Storm Relative Helicity</option>
+            <option value="SRH3km">0-3km Storm Relative Helicity</option>
+            <option value="EHI01km">0-1km Energy Helicity Index</option>
+            <option value="EHI03km">0-3km Energy Helicity Index</option>
+            <option value="stp_fixed">Significant Tornado Parameter</option>
+            <option value="eswi_RIR_dailymax">Daily Max. Experimental Severe Weather Index</option>
+            <option value="ef0plus_probability" title="If there's a tornado in the shaded area, the probability it is an EF0 or greater.">Conditional Probability of an EF0+</option>
+            <option value="ef2plus_probability" title="If there's a tornado in the shaded area, the probability it is an EF2 or greater.">Conditional Probability of an EF2+</option>
+            <option value="ef4plus_probability" title="If there's a tornado in the shaded area, the probability it is an EF4 or greater.">Conditional Probability of an EF4+</option>
+        </select>
+
+        <label id="REFL_10CM_NA_fore_wrf_L" for="REFL_10CM_NA_fore_wrf_">Sector: </label>
+        <select id="REFL_10CM_NA_fore_wrf_">
+            <option value="" selected hidden>None selected</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_REFL_10CM_CONUS.gif" title="Forecast Run">CONUS</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_REFL_10CM_Gulf.gif" title="Forecast Run">Gulf</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_REFL_10CM_SoCen.gif" title="Forecast Run">SoCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_REFL_10CM_SoEast.gif" title="Forecast Run">SoEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_REFL_10CM_SoWest.gif" title="Forecast Run">SoWest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_REFL_10CM_FourCorners.gif" title="Forecast Run">FourCorners</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_REFL_10CM_Central.gif" title="Forecast Run">Central</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_REFL_10CM_OhioValley.gif" title="Forecast Run">OhioValley</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_REFL_10CM_MidAtl.gif" title="Forecast Run">MidAtl</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_REFL_10CM_NorEast.gif" title="Forecast Run">NorEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_REFL_10CM_Midwest.gif" title="Forecast Run">Midwest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_REFL_10CM_NorCen.gif" title="Forecast Run">NorCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_REFL_10CM_NorRockies.gif" title="Forecast Run">NorRockies</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_REFL_10CM_NorWest.gif" title="Forecast Run">NorWest</option>
+        </select>
+
+        <label id="REFD_COM_NA_fore_wrf_L" for="REFD_COM_NA_fore_wrf_">Sector: </label>
+        <select id="REFD_COM_NA_fore_wrf_">
+            <option value="" selected hidden>None selected</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_REFD_COM_CONUS.gif" title="Forecast Run">CONUS</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_REFD_COM_Gulf.gif" title="Forecast Run">Gulf</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_REFD_COM_SoCen.gif" title="Forecast Run">SoCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_REFD_COM_SoEast.gif" title="Forecast Run">SoEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_REFD_COM_SoWest.gif" title="Forecast Run">SoWest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_REFD_COM_FourCorners.gif" title="Forecast Run">FourCorners</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_REFD_COM_Central.gif" title="Forecast Run">Central</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_REFD_COM_OhioValley.gif" title="Forecast Run">OhioValley</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_REFD_COM_MidAtl.gif" title="Forecast Run">MidAtl</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_REFD_COM_NorEast.gif" title="Forecast Run">NorEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_REFD_COM_Midwest.gif" title="Forecast Run">Midwest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_REFD_COM_NorCen.gif" title="Forecast Run">NorCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_REFD_COM_NorRockies.gif" title="Forecast Run">NorRockies</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_REFD_COM_NorWest.gif" title="Forecast Run">NorWest</option>
+        </select>
+
+        <label id="cldfrac_NA_fore_wrf_L" for="cldfrac_NA_fore_wrf_">Sector: </label>
+        <select id="cldfrac_NA_fore_wrf_">
+            <option value="" selected hidden>None selected</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_cldfrac_CONUS.gif" title="Forecast Run">CONUS</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_cldfrac_Gulf.gif" title="Forecast Run">Gulf</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_cldfrac_SoCen.gif" title="Forecast Run">SoCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_cldfrac_SoEast.gif" title="Forecast Run">SoEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_cldfrac_SoWest.gif" title="Forecast Run">SoWest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_cldfrac_FourCorners.gif" title="Forecast Run">FourCorners</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_cldfrac_Central.gif" title="Forecast Run">Central</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_cldfrac_OhioValley.gif" title="Forecast Run">OhioValley</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_cldfrac_MidAtl.gif" title="Forecast Run">MidAtl</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_cldfrac_NorEast.gif" title="Forecast Run">NorEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_cldfrac_Midwest.gif" title="Forecast Run">Midwest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_cldfrac_NorCen.gif" title="Forecast Run">NorCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_cldfrac_NorRockies.gif" title="Forecast Run">NorRockies</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_cldfrac_NorWest.gif" title="Forecast Run">NorWest</option>
+        </select>
+
+        <label id="CTT_NA_fore_wrf_L" for="CTT_NA_fore_wrf_">Sector: </label>
+        <select id="CTT_NA_fore_wrf_">
+            <option value="" selected hidden>None selected</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_CTT_CONUS.gif" title="Forecast Run">CONUS</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_CTT_Gulf.gif" title="Forecast Run">Gulf</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_CTT_SoCen.gif" title="Forecast Run">SoCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_CTT_SoEast.gif" title="Forecast Run">SoEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_CTT_SoWest.gif" title="Forecast Run">SoWest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_CTT_FourCorners.gif" title="Forecast Run">FourCorners</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_CTT_Central.gif" title="Forecast Run">Central</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_CTT_OhioValley.gif" title="Forecast Run">OhioValley</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_CTT_MidAtl.gif" title="Forecast Run">MidAtl</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_CTT_NorEast.gif" title="Forecast Run">NorEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_CTT_Midwest.gif" title="Forecast Run">Midwest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_CTT_NorCen.gif" title="Forecast Run">NorCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_CTT_NorRockies.gif" title="Forecast Run">NorRockies</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_CTT_NorWest.gif" title="Forecast Run">NorWest</option>
+        </select>
+
+        <label id="Temp2m_NA_fore_wrf_L" for="Temp2m_NA_fore_wrf_">Sector: </label>
+        <select id="Temp2m_NA_fore_wrf_">
+            <option value="" selected hidden>None selected</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Temp2m_CONUS.gif" title="Forecast Run">CONUS</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Temp2m_Gulf.gif" title="Forecast Run">Gulf</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Temp2m_SoCen.gif" title="Forecast Run">SoCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Temp2m_SoEast.gif" title="Forecast Run">SoEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Temp2m_SoWest.gif" title="Forecast Run">SoWest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Temp2m_FourCorners.gif" title="Forecast Run">FourCorners</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Temp2m_Central.gif" title="Forecast Run">Central</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Temp2m_OhioValley.gif" title="Forecast Run">OhioValley</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Temp2m_MidAtl.gif" title="Forecast Run">MidAtl</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Temp2m_NorEast.gif" title="Forecast Run">NorEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Temp2m_Midwest.gif" title="Forecast Run">Midwest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Temp2m_NorCen.gif" title="Forecast Run">NorCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Temp2m_NorRockies.gif" title="Forecast Run">NorRockies</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Temp2m_NorWest.gif" title="Forecast Run">NorWest</option>
+        </select>
+
+        <label id="Dew2m_NA_fore_wrf_L" for="Dew2m_NA_fore_wrf_">Sector: </label>
+        <select id="Dew2m_NA_fore_wrf_">
+            <option value="" selected hidden>None selected</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Dew2m_CONUS.gif" title="Forecast Run">CONUS</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Dew2m_Gulf.gif" title="Forecast Run">Gulf</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Dew2m_SoCen.gif" title="Forecast Run">SoCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Dew2m_SoEast.gif" title="Forecast Run">SoEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Dew2m_SoWest.gif" title="Forecast Run">SoWest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Dew2m_FourCorners.gif" title="Forecast Run">FourCorners</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Dew2m_Central.gif" title="Forecast Run">Central</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Dew2m_OhioValley.gif" title="Forecast Run">OhioValley</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Dew2m_MidAtl.gif" title="Forecast Run">MidAtl</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Dew2m_NorEast.gif" title="Forecast Run">NorEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Dew2m_Midwest.gif" title="Forecast Run">Midwest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Dew2m_NorCen.gif" title="Forecast Run">NorCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Dew2m_NorRockies.gif" title="Forecast Run">NorRockies</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Dew2m_NorWest.gif" title="Forecast Run">NorWest</option>
+        </select>
+
+        <label id="heatidx_wchill_NA_fore_wrf_L" for="heatidx_wchill_NA_fore_wrf_">Sector: </label>
+        <select id="heatidx_wchill_NA_fore_wrf_">
+            <option value="" selected hidden>None selected</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_heatidx_wchill_CONUS.gif" title="Forecast Run">CONUS</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_heatidx_wchill_Gulf.gif" title="Forecast Run">Gulf</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_heatidx_wchill_SoCen.gif" title="Forecast Run">SoCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_heatidx_wchill_SoEast.gif" title="Forecast Run">SoEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_heatidx_wchill_SoWest.gif" title="Forecast Run">SoWest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_heatidx_wchill_FourCorners.gif" title="Forecast Run">FourCorners</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_heatidx_wchill_Central.gif" title="Forecast Run">Central</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_heatidx_wchill_OhioValley.gif" title="Forecast Run">OhioValley</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_heatidx_wchill_MidAtl.gif" title="Forecast Run">MidAtl</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_heatidx_wchill_NorEast.gif" title="Forecast Run">NorEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_heatidx_wchill_Midwest.gif" title="Forecast Run">Midwest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_heatidx_wchill_NorCen.gif" title="Forecast Run">NorCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_heatidx_wchill_NorRockies.gif" title="Forecast Run">NorRockies</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_heatidx_wchill_NorWest.gif" title="Forecast Run">NorWest</option>
+        </select>
+
+        <label id="Winds10m_NA_fore_wrf_L" for="Winds10m_NA_fore_wrf_">Sector: </label>
+        <select id="Winds10m_NA_fore_wrf_">
+            <option value="" selected hidden>None selected</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Winds10m_CONUS.gif" title="Forecast Run">CONUS</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Winds10m_Gulf.gif" title="Forecast Run">Gulf</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Winds10m_SoCen.gif" title="Forecast Run">SoCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Winds10m_SoEast.gif" title="Forecast Run">SoEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Winds10m_SoWest.gif" title="Forecast Run">SoWest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Winds10m_FourCorners.gif" title="Forecast Run">FourCorners</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Winds10m_Central.gif" title="Forecast Run">Central</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Winds10m_OhioValley.gif" title="Forecast Run">OhioValley</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Winds10m_MidAtl.gif" title="Forecast Run">MidAtl</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Winds10m_NorEast.gif" title="Forecast Run">NorEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Winds10m_Midwest.gif" title="Forecast Run">Midwest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Winds10m_NorCen.gif" title="Forecast Run">NorCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Winds10m_NorRockies.gif" title="Forecast Run">NorRockies</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_Winds10m_NorWest.gif" title="Forecast Run">NorWest</option>
+        </select>
+
+        <label id="TempDewSLP_NA_fore_wrf_L" for="TempDewSLP_NA_fore_wrf_">Sector: </label>
+        <select id="TempDewSLP_NA_fore_wrf_">
+            <option value="" selected hidden>None selected</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_TempDewSLP_Gulf.gif" title="Forecast Run">Gulf</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_TempDewSLP_SoCen.gif" title="Forecast Run">SoCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_TempDewSLP_SoEast.gif" title="Forecast Run">SoEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_TempDewSLP_SoWest.gif" title="Forecast Run">SoWest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_TempDewSLP_FourCorners.gif" title="Forecast Run">FourCorners</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_TempDewSLP_Central.gif" title="Forecast Run">Central</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_TempDewSLP_OhioValley.gif" title="Forecast Run">OhioValley</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_TempDewSLP_MidAtl.gif" title="Forecast Run">MidAtl</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_TempDewSLP_NorEast.gif" title="Forecast Run">NorEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_TempDewSLP_Midwest.gif" title="Forecast Run">Midwest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_TempDewSLP_NorCen.gif" title="Forecast Run">NorCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_TempDewSLP_NorRockies.gif" title="Forecast Run">NorRockies</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_TempDewSLP_NorWest.gif" title="Forecast Run">NorWest</option>
+        </select>
+
+        <label id="MUCAPE_NA_fore_wrf_L" for="MUCAPE_NA_fore_wrf_">Sector: </label>
+        <select id="MUCAPE_NA_fore_wrf_">
+            <option value="" selected hidden>None selected</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_MUCAPE_CONUS.gif" title="Forecast Run">CONUS</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_MUCAPE_Gulf.gif" title="Forecast Run">Gulf</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_MUCAPE_SoCen.gif" title="Forecast Run">SoCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_MUCAPE_SoEast.gif" title="Forecast Run">SoEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_MUCAPE_SoWest.gif" title="Forecast Run">SoWest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_MUCAPE_FourCorners.gif" title="Forecast Run">FourCorners</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_MUCAPE_Central.gif" title="Forecast Run">Central</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_MUCAPE_OhioValley.gif" title="Forecast Run">OhioValley</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_MUCAPE_MidAtl.gif" title="Forecast Run">MidAtl</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_MUCAPE_NorEast.gif" title="Forecast Run">NorEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_MUCAPE_Midwest.gif" title="Forecast Run">Midwest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_MUCAPE_NorCen.gif" title="Forecast Run">NorCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_MUCAPE_NorRockies.gif" title="Forecast Run">NorRockies</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_MUCAPE_NorWest.gif" title="Forecast Run">NorWest</option>
+        </select>
+
+        <label id="MUCIN_NA_fore_wrf_L" for="MUCIN_NA_fore_wrf_">Sector: </label>
+        <select id="MUCIN_NA_fore_wrf_">
+            <option value="" selected hidden>None selected</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_MUCIN_CONUS.gif" title="Forecast Run">CONUS</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_MUCIN_Gulf.gif" title="Forecast Run">Gulf</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_MUCIN_SoCen.gif" title="Forecast Run">SoCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_MUCIN_SoEast.gif" title="Forecast Run">SoEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_MUCIN_SoWest.gif" title="Forecast Run">SoWest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_MUCIN_FourCorners.gif" title="Forecast Run">FourCorners</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_MUCIN_Central.gif" title="Forecast Run">Central</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_MUCIN_OhioValley.gif" title="Forecast Run">OhioValley</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_MUCIN_MidAtl.gif" title="Forecast Run">MidAtl</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_MUCIN_NorEast.gif" title="Forecast Run">NorEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_MUCIN_Midwest.gif" title="Forecast Run">Midwest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_MUCIN_NorCen.gif" title="Forecast Run">NorCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_MUCIN_NorRockies.gif" title="Forecast Run">NorRockies</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_MUCIN_NorWest.gif" title="Forecast Run">NorWest</option>
+        </select>
+
+        <label id="SRH1km_NA_fore_wrf_L" for="SRH1km_NA_fore_wrf_">Sector: </label>
+        <select id="SRH1km_NA_fore_wrf_">
+            <option value="" selected hidden>None selected</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_SRH1km_CONUS.gif" title="Forecast Run">CONUS</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_SRH1km_Gulf.gif" title="Forecast Run">Gulf</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_SRH1km_SoCen.gif" title="Forecast Run">SoCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_SRH1km_SoEast.gif" title="Forecast Run">SoEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_SRH1km_SoWest.gif" title="Forecast Run">SoWest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_SRH1km_FourCorners.gif" title="Forecast Run">FourCorners</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_SRH1km_Central.gif" title="Forecast Run">Central</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_SRH1km_OhioValley.gif" title="Forecast Run">OhioValley</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_SRH1km_MidAtl.gif" title="Forecast Run">MidAtl</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_SRH1km_NorEast.gif" title="Forecast Run">NorEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_SRH1km_Midwest.gif" title="Forecast Run">Midwest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_SRH1km_NorCen.gif" title="Forecast Run">NorCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_SRH1km_NorRockies.gif" title="Forecast Run">NorRockies</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_SRH1km_NorWest.gif" title="Forecast Run">NorWest</option>
+        </select>
+
+        <label id="SRH3km_NA_fore_wrf_L" for="SRH3km_NA_fore_wrf_">Sector: </label>
+        <select id="SRH3km_NA_fore_wrf_">
+            <option value="" selected hidden>None selected</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_SRH3km_CONUS.gif" title="Forecast Run">CONUS</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_SRH3km_Gulf.gif" title="Forecast Run">Gulf</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_SRH3km_SoCen.gif" title="Forecast Run">SoCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_SRH3km_SoEast.gif" title="Forecast Run">SoEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_SRH3km_SoWest.gif" title="Forecast Run">SoWest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_SRH3km_FourCorners.gif" title="Forecast Run">FourCorners</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_SRH3km_Central.gif" title="Forecast Run">Central</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_SRH3km_OhioValley.gif" title="Forecast Run">OhioValley</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_SRH3km_MidAtl.gif" title="Forecast Run">MidAtl</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_SRH3km_NorEast.gif" title="Forecast Run">NorEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_SRH3km_Midwest.gif" title="Forecast Run">Midwest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_SRH3km_NorCen.gif" title="Forecast Run">NorCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_SRH3km_NorRockies.gif" title="Forecast Run">NorRockies</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_SRH3km_NorWest.gif" title="Forecast Run">NorWest</option>
+        </select>
+
+        <label id="EHI01km_NA_fore_wrf_L" for="EHI01km_NA_fore_wrf_">Sector: </label>
+        <select id="EHI01km_NA_fore_wrf_">
+            <option value="" selected hidden>None selected</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_EHI01km_CONUS.gif" title="Forecast Run">CONUS</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_EHI01km_Gulf.gif" title="Forecast Run">Gulf</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_EHI01km_SoCen.gif" title="Forecast Run">SoCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_EHI01km_SoEast.gif" title="Forecast Run">SoEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_EHI01km_SoWest.gif" title="Forecast Run">SoWest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_EHI01km_FourCorners.gif" title="Forecast Run">FourCorners</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_EHI01km_Central.gif" title="Forecast Run">Central</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_EHI01km_OhioValley.gif" title="Forecast Run">OhioValley</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_EHI01km_MidAtl.gif" title="Forecast Run">MidAtl</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_EHI01km_NorEast.gif" title="Forecast Run">NorEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_EHI01km_Midwest.gif" title="Forecast Run">Midwest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_EHI01km_NorCen.gif" title="Forecast Run">NorCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_EHI01km_NorRockies.gif" title="Forecast Run">NorRockies</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_EHI01km_NorWest.gif" title="Forecast Run">NorWest</option>
+        </select>
+
+        <label id="EHI03km_NA_fore_wrf_L" for="EHI03km_NA_fore_wrf_">Sector: </label>
+        <select id="EHI03km_NA_fore_wrf_">
+            <option value="" selected hidden>None selected</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_EHI03km_CONUS.gif" title="Forecast Run">CONUS</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_EHI03km_Gulf.gif" title="Forecast Run">Gulf</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_EHI03km_SoCen.gif" title="Forecast Run">SoCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_EHI03km_SoEast.gif" title="Forecast Run">SoEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_EHI03km_SoWest.gif" title="Forecast Run">SoWest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_EHI03km_FourCorners.gif" title="Forecast Run">FourCorners</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_EHI03km_Central.gif" title="Forecast Run">Central</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_EHI03km_OhioValley.gif" title="Forecast Run">OhioValley</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_EHI03km_MidAtl.gif" title="Forecast Run">MidAtl</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_EHI03km_NorEast.gif" title="Forecast Run">NorEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_EHI03km_Midwest.gif" title="Forecast Run">Midwest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_EHI03km_NorCen.gif" title="Forecast Run">NorCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_EHI03km_NorRockies.gif" title="Forecast Run">NorRockies</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_EHI03km_NorWest.gif" title="Forecast Run">NorWest</option>
+        </select>
+
+        <label id="stp_fixed_NA_fore_wrf_L" for="stp_fixed_NA_fore_wrf_">Sector: </label>
+        <select id="stp_fixed_NA_fore_wrf_">
+            <option value="" selected hidden>None selected</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_stp_fixed_CONUS.gif" title="Forecast Run">CONUS</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_stp_fixed_Gulf.gif" title="Forecast Run">Gulf</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_stp_fixed_SoCen.gif" title="Forecast Run">SoCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_stp_fixed_SoEast.gif" title="Forecast Run">SoEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_stp_fixed_SoWest.gif" title="Forecast Run">SoWest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_stp_fixed_FourCorners.gif" title="Forecast Run">FourCorners</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_stp_fixed_Central.gif" title="Forecast Run">Central</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_stp_fixed_OhioValley.gif" title="Forecast Run">OhioValley</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_stp_fixed_MidAtl.gif" title="Forecast Run">MidAtl</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_stp_fixed_NorEast.gif" title="Forecast Run">NorEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_stp_fixed_Midwest.gif" title="Forecast Run">Midwest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_stp_fixed_NorCen.gif" title="Forecast Run">NorCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_stp_fixed_NorRockies.gif" title="Forecast Run">NorRockies</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_stp_fixed_NorWest.gif" title="Forecast Run">NorWest</option>
+        </select>
+
+        <label id="ef0plus_probability_NA_fore_wrf_L" for="ef0plus_probability_NA_fore_wrf_">Sector: </label>
+        <select id="ef0plus_probability_NA_fore_wrf_">
+            <option value="" selected hidden>None selected</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef0plus_probability_CONUS.gif" title="Forecast Run">CONUS</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef0plus_probability_Gulf.gif" title="Forecast Run">Gulf</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef0plus_probability_SoCen.gif" title="Forecast Run">SoCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef0plus_probability_SoEast.gif" title="Forecast Run">SoEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef0plus_probability_SoWest.gif" title="Forecast Run">SoWest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef0plus_probability_FourCorners.gif" title="Forecast Run">FourCorners</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef0plus_probability_Central.gif" title="Forecast Run">Central</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef0plus_probability_OhioValley.gif" title="Forecast Run">OhioValley</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef0plus_probability_MidAtl.gif" title="Forecast Run">MidAtl</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef0plus_probability_NorEast.gif" title="Forecast Run">NorEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef0plus_probability_Midwest.gif" title="Forecast Run">Midwest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef0plus_probability_NorCen.gif" title="Forecast Run">NorCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef0plus_probability_NorRockies.gif" title="Forecast Run">NorRockies</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef0plus_probability_NorWest.gif" title="Forecast Run">NorWest</option>
+        </select>
+
+        <label id="ef2plus_probability_NA_fore_wrf_L" for="ef2plus_probability_NA_fore_wrf_">Sector: </label>
+        <select id="ef2plus_probability_NA_fore_wrf_">
+            <option value="" selected hidden>None selected</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef2plus_probability_CONUS.gif" title="Forecast Run">CONUS</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef2plus_probability_Gulf.gif" title="Forecast Run">Gulf</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef2plus_probability_SoCen.gif" title="Forecast Run">SoCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef2plus_probability_SoEast.gif" title="Forecast Run">SoEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef2plus_probability_SoWest.gif" title="Forecast Run">SoWest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef2plus_probability_FourCorners.gif" title="Forecast Run">FourCorners</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef2plus_probability_Central.gif" title="Forecast Run">Central</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef2plus_probability_OhioValley.gif" title="Forecast Run">OhioValley</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef2plus_probability_MidAtl.gif" title="Forecast Run">MidAtl</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef2plus_probability_NorEast.gif" title="Forecast Run">NorEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef2plus_probability_Midwest.gif" title="Forecast Run">Midwest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef2plus_probability_NorCen.gif" title="Forecast Run">NorCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef2plus_probability_NorRockies.gif" title="Forecast Run">NorRockies</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef2plus_probability_NorWest.gif" title="Forecast Run">NorWest</option>
+        </select>
+
+        <label id="ef4plus_probability_NA_fore_wrf_L" for="ef4plus_probability_NA_fore_wrf_">Sector: </label>
+        <select id="ef4plus_probability_NA_fore_wrf_">
+            <option value="" selected hidden>None selected</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef4plus_probability_CONUS.gif" title="Forecast Run">CONUS</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef4plus_probability_Gulf.gif" title="Forecast Run">Gulf</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef4plus_probability_SoCen.gif" title="Forecast Run">SoCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef4plus_probability_SoEast.gif" title="Forecast Run">SoEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef4plus_probability_SoWest.gif" title="Forecast Run">SoWest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef4plus_probability_FourCorners.gif" title="Forecast Run">FourCorners</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef4plus_probability_Central.gif" title="Forecast Run">Central</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef4plus_probability_OhioValley.gif" title="Forecast Run">OhioValley</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef4plus_probability_MidAtl.gif" title="Forecast Run">MidAtl</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef4plus_probability_NorEast.gif" title="Forecast Run">NorEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef4plus_probability_Midwest.gif" title="Forecast Run">Midwest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef4plus_probability_NorCen.gif" title="Forecast Run">NorCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef4plus_probability_NorRockies.gif" title="Forecast Run">NorRockies</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_ef4plus_probability_NorWest.gif" title="Forecast Run">NorWest</option>
+        </select>
+
+        <label id="eswi_RIR_dailymax_NA_fore_wrf_L" for="eswi_RIR_dailymax_NA_fore_wrf_">Sector: </label>
+        <select id="eswi_RIR_dailymax_NA_fore_wrf_">
+            <option value="" selected hidden>None selected</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_eswi_RIR_dailymax_CONUS.gif" title="Forecast Run">CONUS</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_eswi_RIR_dailymax_Gulf.gif" title="Forecast Run">Gulf</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_eswi_RIR_dailymax_SoCen.gif" title="Forecast Run">SoCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_eswi_RIR_dailymax_SoEast.gif" title="Forecast Run">SoEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_eswi_RIR_dailymax_SoWest.gif" title="Forecast Run">SoWest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_eswi_RIR_dailymax_FourCorners.gif" title="Forecast Run">FourCorners</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_eswi_RIR_dailymax_Central.gif" title="Forecast Run">Central</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_eswi_RIR_dailymax_OhioValley.gif" title="Forecast Run">OhioValley</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_eswi_RIR_dailymax_MidAtl.gif" title="Forecast Run">MidAtl</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_eswi_RIR_dailymax_NorEast.gif" title="Forecast Run">NorEast</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_eswi_RIR_dailymax_Midwest.gif" title="Forecast Run">Midwest</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_eswi_RIR_dailymax_NorCen.gif" title="Forecast Run">NorCen</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_eswi_RIR_dailymax_NorRockies.gif" title="Forecast Run">NorRockies</option>
+            <option value="https://media.githubusercontent.com/media/LordOfFridges/nqhlof-arw-runs/main/forecasts/d1_eswi_RIR_dailymax_NorWest.gif" title="Forecast Run">NorWest</option>
+        </select>
+
+        <label id="rean_wrf_L" for="rean_wrf_">Data: </label>
+        <select id="rean_wrf_">
+            <option value="" selected>None selected</option>
+            <option
+                value="/wrf-forecast/rean/REFD.gif"
+                title="Reanalysis Run">
+                1km AGL Ref.
+            </option>
+            <option
+                value="/wrf-forecast/rean/REFD_MAX.gif"
+                title="Reanalysis Run">
+                Max Ref. at Lowest Level
+            </option>
+            <option
+                value="/wrf-forecast/rean/REFD_COM.gif"
+                title="Reanalysis Run">
+                Composite Ref.
+            </option>
+            <option
+                value="/wrf-forecast/rean/REFD_UH.gif"
+                title="Reanalysis Run">
+                1km AGL Ref. + Acc. UH ≥ 500 m²s⁻²
+            </option>
+            <option
+                value="/wrf-forecast/rean/RAINNC.gif"
+                title="Reanalysis Run">
+                Total Acc. Rainfall
+            </option>
+            <option
+                value="/wrf-forecast/rean/ctt.gif"
+                title="Reanalysis Run">
+                Cloud Top Temp.
+            </option>
+            <option
+                value="/wrf-forecast/rean/AFWA_CLOUD.gif"
+                title="Reanalysis Run">
+                Cloud Cover Fraction
+            </option>
+            <option
+                value="/wrf-forecast/rean/T2.gif"
+                title="Reanalysis Run">
+                2m AGL Temp.
+            </option>
+            <option
+                value="/wrf-forecast/rean/td2.gif"
+                title="Reanalysis Run">
+                2m AGL Dewpoint
+            </option>
+            <option
+                value="/wrf-forecast/rean/rh2.gif"
+                title="Reanalysis Run">
+                2m AGL Relative Humidity
+            </option>
+            <option
+                value="/wrf-forecast/rean/WSPD10MAX.gif"
+                title="Reanalysis Run">
+                10m AGL Max Windspeed
+            </option>
+            <option
+                value="/wrf-forecast/rean/AFWA_CAPE.gif"
+                title="Reanalysis Run">
+                Convective Available Potential Energy
+            </option>
+            <option
+                value="/wrf-forecast/rean/AFWA_CIN.gif"
+                title="Reanalysis Run">
+                Convective Inhibition
+            </option>
+            <option
+                value="/wrf-forecast/rean/helicity.gif"
+                title="Reanalysis Run">
+                0-3km. Storm Relative Helicity
+            </option>
+            <option
+                value="/wrf-forecast/rean/AFWA_LLWS.gif"
+                title="Reanalysis Run">
+                0-2000ft. Wind Shear
+            </option>
+        </select>
+            
+            <!-- Mesoscale layer 1 -->
+
+            <label id="mesoscale_L" for="mesoscale_">Data: </label>
+            <select id="mesoscale_">
+                <option value="" selected hidden>None selected</option>
+                <option value="pmsl">Pressure and surface wind</option>
+                <option value="stpc">Significant tornado parameter</option>
+                <option value="pstpe">Prob supercell EF2+</option>
+                <option value="sigh">Significant hail parameter</option>
+                <option value="sars1">SARS Hail size</option>
+                <option value="1kmv">Visible</option>
+            </select>
+
+            <!-- Mesoscale layer 2 -->
+
+            <label id="pmsl_mesoscale_L" for="pmsl_mesoscale_">Sector: </label>
+            <select id="pmsl_mesoscale_">
+                <option value="" selected hidden>None selected</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s11/pmsl/pmsl.gif">11</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s12/pmsl/pmsl.gif">12</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s13/pmsl/pmsl.gif">13</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s14/pmsl/pmsl.gif">14</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s15/pmsl/pmsl.gif">15</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s16/pmsl/pmsl.gif">16</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s17/pmsl/pmsl.gif">17</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s18/pmsl/pmsl.gif">18</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s19/pmsl/pmsl.gif">19</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s20/pmsl/pmsl.gif">20</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s21/pmsl/pmsl.gif">21</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s22/pmsl/pmsl.gif">22</option>
+            </select>
+
+            <label id="stpc_mesoscale_L" for="stpc_mesoscale_">Sector: </label>
+            <select id="stpc_mesoscale_">
+                <option value="" selected hidden>None selected</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s11/stpc/stpc.gif">11</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s12/stpc/stpc.gif">12</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s13/stpc/stpc.gif">13</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s14/stpc/stpc.gif">14</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s15/stpc/stpc.gif">15</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s16/stpc/stpc.gif">16</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s17/stpc/stpc.gif">17</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s18/stpc/stpc.gif">18</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s19/stpc/stpc.gif">19</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s20/stpc/stpc.gif">20</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s21/stpc/stpc.gif">21</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s22/stpc/stpc.gif">22</option>
+            </select>
+
+            <label id="pstpe_mesoscale_L" for="pstpe_mesoscale_">Sector: </label>
+            <select id="pstpe_mesoscale_">
+                <option value="" selected hidden>None selected</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s11/pstpe/pstpe.gif">11</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s12/pstpe/pstpe.gif">12</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s13/pstpe/pstpe.gif">13</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s14/pstpe/pstpe.gif">14</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s15/pstpe/pstpe.gif">15</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s16/pstpe/pstpe.gif">16</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s17/pstpe/pstpe.gif">17</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s18/pstpe/pstpe.gif">18</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s19/pstpe/pstpe.gif">19</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s20/pstpe/pstpe.gif">20</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s21/pstpe/pstpe.gif">21</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s22/pstpe/pstpe.gif">22</option>
+            </select>
+            
+            <label id="sigh_mesoscale_L" for="sigh_mesoscale_">Sector: </label>
+            <select id="sigh_mesoscale_">
+                <option value="" selected hidden>None selected</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s11/sigh/sigh.gif">11</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s12/sigh/sigh.gif">12</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s13/sigh/sigh.gif">13</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s14/sigh/sigh.gif">14</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s15/sigh/sigh.gif">15</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s16/sigh/sigh.gif">16</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s17/sigh/sigh.gif">17</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s18/sigh/sigh.gif">18</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s19/sigh/sigh.gif">19</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s20/sigh/sigh.gif">20</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s21/sigh/sigh.gif">21</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s22/sigh/sigh.gif">22</option>
+            </select>
+            
+            <label id="sars1_mesoscale_L" for="sars1_mesoscale_">Sector: </label>
+            <select id="sars1_mesoscale_">
+                <option value="" selected hidden>None selected</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s11/sars1/sars1.gif">11</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s12/sars1/sars1.gif">12</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s13/sars1/sars1.gif">13</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s14/sars1/sars1.gif">14</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s15/sars1/sars1.gif">15</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s16/sars1/sars1.gif">16</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s17/sars1/sars1.gif">17</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s18/sars1/sars1.gif">18</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s19/sars1/sars1.gif">19</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s20/sars1/sars1.gif">20</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s21/sars1/sars1.gif">21</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s22/sars1/sars1.gif">22</option>
+            </select>
+            
+            <label id="1kmv_mesoscale_L" for="1kmv_mesoscale_">Sector: </label>
+            <select id="1kmv_mesoscale_">
+                <option value="" selected hidden>None selected</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s11/1kmv/1kmv.gif">11</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s12/1kmv/1kmv.gif">12</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s13/1kmv/1kmv.gif">13</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s14/1kmv/1kmv.gif">14</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s15/1kmv/1kmv.gif">15</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s16/1kmv/1kmv.gif">16</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s17/1kmv/1kmv.gif">17</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s18/1kmv/1kmv.gif">18</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s19/1kmv/1kmv.gif">19</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s20/1kmv/1kmv.gif">20</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s21/1kmv/1kmv.gif">21</option>
+                <option value="https://www.spc.noaa.gov/exper/mesoanalysis/s22/1kmv/1kmv.gif">22</option>
+            </select>
+
+            <!-- End of mesoscale --> 
+
+            <!-- Outlook layer 1 -->
+
+            <label id="outlook_L" for="outlook_">Day: </label>
+            <select id="outlook_">
+                <option value="" selected hidden>None selected</option>
+                <option value="day1">1</option>
+                <option value="day2">2</option>
+                <option value="https://www.spc.noaa.gov/products/outlook/day3otlk_0730.gif">3</option>
+                <option value="day48">4-8</option>
+            </select>
+
+            <!-- Outlook layer 2 -->
+
+            <label id="day1_outlook_L" for="day1_outlook_">Issue: </label>
+            <select id="day1_outlook_">
+                <option value="" selected hidden>None selected</option>
+                <option value="0100">0100Z (1900 CST)</option>
+                <option value="0600">0600Z (0000 CST)</option>
+                <option value="1300">1300Z (0700 CST)</option>
+                <option value="1630">1630Z (1030 CST)</option>
+                <option value="2000">2000Z (1400 CST)</option>
+            </select>
+
+            <label id="day2_outlook_L" for="day2_outlook_">Issue: </label>
+            <select id="day2_outlook_">
+                <option value="" selected hidden>None selected</option>
+                <option value="0600">0600Z (0000 CST)</option>
+                <option value="1730">1730Z (1130 CST)</option>
+            </select>
+
+            <label id="day48_outlook_L" for="day48_outlook_">Image: </label>
+            <select id="day48_outlook_">
+                <option value="" selected hidden>None selected</option>
+                <option value="https://www.spc.noaa.gov/products/exper/day4-8/day4prob.gif">Day 4</option>
+                <option value="https://www.spc.noaa.gov/products/exper/day4-8/day5prob.gif">Day 5</option>
+                <option value="https://www.spc.noaa.gov/products/exper/day4-8/day6prob.gif">Day 6</option>
+                <option value="https://www.spc.noaa.gov/products/exper/day4-8/day7prob.gif">Day 7</option>
+                <option value="https://www.spc.noaa.gov/products/exper/day4-8/day8prob.gif">Day 8</option>
+                <option value="https://www.spc.noaa.gov/products/exper/day4-8/day48prob.gif">Days 4-8</option>
+            </select>
+
+            <!-- Outlook layer 3 -->
+            
+            <label id="0100_day1_outlook_L" for="0100_day1_outlook_">Image: </label>
+            <select id="0100_day1_outlook_">
+                <option value="" selected hidden>None selected</option>
+                <option value="https://www.spc.noaa.gov/products/outlook/day1otlk_0100.gif">Categorical</option>
+                <option value="https://www.spc.noaa.gov/products/outlook/day1probotlk_0100_torn.gif">Tornado</option>
+                <option value="https://www.spc.noaa.gov/products/outlook/day1probotlk_0100_wind.gif">Wind</option>
+                <option value="https://www.spc.noaa.gov/products/outlook/day1probotlk_0100_hail.gif">Hail</option>
+            </select>
+            
+            <label id="0600_day1_outlook_L" for="0600_day1_outlook_">Image: </label>
+            <select id="0600_day1_outlook_">
+                <option value="" selected hidden>None selected</option>
+                <option value="https://www.spc.noaa.gov/products/outlook/day1otlk_1200.gif">Categorical</option>
+                <option value="https://www.spc.noaa.gov/products/outlook/day1probotlk_1200_torn.gif">Tornado</option>
+                <option value="https://www.spc.noaa.gov/products/outlook/day1probotlk_1200_wind.gif">Wind</option>
+                <option value="https://www.spc.noaa.gov/products/outlook/day1probotlk_1200_hail.gif">Hail</option>
+            </select>
+            
+            <label id="1300_day1_outlook_L" for="1300_day1_outlook_">Image: </label>
+            <select id="1300_day1_outlook_">
+                <option value="" selected hidden>None selected</option>
+                <option value="https://www.spc.noaa.gov/products/outlook/day1otlk_1300.gif">Categorical</option>
+                <option value="https://www.spc.noaa.gov/products/outlook/day1probotlk_1300_torn.gif">Tornado</option>
+                <option value="https://www.spc.noaa.gov/products/outlook/day1probotlk_1300_wind.gif">Wind</option>
+                <option value="https://www.spc.noaa.gov/products/outlook/day1probotlk_1300_hail.gif">Hail</option>
+            </select>
+            
+            <label id="1630_day1_outlook_L" for="1630_day1_outlook_">Image: </label>
+            <select id="1630_day1_outlook_">
+                <option value="" selected hidden>None selected</option>
+                <option value="https://www.spc.noaa.gov/products/outlook/day1otlk_1630.gif">Categorical</option>
+                <option value="https://www.spc.noaa.gov/products/outlook/day1probotlk_1630_torn.gif">Tornado</option>
+                <option value="https://www.spc.noaa.gov/products/outlook/day1probotlk_1630_wind.gif">Wind</option>
+                <option value="https://www.spc.noaa.gov/products/outlook/day1probotlk_1630_hail.gif">Hail</option>
+            </select>
+            
+            <label id="2000_day1_outlook_L" for="2000_day1_outlook_">Image: </label>
+            <select id="2000_day1_outlook_">
+                <option value="" selected hidden>None selected</option>
+                <option value="https://www.spc.noaa.gov/products/outlook/day1otlk_2000.gif">Categorical</option>
+                <option value="https://www.spc.noaa.gov/products/outlook/day1probotlk_2000_torn.gif">Tornado</option>
+                <option value="https://www.spc.noaa.gov/products/outlook/day1probotlk_2000_wind.gif">Wind</option>
+                <option value="https://www.spc.noaa.gov/products/outlook/day1probotlk_2000_hail.gif">Hail</option>
+            </select>
+            
+            <label id="0600_day2_outlook_L" for="0600_day2_outlook_">Image: </label>
+            <select id="0600_day2_outlook_">
+                <option value="" selected hidden>None selected</option>
+                <option value="https://www.spc.noaa.gov/products/outlook/day2otlk_0600.gif">Categorical</option>
+                <option value="https://www.spc.noaa.gov/products/outlook/day2probotlk_0600_torn.gif">Tornado</option>
+                <option value="https://www.spc.noaa.gov/products/outlook/day2probotlk_0600_wind.gif">Wind</option>
+                <option value="https://www.spc.noaa.gov/products/outlook/day2probotlk_0600_hail.gif">Hail</option>
+            </select>
+            
+            <label id="1730_day2_outlook_L" for="1730_day2_outlook_">Image: </label>
+            <select id="1730_day2_outlook_">
+                <option value="" selected hidden>None selected</option>
+                <option value="https://www.spc.noaa.gov/products/outlook/day2otlk_1730.gif">Categorical</option>
+                <option value="https://www.spc.noaa.gov/products/outlook/day2probotlk_1730_torn.gif">Tornado</option>
+                <option value="https://www.spc.noaa.gov/products/outlook/day2probotlk_1730_wind.gif">Wind</option>
+                <option value="https://www.spc.noaa.gov/products/outlook/day2probotlk_1730_hail.gif">Hail</option>
+            </select>
+
+            <!-- End of outlook -->
+
+            <!-- Tornado outlook layer 1 -->
+
+            <label id="tornado_L" for="tornado_">Time: </label>
+            <select id="tornado_">
+                <option value="" selected hidden>None selected</option>
+                <option value="https://www.spc.noaa.gov/products/exper/enhtstm/imgs/enh_0000.gif">0000Z to 0400Z</option>
+                <option value="https://www.spc.noaa.gov/products/exper/enhtstm/imgs/enh_0400.gif">0400Z to 1200Z</option>
+                <option value="https://www.spc.noaa.gov/products/exper/enhtstm/imgs/enh_1200.gif">1200Z to 1600Z</option>
+                <option value="https://www.spc.noaa.gov/products/exper/enhtstm/imgs/enh_1600.gif">1600Z to 2000Z</option>
+                <option value="https://www.spc.noaa.gov/products/exper/enhtstm/imgs/enh_2000.gif">2000Z to 0000Z</option>
+            </select>
+
+            <!-- End of tornado outlook -->
+
+            <!-- SREF layer 1 -->
+
+            <label id="sref_L" for="sref_">Time: </label>
+            <select id="sref_">
+                <option value="" selected hidden>None selected</option>
+                <option value="https://www.spc.noaa.gov/exper/sref/gifs/latest/SREF_H5__f000.gif">F000</option>
+                <option value="https://www.spc.noaa.gov/exper/sref/gifs/latest/SREF_H5__f003.gif">F003</option>
+                <option value="https://www.spc.noaa.gov/exper/sref/gifs/latest/SREF_H5__f006.gif">F006</option>
+                <option value="https://www.spc.noaa.gov/exper/sref/gifs/latest/SREF_H5__f009.gif">F009</option>
+                <option value="https://www.spc.noaa.gov/exper/sref/gifs/latest/SREF_H5__f012.gif">F012</option>
+                <option value="https://www.spc.noaa.gov/exper/sref/gifs/latest/SREF_H5__f015.gif">F015</option>
+                <option value="https://www.spc.noaa.gov/exper/sref/gifs/latest/SREF_H5__f018.gif">F018</option>
+                <option value="https://www.spc.noaa.gov/exper/sref/gifs/latest/SREF_H5__f021.gif">F021</option>
+                <option value="https://www.spc.noaa.gov/exper/sref/gifs/latest/SREF_H5__f024.gif">F024</option>
+                <option value="https://www.spc.noaa.gov/exper/sref/gifs/latest/SREF_H5__f027.gif">F027</option>
+                <option value="https://www.spc.noaa.gov/exper/sref/gifs/latest/SREF_H5__f030.gif">F030</option>
+                <option value="https://www.spc.noaa.gov/exper/sref/gifs/latest/SREF_H5__f033.gif">F033</option>
+                <option value="https://www.spc.noaa.gov/exper/sref/gifs/latest/SREF_H5__f036.gif">F036</option>
+                <option value="https://www.spc.noaa.gov/exper/sref/gifs/latest/SREF_H5__f039.gif">F039</option>
+                <option value="https://www.spc.noaa.gov/exper/sref/gifs/latest/SREF_H5__f042.gif">F042</option>
+                <option value="https://www.spc.noaa.gov/exper/sref/gifs/latest/SREF_H5__f045.gif">F045</option>
+                <option value="https://www.spc.noaa.gov/exper/sref/gifs/latest/SREF_H5__f048.gif">F048</option>
+                <option value="https://www.spc.noaa.gov/exper/sref/gifs/latest/SREF_H5__f051.gif">F051</option>
+                <option value="https://www.spc.noaa.gov/exper/sref/gifs/latest/SREF_H5__f054.gif">F054</option>
+                <option value="https://www.spc.noaa.gov/exper/sref/gifs/latest/SREF_H5__f057.gif">F057</option>
+                <option value="https://www.spc.noaa.gov/exper/sref/gifs/latest/SREF_H5__f060.gif">F060</option>
+                <option value="https://www.spc.noaa.gov/exper/sref/gifs/latest/SREF_H5__f063.gif">F063</option>
+                <option value="https://www.spc.noaa.gov/exper/sref/gifs/latest/SREF_H5__f066.gif">F066</option>
+                <option value="https://www.spc.noaa.gov/exper/sref/gifs/latest/SREF_H5__f069.gif">F069</option>
+                <option value="https://www.spc.noaa.gov/exper/sref/gifs/latest/SREF_H5__f072.gif">F072</option>
+                <option value="https://www.spc.noaa.gov/exper/sref/gifs/latest/SREF_H5__f075.gif">F075</option>
+                <option value="https://www.spc.noaa.gov/exper/sref/gifs/latest/SREF_H5__f078.gif">F078</option>
+                <option value="https://www.spc.noaa.gov/exper/sref/gifs/latest/SREF_H5__f081.gif">F081</option>
+                <option value="https://www.spc.noaa.gov/exper/sref/gifs/latest/SREF_H5__f084.gif">F084</option>
+                <option value="https://www.spc.noaa.gov/exper/sref/gifs/latest/SREF_H5__f087.gif">F087</option>
+            </select>
+
+            <!-- End of SREF -->
+
+            <!-- Snow & ice layer 1 -->
+
+            <label id="snowice_L" for="snowice_">Day: </label>
+            <select id="snowice_">
+                <option value="" selected hidden>None selected</option>
+                <option value="day1">1</option>
+                <option value="day2">2</option>
+                <option value="day3">3</option>
+            </select>
+            
+            <!-- Snow & ice layer 2 -->
+            
+            
+            <label id="day1_snowice_L" for="day1_snowice_">Coverage: </label>
+            <select id="day1_snowice_">
+                <option value="" selected hidden>None selected</option>
+                <option value="https://www.wpc.ncep.noaa.gov/wwd/day1_psnow_gt_04_conus.gif">4" snow</option>
+                <option value="https://www.wpc.ncep.noaa.gov/wwd/day1_psnow_gt_08_conus.gif">8" snow</option>
+                <option value="https://www.wpc.ncep.noaa.gov/wwd/day1_psnow_gt_12_conus.gif">12" snow</option>
+                <option value="https://www.wpc.ncep.noaa.gov/wwd/day1_pice_gt_25_conus.gif">0.25" ice</option>
+                <option value="https://www.wpc.ncep.noaa.gov/wwd/day1_composite.gif">Composite</option>
+            </select>
+
+            <label id="day2_snowice_L" for="day2_snowice_">Coverage: </label>
+            <select id="day2_snowice_">
+                <option value="" selected hidden>None selected</option>
+                <option value="https://www.wpc.ncep.noaa.gov/wwd/day2_psnow_gt_04_conus.gif">4" snow</option>
+                <option value="https://www.wpc.ncep.noaa.gov/wwd/day2_psnow_gt_08_conus.gif">8" snow</option>
+                <option value="https://www.wpc.ncep.noaa.gov/wwd/day2_psnow_gt_12_conus.gif">12" snow</option>
+                <option value="https://www.wpc.ncep.noaa.gov/wwd/day2_pice_gt_25_conus.gif">0.25" ice</option>
+                <option value="https://www.wpc.ncep.noaa.gov/wwd/day2_composite.gif">Composite</option>
+            </select>
+
+            <label id="day3_snowice_L" for="day3_snowice_">Coverage: </label>
+            <select id="day3_snowice_">
+                <option value="" selected hidden>None selected</option>
+                <option value="https://www.wpc.ncep.noaa.gov/wwd/day3_psnow_gt_04_conus.gif">4" snow</option>
+                <option value="https://www.wpc.ncep.noaa.gov/wwd/day3_psnow_gt_08_conus.gif">8" snow</option>
+                <option value="https://www.wpc.ncep.noaa.gov/wwd/day3_psnow_gt_12_conus.gif">12" snow</option>
+                <option value="https://www.wpc.ncep.noaa.gov/wwd/day3_pice_gt_25_conus.gif">0.25" ice</option>
+                <option value="https://www.wpc.ncep.noaa.gov/wwd/day3_composite.gif">Composite</option>
+            </select>
+
+            <!-- End of snow & ice -->
+
+            <!-- Nation forecast layer 1 -->
+
+            <label id="natfore_L" for="natfore_">Day: </label>
+            <select id="natfore_">
+                <option value="" selected hidden>None selected</option>
+                <option value="https://www.wpc.ncep.noaa.gov/NationalForecastChart/staticmaps/noaad1.png">1</option>
+                <option value="https://www.wpc.ncep.noaa.gov/NationalForecastChart/staticmaps/noaad2.png">2</option>
+                <option value="https://www.wpc.ncep.noaa.gov/NationalForecastChart/staticmaps/noaad3.png">3</option>
+            </select>
+            
+        </div>
+        <br/>
+
+        <img id="theImage" src="" alt="The current image"/>
+
+        <script src="js/weather.js"></script>
+
+    </body>
+</html>

@@ -1,0 +1,7 @@
+h1, h2, a {
+  text-align: center;
+}
+h1 {
+  background-color: #000;
+  filter: invert(100%);
+}
