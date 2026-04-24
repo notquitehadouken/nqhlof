@@ -7,7 +7,7 @@ rm = robot.move
 rt = robot.turn
 
 icont = proxy("inventory_controller")
-compu = proxy("computer")
+compu = computer
 modem = proxy("modem")
 
 val_f = 0
