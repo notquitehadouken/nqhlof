@@ -88,16 +88,16 @@ function tryadd(name, count)
   end
   for _, itemname in ipairs(targetother) do
     if itemname == name then
-      tota[itemname] = (total[itemname] or 0) + 1
+      total[itemname] = (total[itemname] or 0) + 1
       return
     end
   end
   for _, itemname in ipairs(targetreduced) do
     if (itemname .. " Ingot") == name then
-      tota[itemname] = (total[itemname] or 0) + 1
+      total[itemname] = (total[itemname] or 0) + 1
       return
     elseif ("Block of " .. itemname) == name then
-      tota[itemname] = (total[itemname] or 0) + 9
+      total[itemname] = (total[itemname] or 0) + 9
       return
     end
   end
