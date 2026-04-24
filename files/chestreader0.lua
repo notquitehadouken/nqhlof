@@ -81,7 +81,7 @@ targetblock = {"Block of Quartz", "Block of Redstone", "Block of Diamond", "Glow
 
 function tryadd(name, count)
   for i, blockname in ipairs(targetblock) do
-    if blockname == name then=
+    if blockname == name then
       total[targetother[i]] = (total[targetother[i]] or 0) + 9
       return
     end
