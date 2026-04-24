@@ -114,14 +114,13 @@ function check()
   local nextlast = {}
   for i = 1, size do
     local info = icont.getStackInSlot(3, i)
-    if info == nil then
-      continue
-    end
-    local entry = last[i]
-    nextlast[i] = {info.label, info.size}
-    if entry[0] ~= info.label or entry[1] ~= info.size then
-      rolling = true
-      break
+    if info ~= nil then
+      local entry = last[i]
+      nextlast[i] = {info.label, info.size}
+      if entry[0] ~= info.label or entry[1] ~= info.size then
+        rolling = true
+        break
+      end
     end
   end
   if not rolling then
@@ -130,10 +129,9 @@ function check()
   last = nextlast
   for i = 1, size do
     local info = icont.getStackInSlot(3, i)
-    if info == nil then
-      continue
+    if info ~= nil then
+      tryadd(info.label, info.size)
     end
-    tryadd(info.label, info.size)
   end
 end
 
@@ -150,13 +148,10 @@ function transmit()
   local remote
   while true do
     local name, localaddress, raddr, _, msg = computer.pullSignal()
-    if name ~= "modem_message" then
-      continue
+    if name == "modem_message" and msg == "C_LINK" then
+      remote = raddr
+      break
     end
-    if msg ~= "C_LINK" then
-      continue
-    end
-    remote = raddr
   end
   for item, amount in pairs(total) do
     modem.send(remote, 0x0101, "R_TRANSMIT", "R_ENTRY", tostring(item), amount)
