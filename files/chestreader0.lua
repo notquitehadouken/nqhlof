@@ -113,7 +113,7 @@ function check()
     local info = icont.getStackInSlot(3, i)
     if info ~= nil then
       local entry = last[i]
-      if last[i] == false then
+      if last[i] == false or last[i] == nil then
         rolling = true
         break
       end
@@ -176,6 +176,7 @@ while true do
   follow(path, checksurrounding)
   follow(pathr)
   rm(1)
+  last = {}
   follow(path, checksurrounding)
   follow(pathr)
   rm(0)
