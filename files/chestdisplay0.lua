@@ -14,7 +14,7 @@ function onmodemrecieve(name, localaddr, remoteaddr, port, dist, message)
   
   messageindex = 0
   gpu.fill
-  while 1 do
+  while true do
     local success, _, _, _, msg, msg2, item, count = event.pull(30, "modem_message", nil, remoteaddr, nil, "R_TRANSMIT")
     if msg2 ~= "R_ENTRY" then
       break

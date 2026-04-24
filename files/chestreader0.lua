@@ -19,7 +19,7 @@ ti = table.insert
 
 -- trace path
 
-while 1 do
+while true do
   if rm(3) then
     ti(path, val_f)
     ti(pathr, 1, val_f)
@@ -148,7 +148,7 @@ function transmit()
   modem.open(0x0101)
   modem.broadcast(0x0101, "R_OPEN")
   local remote
-  while 1 do
+  while true do
     local success, localaddress, raddr, _, msg = event.pull(30, "modem_message")
     if not success then
       compu.beep(1500, 1)
@@ -167,7 +167,7 @@ function transmit()
   modem.close(0x0101)
 end
 
-while 1 do
+while true do
   total = {}
   last = {}
   follow(path, checksurrounding)
