@@ -109,7 +109,6 @@ function check()
     return -- nothing lol
   end
   local rolling = false
-  local nextlast = {}
   for i = 1, size do
     local info = icont.getStackInSlot(3, i)
     if info ~= nil then
@@ -118,7 +117,6 @@ function check()
         rolling = true
         break
       end
-      nextlast[i] = {info.label, info.size}
       if entry[0] ~= info.label or entry[1] ~= info.size then
         rolling = true
         break
@@ -128,10 +126,11 @@ function check()
   if not rolling then
     return -- this is the same chest as last time
   end
-  last = nextlast
+  last = {}
   for i = 1, size do
     local info = icont.getStackInSlot(3, i)
     if info ~= nil then
+      last[i] = {info.label, info.size}
       tryadd(info.label, info.size)
     end
   end
