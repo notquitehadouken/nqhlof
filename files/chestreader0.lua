@@ -10,11 +10,11 @@ icont = proxy("inventory_controller")
 compu = proxy("computer")
 modem = proxy("modem")
 
-path = {}
-pathr = {}
 val_f = 0
 val_r = 1
 val_l = 2
+path = {}
+pathr = {val_r, val_r}
 ti = table.insert
 
 -- trace path
@@ -41,8 +41,6 @@ while true do
       else
         ti(path, val_r)
         ti(path, val_r)
-        ti(pathr, 1, val_r)
-        ti(pathr, 1, val_r)
         rt(false)
         break
       end
@@ -157,7 +155,7 @@ function transmit()
     modem.send(remote, 0x0101, "R_TRANSMIT", "R_ENTRY", tostring(item), amount)
     while true do
       local name, _, raddr, _, msg = computer.pullSignal()
-      if raddr == remote && msg == "C_QUERY" then
+      if raddr == remote and msg == "C_QUERY" then
         break
       end
     end
