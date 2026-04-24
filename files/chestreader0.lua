@@ -114,6 +114,10 @@ function check()
     local info = icont.getStackInSlot(3, i)
     if info ~= nil then
       local entry = last[i]
+      if last[i] == nil then
+        rolling = true
+        break
+      end
       nextlast[i] = {info.label, info.size}
       if entry[0] ~= info.label or entry[1] ~= info.size then
         rolling = true
