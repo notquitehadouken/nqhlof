@@ -13,7 +13,7 @@ function onmodemrecieve(name, localaddr, remoteaddr, port, dist, message)
   modem.send(remoteaddr, 0x0101, "C_LINK")
   
   messageindex = 0
-  gpu.fill
+  gpu.fill(1, 1, 50, 16, " ")
   while true do
     local success, _, _, _, msg, msg2, item, count = event.pull(30, "modem_message", nil, remoteaddr, nil, "R_TRANSMIT")
     if msg2 ~= "R_ENTRY" then
