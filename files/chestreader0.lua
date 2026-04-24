@@ -81,23 +81,23 @@ targetblock = {"Block of Quartz", "Block of Redstone", "Block of Diamond", "Glow
 
 function tryadd(name, count)
   for i, blockname in ipairs(targetblock) do
-    if blockname == name then
-      total[targetother[i]] = total[targetother[i]] + 9
+    if blockname == name then=
+      total[targetother[i]] = (total[targetother[i]] or 0) + 9
       return
     end
   end
   for _, itemname in ipairs(targetother) do
     if itemname == name then
-      tota[itemname] = total[itemname] + 1
+      tota[itemname] = (total[itemname] or 0) + 1
       return
     end
   end
   for _, itemname in ipairs(targetreduced) do
     if (itemname .. " Ingot") == name then
-      tota[itemname] = total[itemname] + 1
+      tota[itemname] = (total[itemname] or 0) + 1
       return
     elseif ("Block of " .. itemname) == name then
-      tota[itemname] = total[itemname] + 9
+      tota[itemname] = (total[itemname] or 0) + 9
       return
     end
   end
