@@ -3,56 +3,64 @@ function proxy(name)
 end
 
 robot = proxy("robot")
+rm = robot.move
+rt = robot.turn
+
 icont = proxy("inventory_controller")
 compu = proxy("computer")
+modem = proxy("modem")
 
 path = {}
-pathReverse = {}
-forwardvalue = 0
-rightvalue = 1
-leftvalue = 2
+pathr = {}
+val_f = 0
+val_r = 1
+val_l = 2
+ti = table.insert
 
 -- trace path
 
 while 1 do
-  if robot.move(3) then
-    table.insert(path, forwardvalue)
-    table.insert(pathReverse, 1, forwardvalue)
+  if rm(3) then
+    ti(path, val_f)
+    ti(pathr, 1, val_f)
   else
-    robot.turn(true)
-    if robot.move(3) then
-      table.insert(path, rightvalue)
-      table.insert(path, forwardvalue)
-      table.insert(pathReverse, 1, leftvalue)
-      table.insert(pathReverse, 1, forwardvalue)
+    rt(true)
+    if rm(3) then
+      ti(path, val_r)
+      ti(path, val_f)
+      ti(pathr, 1, val_l)
+      ti(pathr, 1, val_f)
     else
-      robot.turn(true)
-      robot.turn(true)
-      if robot.move(3) then
-        table.insert(path, leftvalue)
-        table.insert(path, forwardvalue)
-        table.insert(pathReverse, 1, rightvalue)
-        table.insert(pathReverse, 1, forwardvalue)
+      rt(true)
+      rt(true)
+      if rm(3) then
+        ti(path, val_l)
+        ti(path, val_f)
+        ti(pathr, 1, val_r)
+        ti(pathr, 1, val_f)
       else
+        ti(path, val_r)
+        ti(path, val_r)
+        ti(pathr, 1, val_r)
+        ti(pathr, 1, val_r)
+        rt(false)
         break
       end
     end
   end
 end
 
-robot.turn(false)
-
 function follow(path, callback)
   for _, move in ipairs(path) do
-    if move == forwardvalue then
+    if move == val_f then
       if callback ~= nil then
         callback()
       end
-      robot.move(3)
-    elseif move == rightvalue then
-      robot.turn(true)
+      rm(3)
+    elseif move == val_r then
+      rt(true)
     else
-      robot.turn(false)
+      rt(false)
     end
   end
   if callback ~= nil then
@@ -60,6 +68,115 @@ function follow(path, callback)
   end
 end
 
-follow(pathReverse)
+follow(pathr)
 
-compu.beep(750, 0.5)
+compu.beep(500, 0.5)
+
+total = {}
+last = {}
+
+targetreduced = {"Iron", "Gold", "Silver", "Tin", "Lead", "Copper",
+"Cobalt", "Ardite", "Invar", "Electrum", "Steel", "Nickel",
+"Platinum", "Bronze"}
+targetother = {"Nether Quartz", "Redstone", "Diamond", "Glowstone Dust"}
+targetblock = {"Block of Quartz", "Block of Redstone", "Block of Diamond", "Glowstone"}
+
+function tryadd(name, count)
+  for i, blockname in ipairs(targetblock) do
+    if blockname == name then
+      total[targetother[i]] = total[targetother[i]] + 9
+      return
+    end
+  end
+  for _, itemname in ipairs(targetother) do
+    if itemname == name then
+      tota[itemname] = total[itemname] + 1
+      return
+    end
+  end
+  for _, itemname in ipairs(targetreduced) do
+    if (itemname .. " Ingot") == name then
+      tota[itemname] = total[itemname] + 1
+      return
+    elseif ("Block of " .. itemname) == name then
+      tota[itemname] = total[itemname] + 9
+      return
+    end
+  end
+end
+
+function check()
+  local size = icont.getInventorySize(3)
+  if size == nil then
+    return -- nothing lol
+  end
+  local rolling = false
+  local nextlast = {}
+  for i = 1, size do
+    local info = icont.getStackInSlot(3, i)
+    if info == nil then
+      continue
+    end
+    local entry = last[i]
+    nextlast[i] = {info.label, info.size}
+    if entry[0] ~= info.label or entry[1] ~= info.size then
+      rolling = true
+      break
+    end
+  end
+  if not rolling then
+    return -- this is the same chest as last time
+  end
+  last = nextlast
+  for i = 1, size do
+    local info = icont.getStackInSlot(3, i)
+    if info == nil then
+      continue
+    end
+    tryadd(info.label, info.size)
+  end
+end
+
+function checksurrounding()
+  rt(true)
+  check()
+  rt(false)
+  check()
+end
+
+function transmit()
+  modem.open(0x0101)
+  modem.broadcast(0x0101, "R_OPEN")
+  local remote
+  while 1 do
+    local success, localaddress, raddr, _, msg = event.pull(30, "modem_message")
+    if not success then
+      compu.beep(1500, 1)
+      return true
+    end
+    if msg ~= "C_LINK" then
+      continue
+    end
+    remote = raddr
+  end
+  for item, amount in pairs(total) do
+    modem.broadcast(0x0101, "R_TRANSMIT", "R_ENTRY", tostring(item), amount)
+    event.pull(30, "modem_message", nil, remote, nil, "C_QUERY")
+  end
+  modem.broadcast(0x0101, "R_TRANSMIT", "R_END")
+  modem.close(0x0101)
+end
+
+while 1 do
+  total = {}
+  last = {}
+  follow(path, checksurrounding)
+  follow(pathr)
+  rm(1)
+  follow(path, checksurrounding)
+  follow(pathr)
+  rm(0)
+  if transmit() then
+    break
+  end
+end
