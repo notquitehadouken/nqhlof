@@ -12,11 +12,4 @@ while os.sleep(10) do
 			gpu.set(x + 1, y + 1, str)
 		end
 	end
-	for x = 0, 15 do
-		for y = 0, 15 do
-			gpu.setBackground(y * 16 + x, true)
-			gpu.setForeground(y * 16 + x, true)
-			gpu.set(x + 17, y + 1, "#")
-		end
-	end
 end
