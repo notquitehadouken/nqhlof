@@ -160,10 +160,10 @@ function transmit()
     remote = raddr
   end
   for item, amount in pairs(total) do
-    modem.broadcast(0x0101, "R_TRANSMIT", "R_ENTRY", tostring(item), amount)
+    modem.send(remote, 0x0101, "R_TRANSMIT", "R_ENTRY", tostring(item), amount)
     event.pull(30, "modem_message", nil, remote, nil, "C_QUERY")
   end
-  modem.broadcast(0x0101, "R_TRANSMIT", "R_END")
+  modem.send(remote, 0x0101, "R_TRANSMIT", "R_END")
   modem.close(0x0101)
 end
 
