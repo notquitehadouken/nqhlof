@@ -45,7 +45,7 @@ robot.turn(false)
 function follow(path, callback)
   for _, move in ipairs(path) do
     if move == forwardvalue then
-      if callback != nil then
+      if callback ~= nil then
         callback()
       end
       robot.move(3)
@@ -55,7 +55,7 @@ function follow(path, callback)
       robot.turn(false)
     end
   end
-  if callback != nil then
+  if callback ~= nil then
     callback()
   end
 end
