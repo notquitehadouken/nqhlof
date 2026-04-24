@@ -155,14 +155,16 @@ function transmit()
     end
   end
   for item, amount in pairs(total) do
-    modem.send(remote, 0x0101, "R_TRANSMIT", "R_ENTRY", tostring(item), amount)
+    compu.beep(300, 0.5)
+    modem.send(remote, 0x0101, "R_TRANSMIT", "R_ENTRY", item, amount)
     while true do
-      local name, _, raddr, _, _, msg = computer.pullSignal()
+      local name, laddr, raddr, port, dist, msg = computer.pullSignal()
       if raddr == remote and msg == "C_QUERY" then
         break
       end
     end
   end
+  compu.beep(800, 0.5)
   modem.send(remote, 0x0101, "R_TRANSMIT", "R_END")
   modem.close(0x0101)
 end
@@ -176,7 +178,5 @@ while true do
   follow(path, checksurrounding)
   follow(pathr)
   rm(0)
-  if transmit() then
-    break
-  end
+  transmit()
 end

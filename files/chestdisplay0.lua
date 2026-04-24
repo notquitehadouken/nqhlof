@@ -10,14 +10,16 @@ function onmodemrecieve(localaddr, remoteaddr, port, dist, message)
   if message ~= "R_OPEN" then
     return
   end
+  
   modem.send(remoteaddr, 0x0101, "C_LINK")
   
   messageindex = 0
   gpu.fill(1, 1, 50, 16, " ")
   while true do
-    local name, _, raddr, _, _, msg, msg2, item, count = computer.pullSignal()
-    if raddr == remoteaddr and name == "modem_message" then
-      if msg2 ~= "R_ENTRY" then
+    compu.beep(250, 0.5)
+    local name, laddr, raddr, port, dist, msg, msg2, item, count = computer.pullSignal()
+    if raddr == remoteaddr and name == "modem_message" and msg == "R_TRANSMIT" then
+      if msg2 == "R_END" then
         break
       end
       messageindex = messageindex + 1
@@ -31,6 +33,7 @@ function onmodemrecieve(localaddr, remoteaddr, port, dist, message)
       modem.send(remoteaddr, 0x0101, "C_QUERY")
     end
   end
+  compu.beep(750, 0.5)
 end
 
 while true do
