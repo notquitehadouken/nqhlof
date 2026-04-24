@@ -6,7 +6,7 @@ gpu.setResolution(50, 16)
 modem = component.proxy(component.list("modem")())
 modem.open(0x0101)
 
-function onmodemrecieve(name, localaddr, remoteaddr, port, dist, message)
+function onmodemrecieve(localaddr, remoteaddr, port, dist, message)
   if message ~= "R_OPEN" then
     return
   end
@@ -15,7 +15,14 @@ function onmodemrecieve(name, localaddr, remoteaddr, port, dist, message)
   messageindex = 0
   gpu.fill(1, 1, 50, 16, " ")
   while true do
-    local success, _, _, _, msg, msg2, item, count = event.pull(30, "modem_message", nil, remoteaddr, nil, "R_TRANSMIT")
+    local name, _, raddr, _, _, msg, msg2, item, count = computer.pullSignal()
+    if raddr ~= remoteaddr then
+      continue
+    end
+    if name ~= "modem_message" then
+      continue
+    end
+    if 
     if msg2 ~= "R_ENTRY" then
       break
     end
@@ -27,8 +34,13 @@ function onmodemrecieve(name, localaddr, remoteaddr, port, dist, message)
       x = 26
     end
     gpu.set(x, y, item .. ": " .. tostring(count))
-    event.send(remoteaddr, 0x0101, "C_QUERY")
+    modem.send(remoteaddr, 0x0101, "C_QUERY")
   end
 end
 
-event.listen("modem_message", onmodemrecieve)
+while true do
+  local name, localaddr, remoteaddr, port, dist, msg = computer.pullSignal()
+  if name == "modem_message" then
+    onmodemrecieve(localaddr, remoteaddr, port, dist, msg)
+  end
+end

@@ -149,10 +149,9 @@ function transmit()
   modem.broadcast(0x0101, "R_OPEN")
   local remote
   while true do
-    local success, localaddress, raddr, _, msg = event.pull(30, "modem_message")
-    if not success then
-      compu.beep(1500, 1)
-      return true
+    local name, localaddress, raddr, _, msg = computer.pullSignal()
+    if name ~= "modem_message" then
+      continue
     end
     if msg ~= "C_LINK" then
       continue
@@ -161,7 +160,12 @@ function transmit()
   end
   for item, amount in pairs(total) do
     modem.send(remote, 0x0101, "R_TRANSMIT", "R_ENTRY", tostring(item), amount)
-    event.pull(30, "modem_message", nil, remote, nil, "C_QUERY")
+    while true do
+      local name, _, raddr, _, msg = computer.pullSignal()
+      if raddr == remote && msg == "C_QUERY" then
+        break
+      end
+    end
   end
   modem.send(remote, 0x0101, "R_TRANSMIT", "R_END")
   modem.close(0x0101)
