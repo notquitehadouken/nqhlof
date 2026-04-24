@@ -113,7 +113,7 @@ function check()
     local info = icont.getStackInSlot(3, i)
     if info ~= nil then
       local entry = last[i]
-      if last[i] == nil then
+      if last[i] == false then
         rolling = true
         break
       end
@@ -129,6 +129,7 @@ function check()
   last = {}
   for i = 1, size do
     local info = icont.getStackInSlot(3, i)
+    last[i] = false
     if info ~= nil then
       last[i] = {info.label, info.size}
       tryadd(info.label, info.size)
