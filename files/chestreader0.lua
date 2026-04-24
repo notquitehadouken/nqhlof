@@ -76,8 +76,8 @@ last = {}
 targetreduced = {"Iron", "Gold", "Silver", "Tin", "Lead", "Copper",
 "Cobalt", "Ardite", "Invar", "Electrum", "Steel", "Nickel",
 "Platinum", "Bronze"}
-targetother = {"Nether Quartz", "Redstone", "Diamond", "Glowstone Dust"}
-targetblock = {"Block of Quartz", "Block of Redstone", "Block of Diamond", "Glowstone"}
+targetother = {"Redstone", "Diamond", "Glowstone Dust", "Nether Quartz"}
+targetblock = {"Block of Redstone", "Block of Diamond""}
 
 function tryadd(name, count)
   for i, blockname in ipairs(targetblock) do
