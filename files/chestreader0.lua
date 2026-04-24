@@ -49,20 +49,20 @@ while true do
 end
 
 function follow(path, callback)
+  if callback ~= nil then
+    callback()
+  end
   for _, move in ipairs(path) do
     if move == val_f then
+      rm(3)
       if callback ~= nil then
         callback()
       end
-      rm(3)
     elseif move == val_r then
       rt(true)
     else
       rt(false)
     end
-  end
-  if callback ~= nil then
-    callback()
   end
 end
 
