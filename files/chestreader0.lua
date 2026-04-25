@@ -117,6 +117,7 @@ function check()
     end
   end
   if not rolling then
+    compu.beep(300, 1)
     return -- this is the same chest as last time
   end
   last = {}
@@ -128,6 +129,7 @@ function check()
       tryadd(info.label, info.size)
     end
   end
+  compu.beep(450, 0.5)
 end
 
 function checksurrounding()
