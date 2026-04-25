@@ -54,7 +54,7 @@ function follow(path, callback)
   end
   for _, move in ipairs(path) do
     if move == val_f then
-      rm(3)
+      while not rm(3) do end
       if callback ~= nil then
         callback()
       end
