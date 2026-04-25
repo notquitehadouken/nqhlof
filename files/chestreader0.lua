@@ -76,7 +76,7 @@ last = {}
 targetreduced = {"Iron", "Gold", "Silver", "Tin", "Lead", "Copper",
 "Cobalt", "Ardite", "Invar", "Electrum", "Steel", "Nickel",
 "Platinum", "Bronze"}
-targetother = {"Redstone", "Diamond", "Glowstone Dust", "Nether Quartz"}
+targetother = {"Redstone", "Diamond", "Glowstone Dust", "Nether Quartz", "Cobblestone"}
 targetblock = {"Block of Redstone", "Block of Diamond"}
 
 function tryadd(name, count)
@@ -111,16 +111,9 @@ function check()
   local rolling = false
   for i = 1, size do
     local info = icont.getStackInSlot(3, i)
-    if info ~= nil then
-      local entry = last[i]
-      if last[i] == false or last[i] == nil then
-        rolling = true
-        break
-      end
-      if entry[0] ~= info.label or entry[1] ~= info.size then
-        rolling = true
-        break
-      end
+    if info ~= last[i] then
+      rolling = true
+      break
     end
   end
   if not rolling then
@@ -129,9 +122,9 @@ function check()
   last = {}
   for i = 1, size do
     local info = icont.getStackInSlot(3, i)
-    last[i] = false
+    last[i] = nil
     if info ~= nil then
-      last[i] = {info.label, info.size}
+      last[i] = info.label
       tryadd(info.label, info.size)
     end
   end
