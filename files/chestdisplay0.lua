@@ -36,9 +36,25 @@ function onmodemrecieve(localaddr, remoteaddr, port, dist, message)
   computer.beep(750, 0.5)
 end
 
+local saywait = false
+function waittext(force)
+  if force ~= nil then
+    saywait = force
+  else
+    saywait = not saywait
+  end
+  local towrite = "Waiting..."
+  if not saywait then
+    towrite = "          "
+  end
+  gpu.set(26, 16, towrite)
+end
 while true do
-  local name, localaddr, remoteaddr, port, dist, msg = computer.pullSignal()
+  local name, localaddr, remoteaddr, port, dist, msg = computer.pullSignal(1)
   if name == "modem_message" then
+    waittext(false)
     onmodemrecieve(localaddr, remoteaddr, port, dist, msg)
+  elseif name == nil then
+    waittext()
   end
 end
