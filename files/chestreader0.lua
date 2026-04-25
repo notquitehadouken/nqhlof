@@ -110,26 +110,26 @@ function check()
   end
   local rolling = false
   for i = 1, size do
-    local info = icont.getStackInSlot(3, i)
+    local info = icont.getStackInSlot(3, i) or false
     if info ~= last[i] then
       rolling = true
       break
     end
   end
   if not rolling then
-    compu.beep(300, 1)
+    compu.beep(400, 1)
     return -- this is the same chest as last time
   end
   last = {}
   for i = 1, size do
     local info = icont.getStackInSlot(3, i)
-    last[i] = nil
+    last[i] = false
     if info ~= nil then
       last[i] = info.label
       tryadd(info.label, info.size)
     end
   end
-  compu.beep(450, 0.5)
+  compu.beep(1000, 0.25)
 end
 
 function checksurrounding()
