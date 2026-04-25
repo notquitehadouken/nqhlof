@@ -75,7 +75,7 @@ last = {}
 
 targetreduced = {"Iron", "Gold", "Silver", "Tin", "Lead", "Copper",
 "Cobalt", "Ardite", "Invar", "Electrum", "Steel", "Nickel",
-"Platinum", "Bronze"}
+"Platinum", "Bronze", "Enderium", "Signalum", "Lumium"}
 targetother = {"Redstone", "Diamond", "Glowstone Dust", "Nether Quartz", "Cobblestone"}
 targetblock = {"Block of Redstone", "Block of Diamond"}
 
