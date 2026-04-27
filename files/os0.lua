@@ -12,7 +12,7 @@ bwshades = {0x0F, 0x1E, 0x2D, 0x3C, 0x4B, 0x5A, 0x69, 0x78, 0x87, 0x96, 0xA5, 0x
 
 colorof = function(index)
   if index >= 240 then
-    index = index - 240
+    index = index - 239
     local shade = bwshades[index]
     local color = shade + shade * 256 + shade * 65536
     return color
