@@ -1,5 +1,5 @@
-tunnel = component.proxy(component.list("tunnel")())
-tunneluuid = tunnel.getChannel()
+tunneluuid = component.list("tunnel")()
+tunnel = component.proxy(tunneluuid)
 
 signalmapkey = {
   w = {"move", 3},
@@ -15,7 +15,7 @@ signalmapscan = {
 }
 
 while true do
-  signame, siguuid, arg2, arg3, arg4, arg5 = computer.pullSignal()
+  signame, siggenuuid, arg2, arg3, arg4, arg5 = computer.pullSignal()
   
   computer.beep(200, 0.15)
   if signame == "key_down" then
