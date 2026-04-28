@@ -10,8 +10,8 @@ while true do
       if arg6 == "shutdown" then
         computer.shutdown()
       end
-      if type(robot[arg6]) == type(type) then
-        robot[arg6](arg7, arg8)
+      if type(robot[arg5]) == type(type) then
+        robot[arg5](arg6, arg7)
       end
     end
   end
