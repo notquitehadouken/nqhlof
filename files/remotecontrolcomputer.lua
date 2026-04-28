@@ -3,15 +3,14 @@ tunnel = component.proxy(tunneluuid)
 
 signalmapkey = {
   w = {"move", 3},
-  [29] = {"move", 0},
   s = {"move", 2},
-  [57] = {"move", 1},
   a = {"turn", false},
   d = {"turn", true}
 }
 
 signalmapscan = {
-  
+  [29] = {"move", 0},
+  [57] = {"move", 1},
 }
 
 while true do
