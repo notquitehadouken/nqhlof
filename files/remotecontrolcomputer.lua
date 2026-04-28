@@ -22,8 +22,9 @@ while true do
     computer.beep(350, 0.15)
     mod = arg2
     keyname = string.char(arg2):lower()
+    keybyte = string.byte(keyname)
     scan = arg3
-    tosend = signalmapkey[keyname] or signalmapscan[scan]
+    tosend = signalmapkey[keyname] or signalmapkey[keybyte] or signalmapscan[scan]
     if tosend ~= nil then
       computer.beep(500, 0.15)
       tunnel.send(table.unpack(tosend))

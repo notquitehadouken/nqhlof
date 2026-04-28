@@ -13,10 +13,10 @@ while true do
       computer.beep(500, 0.15)
       if arg5 == "shutdown" then
         computer.shutdown()
-      end
-      if type(robot[arg5]) == type(type) then
-        computer.beep(750, 0.15)
-        robot[arg5](arg6, arg7)
+      elseif arg5 == "move" then
+        robot.move(arg6)
+      elseif arg5 == "turn" then
+        robot.turn(arg6)
       end
     end
   end
