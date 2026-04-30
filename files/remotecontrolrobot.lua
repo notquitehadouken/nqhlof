@@ -1,22 +1,80 @@
 tunneluuid = component.list("tunnel")()
 tunnel = component.proxy(tunneluuid)
-modem = component.proxy(component.list("modem")())
+modemuuid = component.list("modem")()
+modem = component.proxy(modem)
 robot = component.proxy(component.list("robot")())
+dronemodemuuid = ""
+
+function signalFromModem()
+  while true do
+    local siginfo = {computer.pullSignal()}
+    if siginfo[2] == modemuuid and siginfo[3] == dronemodemuuid then
+      return siginfo
+    end
+    computer.pushSignal(table.unpack(siginfo))
+  end
+end
+
+function signalFromTunnel()
+  while true do
+    local siginfo = {computer.pullSignal()}
+    if siginfo[2] == tunneluuid then
+      return siginfo
+    end
+    computer.pushSignal(table.unpack(siginfo))
+  end
+end
+
+function read(key: string)
+  tunnel.send("read", key)
+  return signalFromTunnel()[6]
+end
+
+function write(key: string, value: any)
+  tunnel.send("write", key, value)
+end
+
+dronemodemuuid = read("dronemodemuuid")
+
+if dronemodemuuid == "" then
+  modem.broadcast(0xA1, nil)
+  while true do
+    local sig = computer.pullSignal()
+    if sig[2] == modemuuid and sig[6] == "link" then
+      dronemodemuuid = sig[3]
+      break
+    end
+  end
+  write("dronemodemuuid", dronemodemuuid)
+  computer.shutdown(true)
+end
 
 while true do
-  signame, siggenuuid, arg2, arg3, arg4, arg5, arg6, arg7, arg8 = computer.pullSignal()
+  local siginfo = {computer.pullSignal()}
+  signame = siginfo[1]
+  siggenerator = siginfo[2]
   
-  computer.beep(200, 0.15)
-  if signame == "modem_message" then
-    computer.beep(350, 0.15)
-    if siggenuuid == tunneluuid then
-      computer.beep(500, 0.15)
-      if arg5 == "shutdown" then
-        computer.shutdown()
-      elseif arg5 == "move" then
-        robot.move(arg6)
-      elseif arg5 == "turn" then
-        robot.turn(arg6)
+  if siggenerator == modemuuid or siggenerator == tunneluuid then
+    if signame == "modem_message" then
+      messagesender = siginfo[3]
+      port = siginfo[4]
+      dist = siginfo[5]
+      message1 = siginfo[6]
+      message2 = siginfo[7]
+      if siggenerator == tunneluuid then
+        if message1 == "ping" then
+          tunnel.send("ping_return")
+        elseif message1 == "shutdown" then
+          computer.shutdown()
+        elseif message1 == "move" then
+          robot.move(message2)
+        elseif message1 == "turn" then
+          robot.turn(message2)
+        end
+      elseif siggenerator == modemuuid then
+        if message1 == "ping" then
+          modem.send(messagesender, port, "ping_return")
+        end
       end
     end
   end
