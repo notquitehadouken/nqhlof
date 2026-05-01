@@ -25,12 +25,12 @@ function signalFromTunnel()
   end
 end
 
-function read(key: string)
+function read(key)
   tunnel.send("read", key)
   return signalFromTunnel()[6]
 end
 
-function write(key: string, value: any)
+function write(key, value)
   tunnel.send("write", key, value)
 end
 

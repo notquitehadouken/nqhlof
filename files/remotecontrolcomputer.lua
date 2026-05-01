@@ -54,7 +54,7 @@ function readnumoff(offset, size)
   return num
 end
 
-function read(key: string)
+function read(key)
   if drivetypes[key] == "number" then
     return readnumoff(driveoffsets[key], drivesizes[key])
   elseif drivetypes[key] == "string" then
@@ -70,7 +70,7 @@ function read(key: string)
   end
 end
 
-function write(key: string, value: any)
+function write(key, value)
   if drivetypes[key] == "number" then
     for i = drivestart[k], driveend[k] do
       drive.writeByte(i, value % 256)
