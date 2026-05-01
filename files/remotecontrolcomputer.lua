@@ -93,6 +93,10 @@ while true do
     
     if message1 == "ping" then
       tunnel.send("ping_return")
+    elseif message1 == "read" then
+      tunnel.send(read(siginfo[7])
+    elseif message1 == "write" then
+      write(siginfo[7], siginfo[8])
     end
   elseif signame == "key_down" then
     keyname = string.char(siginfo[3]):lower()
