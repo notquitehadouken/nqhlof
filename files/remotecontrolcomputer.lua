@@ -2,6 +2,10 @@ modemuuid = component.list("modem")() -- The computer has one card, which it use
 modem = component.proxy(modemuuid)
 tunneluuid = component.list("tunnel")()
 tunnel = component.proxy(tunneluuid)
+screenuuid = component.list("screen")()
+component.invoke(screenuuid, "turnOn")
+gpu = component.proxy(component.list("gpu")())
+gpu.bind(screenuuid)
 drive = component.proxy(component.list("drive")())
 
 signalmapkey = {
@@ -36,14 +40,14 @@ driveend = {}
 
 for k, v in pairs(driveoffsets) do
   drivestart[k] = v + 1
-  driveend[k] = v + drivesizes[k]
+  driveend[k] = v + (drivesizes[k] or 0)
 end
 
 drivetypes = { -- Numbers are stored little-endian (0x0a0b0c0d -> 0d 0c 0b 0a) for r/w operations
   posx = "number",
   posy = "number",
   posz = "number",
-  dronemodemaddress = "string",
+  dronemodemuuid = "string",
 }
 
 function readnumoff(offset, size)
@@ -94,7 +98,7 @@ while true do
     if message1 == "ping" then
       tunnel.send("ping_return")
     elseif message1 == "read" then
-      tunnel.send(read(siginfo[7])
+      tunnel.send(read(siginfo[7]))
     elseif message1 == "write" then
       write(siginfo[7], siginfo[8])
     end

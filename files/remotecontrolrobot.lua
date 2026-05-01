@@ -1,7 +1,7 @@
 tunneluuid = component.list("tunnel")()
 tunnel = component.proxy(tunneluuid)
 modemuuid = component.list("modem")()
-modem = component.proxy(modem)
+modem = component.proxy(modemuuid)
 robot = component.proxy(component.list("robot")())
 dronemodemuuid = ""
 

@@ -2,7 +2,7 @@ valid = "%s"
 unsafe = valid:len() == 2
 
 modemuuid = component.list("modem")()
-modem = component.proxy(modem)
+modem = component.proxy(modemuuid)
 drone = component.proxy(component.list("drone")())
 eeprom = component.proxy(component.list("eeprom")())
 
