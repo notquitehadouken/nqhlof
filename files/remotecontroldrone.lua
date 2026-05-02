@@ -22,7 +22,7 @@ if unsafe then -- This is most likely a first boot, as the target modem address 
       eeprom.set(eeprom.get():format(signext[3]))
       eeprom.setLabel(eeprom.getLabel() .. "(r/o)")
       eeprom.makeReadonly(eeprom.getChecksum())
-      modem.send(signext[2], 0xA1, "link")
+      modem.send(signext[3], 0xA1, "link")
       modem.setWakeMessage(valid)
       break
     end
