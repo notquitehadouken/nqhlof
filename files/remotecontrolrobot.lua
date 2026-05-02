@@ -40,7 +40,7 @@ if dronemodemuuid == "" then
   robot.setLightColor(0xFF0000)
   modem.broadcast(0xA1, nil)
   while true do
-    local sig = computer.pullSignal()
+    local sig = {computer.pullSignal()}
     if sig[2] == modemuuid and sig[6] == "link" then
       dronemodemuuid = sig[3]
       break
