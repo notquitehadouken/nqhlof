@@ -91,6 +91,17 @@ function write(key, value)
   end
 end
 
+function gpwritenew(line1, line2)
+  local xres, yres = gpu.getResolution()
+  
+  for i = yres, 3, -2 do
+    gpu.copy(1, i, xres, 2, 0, 2)
+  end
+  
+  gpu.set(1, 1, line1)
+  gpu.set(1, 2, line2)
+end
+
 while true do
   local siginfo = {computer.pullSignal()}
   signame = siginfo[1]
@@ -101,8 +112,11 @@ while true do
     if message1 == "ping" then
       tunnel.send("ping_return")
     elseif message1 == "read" then
-      tunnel.send(read(siginfo[7]))
+      local red = read(siginfo[7])
+      gpwritenew("robot read " .. siginfo[7], "\"" .. tostring(siginfo[8]) .. "\"")
+      tunnel.send()
     elseif message1 == "write" then
+      gpwritenew("robot write " .. siginfo[7], "\"" .. tostring(siginfo[8]) .. "\"")
       write(siginfo[7], siginfo[8])
     end
   elseif signame == "key_down" then
