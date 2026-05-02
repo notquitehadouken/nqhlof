@@ -18,8 +18,8 @@ if unsafe then -- This is most likely a first boot, as the target modem address 
     if signext[1] == "modem_message" and signext[5] <= 1.5 then -- Next to robot
       computer.beep(1250)
       eeprom.set(eeprom.get():format(signext[3]))
+      eeprom.setLabel(eeprom.getLabel() .. "(r/o)")
       eeprom.makeReadonly(eeprom.getChecksum())
-      eeprom.setLabel("Safety locked EEPROM")
       modem.send(signext[2], 0xA1, "link")
       modem.setWakeMessage(valid)
       break
