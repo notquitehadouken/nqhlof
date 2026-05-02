@@ -57,6 +57,7 @@ modem.send(dronemodemuuid, 0xA1, modemuuid)
 posx = read("posx")
 posy = read("posy")
 posz = read("posz")
+roty = read("roty")
 
 
 while true do
