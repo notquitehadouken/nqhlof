@@ -1,6 +1,8 @@
 valid = "%s"
 unsafe = valid:len() == 2
 
+drone.setLightColor(0x7F0000)
+
 modemuuid = component.list("modem")()
 modem = component.proxy(modemuuid)
 drone = component.proxy(component.list("drone")())
