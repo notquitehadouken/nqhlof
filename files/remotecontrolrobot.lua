@@ -37,6 +37,7 @@ end
 dronemodemuuid = read("dronemodemuuid")
 
 if dronemodemuuid == "" then
+  robot.setLightColor(0xFF0000)
   modem.broadcast(0xA1, nil)
   while true do
     local sig = computer.pullSignal()
@@ -48,6 +49,15 @@ if dronemodemuuid == "" then
   write("dronemodemuuid", dronemodemuuid)
   computer.shutdown(true)
 end
+
+robot.setLightColor(0x0000FF)
+
+modem.send(dronemodemuuid, 0xA1, modemuuid)
+
+posx = read("posx")
+posy = read("posy")
+posz = read("posz")
+
 
 while true do
   local siginfo = {computer.pullSignal()}

@@ -24,6 +24,7 @@ driveoffsets = { -- 1 is added for r/w operations
   posx = 0,
   posy = 4,
   posz = 8,
+  roty = 12,
   dronemodemuuid = 64,
   chunkdata = 4096,
 }
@@ -32,6 +33,7 @@ drivesizes = {
   posx = 4,
   posy = 4,
   posz = 4,
+  roty = 4,
   dronemodemuuid = 36,
 }
 
@@ -47,6 +49,7 @@ drivetypes = { -- Numbers are stored little-endian (0x0a0b0c0d -> 0d 0c 0b 0a) f
   posx = "number",
   posy = "number",
   posz = "number",
+  roty = "number",
   dronemodemuuid = "string",
 }
 
@@ -63,7 +66,7 @@ function read(key)
     return readnumoff(driveoffsets[key], drivesizes[key])
   elseif drivetypes[key] == "string" then
     str = ""
-    for i = drivestart[k], driveend[k] do
+    for i = drivestart[key], driveend[key] do
       local rd = drive.readByte(i)
       if rd == 0 then
         break
@@ -76,7 +79,7 @@ end
 
 function write(key, value)
   if drivetypes[key] == "number" then
-    for i = drivestart[k], driveend[k] do
+    for i = drivestart[key], driveend[key] do
       drive.writeByte(i, value % 256)
       value = value / 256
     end

@@ -13,7 +13,7 @@ if unsafe then -- This is most likely a first boot, as the target modem address 
   while true do
     local signext = {computer.pullSignal(5)}
     if signext[1] == nil then
-      computer.shutdown() -- No secondary signal was recieved after wakeup.
+      break -- No secondary signal was recieved after wakeup.
     end
     if signext[1] == "modem_message" and signext[5] <= 1.5 then -- Next to robot
       computer.beep(1250)
@@ -22,14 +22,17 @@ if unsafe then -- This is most likely a first boot, as the target modem address 
       eeprom.setLabel("Safety locked EEPROM")
       modem.send(signext[2], 0xA1, "link")
       modem.setWakeMessage(valid)
+      break
     end
   end
-  computer.shutdown(true)
+  computer.shutdown()
 end
 
 if ({computer.pullSignal(3)})[3] ~= valid then
   computer.shutdown()
 end
+
+drone.setLightColor(0x0000FF)
 
 function send(...)
   modem.send(valid, 0xA1, ...)
