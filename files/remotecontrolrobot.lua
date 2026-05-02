@@ -5,6 +5,9 @@ modem = component.proxy(modemuuid)
 robot = component.proxy(component.list("robot")())
 dronemodemuuid = ""
 
+modem.open(0xA1)
+robot.setLightColor(0x000000)
+
 function signalFromModem()
   while true do
     local siginfo = {computer.pullSignal()}
@@ -53,7 +56,7 @@ end
 robot.setLightColor(0x0000FF)
 
 modem.send(dronemodemuuid, 0xA1, modemuuid)
-modem.send(dronemodemuuid, 0xA1)
+modem.send(dronemodemuuid, 0xA1, modemuuid)
 
 posx = read("posx")
 posy = read("posy")

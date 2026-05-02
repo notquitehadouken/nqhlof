@@ -113,8 +113,8 @@ while true do
       tunnel.send("ping_return")
     elseif message1 == "read" then
       local red = read(siginfo[7])
-      gpwritenew("robot read " .. siginfo[7], "\"" .. tostring(siginfo[8]) .. "\"")
-      tunnel.send()
+      gpwritenew("robot read " .. siginfo[7], "\"" .. tostring(red) .. "\"")
+      tunnel.send(red)
     elseif message1 == "write" then
       gpwritenew("robot write " .. siginfo[7], "\"" .. tostring(siginfo[8]) .. "\"")
       write(siginfo[7], siginfo[8])
