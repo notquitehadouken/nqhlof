@@ -92,6 +92,8 @@ function write(key, value)
 end
 
 function gpwritenew(line1, line2)
+  local xres, yres = gpu.getResolution()
+  
   for i = yres, 1, -2 do
     gpu.copy(1, i, xres, 2, 0, 2)
   end
