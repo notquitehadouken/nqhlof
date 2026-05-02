@@ -84,7 +84,7 @@ function write(key, value)
       value = value / 256
     end
   elseif drivetypes[key] == "string" then
-    for i = drivestart[k], driveend[k] do
+    for i = drivestart[key], driveend[key] do
       drive.writeByte(i, string.byte(value))
       value = value:sub(2)
     end
