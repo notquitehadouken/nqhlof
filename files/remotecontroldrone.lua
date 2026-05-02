@@ -28,6 +28,7 @@ if unsafe then -- This is most likely a first boot, as the target modem address 
   computer.shutdown()
 end
 
+modem.send(valid, 0xA1)
 if ({computer.pullSignal(3)})[3] ~= valid then
   computer.shutdown()
 end

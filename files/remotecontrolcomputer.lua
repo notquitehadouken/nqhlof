@@ -54,9 +54,9 @@ drivetypes = { -- Numbers are stored little-endian (0x0a0b0c0d -> 0d 0c 0b 0a) f
 }
 
 function readnumoff(offset, size)
-  num = 0
-  for i = offset, offset + size do
-    num = num * 256 + drive.readByte(i)
+  local num = 0
+  for i = offset + 1, offset + size do
+    num = num * 256  + drive.readByte(i)
   end
   return num
 end
@@ -92,9 +92,7 @@ function write(key, value)
 end
 
 function gpwritenew(line1, line2)
-  local xres, yres = gpu.getResolution()
-  
-  for i = yres, 3, -2 do
+  for i = yres, 1, -2 do
     gpu.copy(1, i, xres, 2, 0, 2)
   end
   

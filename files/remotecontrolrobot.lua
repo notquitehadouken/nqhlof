@@ -50,13 +50,14 @@ if dronemodemuuid == "" then
     end
   end
   write("dronemodemuuid", dronemodemuuid)
-  computer.shutdown(true)
+  computer.shutdown()
 end
 
 robot.setLightColor(0x0000FF)
 
 modem.send(dronemodemuuid, 0xA1, modemuuid)
-modem.send(dronemodemuuid, 0xA1, modemuuid)
+signalFromModem()
+modem.send(dronemodemuuid, 0xA1)
 
 posx = read("posx")
 posy = read("posy")
