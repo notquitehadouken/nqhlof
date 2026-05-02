@@ -53,6 +53,7 @@ end
 robot.setLightColor(0x0000FF)
 
 modem.send(dronemodemuuid, 0xA1, modemuuid)
+modem.send(dronemodemuuid, 0xA1)
 
 posx = read("posx")
 posy = read("posy")
