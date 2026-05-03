@@ -29,20 +29,26 @@ if unsafe then -- This is most likely a first boot, as the target modem address 
 end
 
 modem.send(robotuuid, 0xA1)
-if ({computer.pullSignal(3)})[3] ~= robotuuid then
-  computer.shutdown()
+while true do
+  local sig = {computer.pullSignal(1)}
+  if sig[1] == nil then
+    computer.shutdown()
+  end
+  if sig[3] == robotuuid then
+    break
+  end
 end
 
 drone.setLightColor(0x0000FF)
 
 function send(...)
-  modem.send(valid, 0xA1, ...)
+  modem.send(robotuuid, 0xA1, ...)
 end
 
 function recieve()
   while true do
     local sig = {computer.pullSignal()}
-    if signext[1] == "modem_message" and signext[3] == valid then
+    if signext[1] == "modem_message" and signext[3] == robotuuid then
       return sig
     end
   end
