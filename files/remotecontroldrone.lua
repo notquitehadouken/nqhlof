@@ -91,9 +91,9 @@ function hone() -- Center above the robot, with 0, 0, 0 as directly above
   local m2z = ping()[5]
   dmo(0, 0, -1)
   
-  x = math.floor((m2x * m2x - m1 * m1 - 2) / 2)
-  y = math.floor((m2y * m2y - m1 * m1 - 2) / 2) - 1
-  z = math.floor((m2z * m2z - m1 * m1 - 2) / 2)
+  x = math.floor((m2x * m2x - m1 * m1) / 2)
+  y = math.floor((m2y * m2y - m1 * m1) / 2) - 1
+  z = math.floor((m2z * m2z - m1 * m1) / 2)
   
   dmo(-x, -y, -z)
 end
@@ -101,5 +101,5 @@ end
 hone()
 
 while true do
-  component.pullSignal(5)
+  computer.pullSignal(5)
 end
