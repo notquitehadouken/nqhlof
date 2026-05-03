@@ -70,31 +70,49 @@ function dmo(dx, dy, dz)
   drone.move(dx, dy, dz)
 end
 
-function waitstatic()
+function waitstatic() -- returns distance from destination once stopped
+  local s = os.clock()
+  local waiting = false
   while true do
-    if drone.getVelocity() < 0.001 and drone.getOffset() < 0.001 then
-      return
+    local vel = drone.getVelocity()
+    local off = drone.getOffset()
+    if vel < 0.001 and off < 0.001 then
+      return 0
+    end
+    local dt = os.clock() - s
+    if dt >= 0.25 and vel < 0.001 then -- we have stopped early
+      if not waiting then
+        waiting = true
+      else
+        return off
+      end
+    else
+      waiting = false
     end
   end
 end
 
+function dmos(dx, dy, dz)
+  dmo(dx, dy, dz)
+  return waitstatic()
+end
+
 function hone() -- Center above the robot, with 0, 0, 0 as directly above
   local m1 = ping()[5]
-  local d = 0.05
-  dmo(d, 0, 0)
-  waitstatic()
+  local d = 1
+  local dx = d - dmos(d, 0, 0)
   local m2x = ping()[5]
-  dmo(-d, d, 0)
-  waitstatic()
+  dmos(-d, 0, 0)
+  local dy = d - dmos(0, d, 0)
   local m2y = ping()[5]
-  dmo(0, -d, d)
-  waitstatic()
+  dmos(0, -d, 0)
+  local dz = d - dmos(0, 0, d)
   local m2z = ping()[5]
   dmo(0, 0, -d)
   
-  x = math.floor((m2x * m2x - m1 * m1 - d * d) / (2 * d) + 0.5)
-  y = math.floor((m2y * m2y - m1 * m1 - d * d) / (2 * d) + 0.5) - 1
-  z = math.floor((m2z * m2z - m1 * m1 - d * d) / (2 * d) + 0.5)
+  x = math.floor((m2x * m2x - m1 * m1 - dx * dx) / (2 * dx) + 0.5)
+  y = math.floor((m2y * m2y - m1 * m1 - dy * dy) / (2 * dy) + 0.5) - 1
+  z = math.floor((m2z * m2z - m1 * m1 - dz * dz) / (2 * dz) + 0.5)
   
   dmo(-x, -y, -z)
 end
