@@ -30,7 +30,7 @@ end
 
 modem.send(robotuuid, 0xA1)
 while true do
-  local sig = {computer.pullSignal(1)}
+  local sig = {computer.pullSignal(3)}
   if sig[1] == nil then
     computer.shutdown()
   end

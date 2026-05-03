@@ -95,9 +95,11 @@ function gpwritenew(line1, line2)
   local xres, yres = gpu.getResolution()
   
   for i = yres, 1, -2 do
+    gpu.fill(1, i + 2, xres, 2, " ")
     gpu.copy(1, i, xres, 2, 0, 2)
   end
   
+  gpu.fill(1, 1, xres, 2, " ")
   gpu.set(1, 1, line1)
   gpu.set(1, 2, line2)
 end
