@@ -64,7 +64,6 @@ posy = read("posy")
 posz = read("posz")
 roty = read("roty")
 
-
 while true do
   local siginfo = {computer.pullSignal()}
   signame = siginfo[1]

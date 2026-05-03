@@ -1,5 +1,5 @@
-valid = "%s"
-unsafe = valid:len() == 2
+robotuuid = "%s"
+unsafe = robotuuid:len() == 2
 
 modemuuid = component.list("modem")()
 modem = component.proxy(modemuuid)
@@ -21,15 +21,15 @@ if unsafe then -- This is most likely a first boot, as the target modem address 
       eeprom.set(eeprom.get():format(signext[3]))
       eeprom.setLabel(eeprom.getLabel() .. " (set)")
       modem.send(signext[3], 0xA1, "link")
-      modem.setWakeMessage(valid)
+      modem.setWakeMessage(signext[3])
       break
     end
   end
   computer.shutdown()
 end
 
-modem.send(valid, 0xA1)
-if ({computer.pullSignal(3)})[3] ~= valid then
+modem.send(robotuuid, 0xA1)
+if ({computer.pullSignal(3)})[3] ~= robotuuid then
   computer.shutdown()
 end
 
