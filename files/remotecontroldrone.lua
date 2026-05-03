@@ -71,25 +71,18 @@ function dmo(dx, dy, dz)
 end
 
 function waitstatic() -- returns distance from destination once stopped
-  local s = os.clock()
-  local lastoff = drone.getOffset()
+  local lastoff = 9999
   while true do
     local vel = drone.getVelocity()
     local off = drone.getOffset()
     local dp = lastoff - off
+    lastoff = off
     drone.setStatusText(tostring(vel) .. "!\n" .. tostring(off) .. "!")
     if vel < 0.01 and off < 0.01 then
       return 0
     end
-    local dt = os.clock() - s
-    if dt >= 0.25 and dp < 0.001 then -- we have stopped early
-      if not waiting then
-        waiting = true
-      else
-        return off
-      end
-    else
-      waiting = false
+    if dp < 0.001 then -- we have stopped early
+      return off
     end
   end
 end
