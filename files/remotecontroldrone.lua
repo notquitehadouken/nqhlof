@@ -16,7 +16,7 @@ if unsafe then -- This is most likely a first boot, as the target modem address 
     if signext[1] == nil then
       break -- No secondary signal was recieved after wakeup.
     end
-    if signext[1] == "modem_message" and signext[5] <= 1.5 then -- Next to robot
+    if signext[1] == "modem_message" and signext[5] <= 2.25 then -- Next to robot
       computer.beep(1250)
       eeprom.set(eeprom.get():format(signext[3]))
       eeprom.setLabel(eeprom.getLabel() .. " (set)")
@@ -72,7 +72,7 @@ end
 
 function waitstatic()
   while true do
-    if drone.getVelocity() < 0.01 and drone.getOffset() < 0.1 then
+    if drone.getVelocity() < 0.001 and drone.getOffset() < 0.001 then
       return
     end
   end
@@ -80,20 +80,21 @@ end
 
 function hone() -- Center above the robot, with 0, 0, 0 as directly above
   local m1 = ping()[5]
-  dmo(1, 0, 0)
+  local d = 0.05
+  dmo(d, 0, 0)
   waitstatic()
   local m2x = ping()[5]
-  dmo(-1, 1, 0)
+  dmo(-d, d, 0)
   waitstatic()
   local m2y = ping()[5]
-  dmo(0, -1, 1)
+  dmo(0, -d, d)
   waitstatic()
   local m2z = ping()[5]
-  dmo(0, 0, -1)
+  dmo(0, 0, -d)
   
-  x = math.floor((m2x * m2x - m1 * m1) / 2)
-  y = math.floor((m2y * m2y - m1 * m1) / 2) - 1
-  z = math.floor((m2z * m2z - m1 * m1) / 2)
+  x = math.floor((m2x * m2x - m1 * m1 - d * d) / (2 * d) + 0.5)
+  y = math.floor((m2y * m2y - m1 * m1 - d * d) / (2 * d) + 0.5) - 1
+  z = math.floor((m2z * m2z - m1 * m1 - d * d) / (2 * d) + 0.5)
   
   dmo(-x, -y, -z)
 end
