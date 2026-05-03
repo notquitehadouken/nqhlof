@@ -76,6 +76,7 @@ function waitstatic() -- returns distance from destination once stopped
   while true do
     local vel = drone.getVelocity()
     local off = drone.getOffset()
+    drone.setStatusText(tostring(vel) .. "!\n" .. tostring(off) .. "!")
     if vel < 0.001 and off < 0.001 then
       return 0
     end
