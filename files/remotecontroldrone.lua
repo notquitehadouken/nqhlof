@@ -77,11 +77,11 @@ function waitstatic() -- returns distance from destination once stopped
     local vel = drone.getVelocity()
     local off = drone.getOffset()
     drone.setStatusText(tostring(vel) .. "!\n" .. tostring(off) .. "!")
-    if vel < 0.001 and off < 0.001 then
+    if vel < 0.01 and off < 0.01 then
       return 0
     end
     local dt = os.clock() - s
-    if dt >= 0.25 and vel < 0.001 then -- we have stopped early
+    if dt >= 0.25 and vel < 0.01 then -- we have stopped early
       if not waiting then
         waiting = true
       else
