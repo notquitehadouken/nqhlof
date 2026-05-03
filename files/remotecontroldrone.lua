@@ -48,7 +48,7 @@ end
 function recieve()
   while true do
     local sig = {computer.pullSignal()}
-    if signext[1] == "modem_message" and signext[3] == robotuuid then
+    if sig[1] == "modem_message" and sig[3] == robotuuid then
       return sig
     end
   end
@@ -83,12 +83,13 @@ function hone() -- Center above the robot, with 0, 0, 0 as directly above
   dmo(1, 0, 0)
   waitstatic()
   local m2x = ping()[5]
-  dmo(0, 1, 0)
+  dmo(-1, 1, 0)
   waitstatic()
   local m2y = ping()[5]
-  dmo(0, 0, 1)
+  dmo(0, -1, 1)
   waitstatic()
   local m2z = ping()[5]
+  dmo(0, 0, -1)
   
   x = math.floor((m2x * m2x - m1 * m1 - 2) / 2)
   y = math.floor((m2y * m2y - m1 * m1 - 2) / 2) - 1
@@ -98,3 +99,7 @@ function hone() -- Center above the robot, with 0, 0, 0 as directly above
 end
 
 hone()
+
+while true do
+  component.pullSignal(5)
+end
