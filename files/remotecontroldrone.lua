@@ -1,13 +1,14 @@
 robotuuid = "%s"
 unsafe = robotuuid:len() == 2
 
-modemuuid = component.list("modem")()
-modem = component.proxy(modemuuid)
+_mu = component.list("modem")()
+_m = component.proxy(_mu)
 drone = component.proxy(component.list("drone")())
 eeprom = component.proxy(component.list("eeprom")())
+gen = component.proxy(component.list("generator")())
 
-modem.open(0xA1)
-drone.setLightColor(0x000000)
+_m.open(0xA1)
+drone.setLightColor(0)
 
 if unsafe then -- This is most likely a first boot, as the target modem address was unset.
   drone.setLightColor(0xFF0000)
@@ -20,15 +21,15 @@ if unsafe then -- This is most likely a first boot, as the target modem address 
       computer.beep(1250)
       eeprom.set(eeprom.get():format(signext[3]))
       eeprom.setLabel(eeprom.getLabel() .. " (set)")
-      modem.send(signext[3], 0xA1, "link")
-      modem.setWakeMessage(signext[3])
+      _m.send(signext[3], 0xA1, "link")
+      _m.setWakeMessage(signext[3])
       break
     end
   end
   computer.shutdown()
 end
 
-modem.send(robotuuid, 0xA1)
+_m.send(robotuuid, 0xA1)
 while true do
   local sig = {computer.pullSignal(3)}
   if sig[1] == nil then
@@ -42,12 +43,15 @@ end
 drone.setLightColor(0x0000FF)
 
 function send(...)
-  modem.send(robotuuid, 0xA1, ...)
+  _m.send(robotuuid, 0xA1, ...)
 end
 
-function recieve()
+function recieve(timeout)
   while true do
-    local sig = {computer.pullSignal()}
+    local sig = {computer.pullSignal(timeout)}
+    if sig[1] == nil then
+      return sig
+    end
     if sig[1] == "modem_message" and sig[3] == robotuuid then
       return sig
     end
@@ -92,7 +96,15 @@ function dmos(dx, dy, dz)
   return waitstatic()
 end
 
-function hone() -- Center above the robot, with 0, 0, 0 as directly above
+function tdmos(dx, dy, dz)
+  if dmos(dx, dy, dz) > 0.05 then
+    dmos(-dx, -dy, -dz)
+    return false
+  end
+  return true
+end
+
+function hone()
   local m1 = ping()[5]
   local d = 1
   local dx = d - dmos(d, 0, 0)
@@ -112,8 +124,21 @@ function hone() -- Center above the robot, with 0, 0, 0 as directly above
   dmo(-x, -y, -z)
 end
 
-hone()
-
 while true do
-  computer.pullSignal(5)
+  local sig = receive(5)
+  if sig[6] == "hone" then
+    hone()
+    x = sig[7] or x
+    y = (sig[8] or y) + 1
+    z = sig[9] or z
+    send("honed")
+  elseif sig[6] == "shutdown" then
+    computer.shutdown()
+  elseif sig[6] == "move" then
+    send(tdmos(sig[7] or 0, sig[8] or 0, sig[9] or 0))
+  elseif sig[6] == "read" then
+    send(drone.detect(sig[7]))
+  elseif sig[6] == "energy" then
+    send()
+  end
 end

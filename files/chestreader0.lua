@@ -2,13 +2,13 @@ function proxy(name)
   return component.proxy(component.list(name)())
 end
 
-robot = proxy("robot")
-rm = robot.move
-rt = robot.turn
+_r = proxy("robot")
+rm = _r.move
+rt = _r.turn
 
 icont = proxy("inventory_controller")
 compu = computer
-modem = proxy("modem")
+_m = proxy("modem")
 
 val_f = 0
 val_r = 1
@@ -144,8 +144,8 @@ function checksurrounding()
 end
 
 function transmit()
-  modem.open(0x0101)
-  modem.broadcast(0x0101, "R_OPEN")
+  _m.open(0x0101)
+  _m.broadcast(0x0101, "R_OPEN")
   local remote
   while true do
     local name, localaddress, raddr, _, _, msg = computer.pullSignal()
@@ -156,7 +156,7 @@ function transmit()
   end
   for item, amount in pairs(total) do
     compu.beep(300, 0.5)
-    modem.send(remote, 0x0101, "R_TRANSMIT", "R_ENTRY", item, amount)
+    _m.send(remote, 0x0101, "R_TRANSMIT", "R_ENTRY", item, amount)
     while true do
       local name, laddr, raddr, port, dist, msg = computer.pullSignal()
       if raddr == remote and msg == "C_QUERY" then
@@ -165,8 +165,8 @@ function transmit()
     end
   end
   compu.beep(800, 0.5)
-  modem.send(remote, 0x0101, "R_TRANSMIT", "R_END")
-  modem.close(0x0101)
+  _m.send(remote, 0x0101, "R_TRANSMIT", "R_END")
+  _m.close(0x0101)
 end
 
 while true do

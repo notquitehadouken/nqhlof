@@ -1,9 +1,9 @@
 clist = component.list
 screenaddr = clist("screen")()
-gpu = component.proxy(clist("gpu")())
-gpu.bind(screenaddr)
-gpu.setViewport(32, 16)
-gpu.setResolution(32, 16)
+_g = component.proxy(clist("gpu")())
+_g.bind(screenaddr)
+_g.setViewport(32, 16)
+_g.setResolution(32, 16)
 
 blueshades = {0x00, 0x40, 0x80, 0xC0, 0xFF}
 redshades = {0x000000, 0x330000, 0x660000, 0x990000, 0xCC0000, 0xFF0000}
@@ -28,9 +28,9 @@ while 1 do
     for y = 0, 15 do
       idx = y * 16 + x
       local color = colorof(idx)
-      gpu.setForeground(color)
-      gpu.setBackground(color)
-      gpu.set(x * 2 + 1, y + 1, "##")
+      _g.setForeground(color)
+      _g.setBackground(color)
+      _g.set(x * 2 + 1, y + 1, "##")
     end
   end
 end
